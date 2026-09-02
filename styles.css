@@ -3752,13 +3752,13 @@ h1, h2, h3, h4, .font-serif {
     padding: 10px 16px;
   }
 
-  /* Floating WhatsApp button compact */
+  /* Floating WhatsApp button compact inside dock */
   .floating-whatsapp-btn {
-    bottom: 18px;
-    right: 18px;
-    width: 46px;
-    height: 46px;
-    z-index: 990;
+    position: relative !important;
+    bottom: auto !important;
+    right: auto !important;
+    width: 44px;
+    height: 44px;
   }
 
   .floating-whatsapp-btn svg {
@@ -4266,18 +4266,42 @@ h1, h2, h3, h4, .font-serif {
 
 @media (max-width: 600px) {
   .floating-assist-dock {
+    position: fixed;
     bottom: 16px;
     right: 16px;
-    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    z-index: 990;
+    pointer-events: none;
   }
+
+  .floating-assist-dock > * {
+    pointer-events: auto;
+  }
+
   .floating-concierge-btn {
-    padding: 8px 14px;
+    position: relative !important;
+    bottom: auto !important;
+    right: auto !important;
+    padding: 7px 14px;
   }
+
   .concierge-btn-text {
-    font-size: 0.75rem;
+    font-size: 0.74rem;
   }
+
+  .floating-whatsapp-btn {
+    position: relative !important;
+    bottom: auto !important;
+    right: auto !important;
+    width: 44px;
+    height: 44px;
+  }
+
   .concierge-chatbox {
-    bottom: 75px;
+    bottom: 80px;
     right: 12px;
     left: 12px;
     width: auto;
