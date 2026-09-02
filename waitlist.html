@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIP Small-Batch Waitlist | Bluoilz Therapeutic Skincare</title>
+  <meta name="description" content="Reserve your slot for Bluoilz upcoming 10 small-batch therapeutic formulations. Prepared fresh upon booking using ancient botanical distillation.">
+  <link rel="canonical" href="https://www.bluoilz.com/waitlist.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="VIP Small-Batch Waitlist | Bluoilz Therapeutic Skincare">
+  <meta property="og:description" content="Reserve priority access to our forthcoming therapeutic formulations. Hand-compounded fresh as you book.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.bluoilz.com/waitlist.html">
+  <meta property="og:image" content="https://www.bluoilz.com/assets/anti_pigmentation.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VIP Small-Batch Waitlist | Bluoilz Therapeutic Skincare">
+  <meta name="twitter:description" content="Reserve priority access to our forthcoming therapeutic formulations. Hand-compounded fresh as you book.">
+  <meta name="twitter:image" content="https://www.bluoilz.com/assets/anti_pigmentation.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .waitlist-hero {
+      padding: 70px 0 45px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(222, 94, 115, 0.08) 0%, rgba(249, 245, 240, 0) 100%);
+    }
+
+    .waitlist-progress-bar {
+      max-width: 540px;
+      margin: 24px auto 0;
+      background: rgba(74, 53, 58, 0.08);
+      border-radius: var(--radius-pill);
+      height: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .waitlist-progress-fill {
+      width: 78%;
+      height: 100%;
+      background: var(--color-accent-gradient);
+      border-radius: var(--radius-pill);
+      transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .waitlist-meta-stats {
+      display: flex;
+      justify-content: space-between;
+      max-width: 540px;
+      margin: 8px auto 0;
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      font-weight: 600;
+    }
+
+    .waitlist-form-card {
+      max-width: 680px;
+      margin: -20px auto 60px;
+      background: #ffffff;
+      border: 1px solid rgba(222, 94, 115, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: 0 16px 44px rgba(74, 53, 58, 0.06);
+      position: relative;
+      z-index: 5;
+    }
+
+    .form-group-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .waitlist-input {
+      width: 100%;
+      padding: 13px 18px;
+      border: 1.5px solid rgba(74, 53, 58, 0.15);
+      border-radius: var(--radius-pill);
+      font-size: 0.9rem;
+      font-family: var(--font-sans);
+      color: var(--color-text);
+      outline: none;
+      transition: var(--transition);
+      background: #faf8f5;
+    }
+
+    .waitlist-input:focus {
+      border-color: var(--color-accent);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(222, 94, 115, 0.12);
+    }
+
+    .waitlist-select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23DE5E73%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+      background-repeat: no-repeat;
+      background-position: right 18px top 50%;
+      background-size: 10px auto;
+      padding-right: 40px;
+    }
+
+    .waitlist-upcoming-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 22px;
+      margin-top: 36px;
+    }
+
+    .upcoming-card {
+      background: #ffffff;
+      border: 1px solid rgba(74, 53, 58, 0.09);
+      border-radius: var(--radius-md);
+      padding: 24px 20px;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .upcoming-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-subtle);
+      border-color: rgba(222, 94, 115, 0.3);
+    }
+
+    .upcoming-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-accent);
+      background: rgba(222, 94, 115, 0.1);
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 12px;
+    }
+
+    .upcoming-title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      color: var(--color-primary);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .upcoming-desc {
+      font-size: 0.84rem;
+      color: var(--color-text-muted);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+
+    .upcoming-botanical {
+      font-size: 0.78rem;
+      color: var(--color-text);
+      background: #faf8f5;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .confirmation-toast {
+      display: none;
+      background: #e8f5e9;
+      color: #2e7d32;
+      border: 1px solid #a5d6a7;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      margin-top: 18px;
+      font-size: 0.9rem;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    @media (max-width: 600px) {
+      .form-group-row {
+        grid-template-columns: 1fr;
+      }
+      .waitlist-form-card {
+        padding: 26px 18px;
+      }
+      .waitlist-hero {
+        padding: 40px 16px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement -->
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <div class="announcement-msg">
+        <span>🌿 <strong>VIP Allocation</strong>: Total 15 Ancient Formulations Only • Small-Batch Distillation</span>
+      </div>
+      <div class="announcement-contact">
+        <span><a href="index.html" style="color:#ffffff; text-decoration: underline;">&larr; Back to Boutique</a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-name">Bluoilz</span>
+        <span class="brand-tag">Therapeutic Ancient Alchemy</span>
+      </a>
+      <nav class="desktop-nav">
+        <ul class="nav-links">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="index.html#products" class="nav-link">Therapeutic Care (5 Active)</a></li>
+          <li class="nav-item"><a href="waitlist.html" class="nav-link active">VIP Waitlist (10 Coming)</a></li>
+          <li class="nav-item"><a href="index.html#quiz" class="nav-link">Skin Diagnostic</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a href="index.html#products" class="btn btn-primary" style="padding: 9px 20px; font-size: 0.8rem;">
+          View Current 5 &rarr;
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="waitlist-hero">
+    <div class="container">
+      <span class="section-eyebrow">Strict Small-Batch Allocation</span>
+      <h1 class="section-title" style="font-size: clamp(2rem, 5vw, 3rem);">The 10 Forthcoming Therapeutic Formulations</h1>
+      <p class="section-desc" style="max-width: 650px; margin: 0 auto;">
+        To uphold the ancient method of pure compounding without stabilizers, our laboratory prepares strictly 15 therapeutic formulations in limited cycles. Reserve your priority slot before batch release.
+      </p>
+
+      <div class="waitlist-progress-bar">
+        <div class="waitlist-progress-fill" id="progressFill"></div>
+      </div>
+      <div class="waitlist-meta-stats">
+        <span>Batch 04 Allocation</span>
+        <span>78% Reserved (22 Slots Remaining)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reservation Form Card -->
+  <section class="container">
+    <div class="waitlist-form-card">
+      <div style="text-align: center; margin-bottom: 24px;">
+        <span style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--color-accent); letter-spacing: 0.08em;">Priority Access</span>
+        <h2 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--color-primary); margin: 6px 0;">Reserve Your Fresh Compounding Slot</h2>
+        <p style="font-size: 0.88rem; color: var(--color-text-muted);">Receive private notification 48 hours prior to batch distillation. Zero upfront payment required.</p>
+      </div>
+
+      <form id="vipWaitlistForm" onsubmit="handleWaitlistSubmit(event)">
+        <div class="form-group-row">
+          <input type="text" id="wlName" class="waitlist-input" placeholder="Your Full Name" required>
+          <input type="email" id="wlEmail" class="waitlist-input" placeholder="Your Email Address" required>
+        </div>
+        <div class="form-group-row">
+          <input type="tel" id="wlPhone" class="waitlist-input" placeholder="WhatsApp Number (e.g. +91 98765 43210)" required>
+          <select id="wlConcern" class="waitlist-input waitlist-select" required>
+            <option value="" disabled selected>Primary Skin / Therapeutic Concern</option>
+            <option value="vitiligo">Vitiligo & Hypopigmentation Support</option>
+            <option value="eczema">Eczema & Atopic Dermatitis Relief</option>
+            <option value="rosacea">Rosacea & Facial Capillary Flushing</option>
+            <option value="scalp">Scalp Follicle Density & Dandruff</option>
+            <option value="joints">Musculoskeletal & Joint Tension Balm</option>
+            <option value="diabetic-dry">Severe Xerosis & Diabetic Foot Care</option>
+            <option value="scar-acne">Post-Acne Indented Marks & Erythema</option>
+            <option value="chilblains">Extremity Cold & Chilblains Support</option>
+            <option value="keratosis">Keratosis Pilaris Smoothing Lotion</option>
+            <option value="tamanu-sos">Pure Tamanu & Centella SOS Healer</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 0.95rem; justify-content: center;">
+          🌿 Reserve Priority Batch Slot &bull; Free VIP Entry &rarr;
+        </button>
+
+        <div id="confirmationToast" class="confirmation-toast">
+          ✨ <strong>You are on the VIP Reserve List!</strong> Your slot has been secured. We will reach you via WhatsApp & Email when compounding begins.
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Previews of Forthcoming Formulations -->
+  <section class="container" style="margin-bottom: 80px;">
+    <div class="section-header" style="text-align: center;">
+      <span class="section-eyebrow">Lab Development Schedule</span>
+      <h2 class="section-title">Formulations Currently in Botanical Extraction</h2>
+      <p class="section-desc">Each formula adheres to our strict ethos: We prepare as you book with 100% active botanicals.</p>
+    </div>
+
+    <div class="waitlist-upcoming-grid">
+      
+      <!-- 01 -->
+      <div class="upcoming-card">
+        <span class="upcoming-badge">Dropping Next</span>
+        <h3 class="upcoming-title">Vitiligo Melanin-Regenerating Nectar</h3>
+        <p class="upcoming-desc">Distilled with ancient Psoralea Corylifolia (Bakuchi) and black seed lipids to stimulate inactive melanocytes.</p>
+        <span class="upcoming-botanical">🌱 Bakuchi Seed & Cold-Pressed Kalonji</span>
+      </div>
+
+      <!-- 02 -->
+      <div class="upcoming-card">
+        <span class="upcoming-badge">Dropping Next</span>
+        <h3 class="upcoming-title">Eczema Lipid Matrix Restorative Cream</h3>
+        <p class="upcoming-desc">Biomimetic ceramides combined with ancient borage flower oil to rebuild atopic, cracked moisture barriers.</p>
+        <span class="upcoming-botanical">🌱 Borage Glabrosa & Plant Ceramides</span>
+      </div>
+
+      <!-- 03 -->
+      <div class="upcoming-card">
+        <span class="upcoming-badge">Formulating</span>
+        <h3 class="upcoming-title">Rosacea Vascular Calming Emulsion</h3>
+        <p class="upcoming-desc">Engineered to constrict dilated facial capillaries, reduce hot flushing, and calm spider veins.</p>
+        <span class="upcoming-botanical">🌱 Ruscus Aculeatus & Blue Tansy</span>
+      </div>
+
+      <!-- 04 -->
+      <div class="upcoming-card">
+        <span class="upcoming-badge">Formulating</span>
+        <h3 class="upcoming-title">Follicle Density Therapeutic Scalp Oil</h3>
+        <p class="upcoming-desc">Ancient Ayurvedic hair root infusion with wild Bhringraj, Rosemary, and Amla for stress-induced thinning.</p>
+        <span class="upcoming-botanical">🌱 Wild Bhringraj & Cineole Rosemary</span>
+      </div>
+
+      <!-- 05 -->
+      <div class="upcoming-card">
+        <span class="upcoming-badge">Formulating</span>
+        <h3 class="upcoming-title">Joint & Muscle Ancient Compress Balm</h3>
+        <p class="upcoming-desc">Deep thermal relief for stiffness and tendon discomfort using wintergreen and camphor distillation.</p>
+        <span class="upcoming-botanical">🌱 Gaultheria & Maha Narayana Alchemy</span>
+      </div>
+
+      <!-- 06 -->
+      <div class="upcoming-card">
+        <span class="upcoming-badge">Formulating</span>
+        <h3 class="upcoming-title">Severe Xerosis & Diabetic Foot Shield</h3>
+        <p class="upcoming-desc">Non-greasy antiseptic cream that seals deep epidermal fissures, cracked heels, and extreme dehydration.</p>
+        <span class="upcoming-botanical">🌱 Shorea Robusta (Sal Butter) & Zinc</span>
+      </div>
+
+      <!-- 07 -->
+      <div class="upcoming-card">
+        <span class="upcoming-badge">Research</span>
+        <h3 class="upcoming-title">Post-Acne Erythema & Scar Concentrate</h3>
+        <p class="upcoming-desc">Ancient Gotu Kola (Centella) and bioactive licorice extract to rebuild depleted dermal collagen pockets.</p>
+        <span class="upcoming-botanical">🌱 Centella Asiatica & Glabridin</span>
+      </div>
+
+      <!-- 08 -->
+      <div class="upcoming-card">
+        <span class="upcoming-badge">Research</span>
+        <h3 class="upcoming-title">Chilblain & Winter Extremity Warming Salve</h3>
+        <p class="upcoming-desc">Stimulates micro-capillary circulation in toes and fingers affected by cold weather swelling and itching.</p>
+        <span class="upcoming-botanical">🌱 Ginger Rhizome & Black Pepper Lipids</span>
+      </div>
+
+      <!-- 09 -->
+      <div class="upcoming-card">
+        <span class="upcoming-badge">Research</span>
+        <h3 class="upcoming-title">Keratosis Pilaris Smoothing Botanical Lotion</h3>
+        <p class="upcoming-desc">Natural willow bark salicin and lactic plant ferment to dissolve strawberry skin bumps without barrier stinging.</p>
+        <span class="upcoming-botanical">🌱 White Willow Bark & Coconut Kefir</span>
+      </div>
+
+      <!-- 10 -->
+      <div class="upcoming-card">
+        <span class="upcoming-badge">Research</span>
+        <h3 class="upcoming-title">Pure Tamanu & Centella SOS Healing Balm</h3>
+        <p class="upcoming-desc">100% cold-pressed Polynesian Calophyllum inophyllum for immediate burn, insect bite, and scrape relief.</p>
+        <span class="upcoming-botanical">🌱 Raw Green Tamanu & Madagascan Gotu Kola</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+      <div>
+        <span class="brand-name" style="font-size: 1.5rem; color: #ffffff;">Bluoilz</span>
+        <p style="font-size: 0.82rem; color: var(--color-surface-muted); margin: 4px 0 0;">Therapeutic Ancient Alchemy &bull; We Prepare As You Book</p>
+      </div>
+      <div>
+        <a href="index.html" class="btn btn-primary" style="font-size: 0.8rem; padding: 10px 22px;">Back to Active Boutique &rarr;</a>
+      </div>
+    </div>
+    <div class="container" style="margin-top: 30px; text-align: center;">
+      <p class="footer-legal">&copy; 2026 Bluoilz. All Rights Reserved. Total 15 Therapeutic Formulations System.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize reservation status
+    document.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('bluoilz_waitlist_reserved');
+      if (saved) {
+        const toast = document.getElementById('confirmationToast');
+        if (toast) {
+          toast.style.display = 'block';
+          toast.innerHTML = '✨ <strong>Welcome Back!</strong> Your VIP reservation for Batch 04 is currently active.';
+        }
+      }
+    });
+
+    function handleWaitlistSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('wlName').value.trim();
+      const email = document.getElementById('wlEmail').value.trim();
+      const phone = document.getElementById('wlPhone').value.trim();
+      const concern = document.getElementById('wlConcern').value;
+
+      const data = { name, email, phone, concern, date: new Date().toISOString() };
+      localStorage.setItem('bluoilz_waitlist_reserved', JSON.stringify(data));
+
+      const toast = document.getElementById('confirmationToast');
+      toast.style.display = 'block';
+      toast.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // Animate progress bar slightly
+      const fill = document.getElementById('progressFill');
+      if (fill) fill.style.width = '81%';
+
+      document.getElementById('vipWaitlistForm').reset();
+    }
+  </script>
+</body>
+</html>

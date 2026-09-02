@@ -1279,3 +1279,241 @@ function setupScrollReveal() {
   }
 }
 
+// ==========================================================================
+// In-Catalog Live Filter Search (#products)
+// ==========================================================================
+function handleCatalogFilter(query) {
+  const term = query.toLowerCase().trim();
+  const clearBtn = document.getElementById('catalogSearchClear');
+  if (clearBtn) clearBtn.style.display = term ? 'block' : 'none';
+
+  const container = document.getElementById('productsGrid');
+  if (!container) return;
+
+  const filtered = PRODUCTS.filter(p => {
+    const matchesCategory = activeFilter === 'all' || p.concern === activeFilter;
+    if (!term) return matchesCategory;
+    const matchesSearch = p.title.toLowerCase().includes(term) ||
+      p.description.toLowerCase().includes(term) ||
+      p.ingredients.toLowerCase().includes(term) ||
+      p.concern.toLowerCase().includes(term) ||
+      p.keyBenefits.some(b => b.toLowerCase().includes(term));
+    return matchesSearch && (activeFilter === 'all' || p.concern === activeFilter);
+  });
+
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div style="grid-column: 1 / -1; text-align: center; padding: 48px 20px; background: #ffffff; border-radius: var(--radius-md); border: 1px dashed rgba(74, 53, 58, 0.2);">
+        <p style="font-size: 1.1rem; color: var(--color-primary); font-weight: 600; margin-bottom: 6px;">No therapeutic formulations match "${query}"</p>
+        <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 16px;">Try searching for symptoms like "fungal", "spots", "oatmeal", "migraine", or reset filters.</p>
+        <button class="btn btn-secondary" onclick="clearCatalogFilter()" style="padding: 8px 20px; font-size: 0.82rem;">Clear Search</button>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = filtered.map(product => `
+    <div class="product-card reveal-init" data-id="${product.id}">
+      <div class="product-media">
+        <span class="product-badge">${product.badge}</span>
+        <button class="product-wishlist-btn" onclick="toggleWishlist('${product.id}', this)" aria-label="Save to wishlist" title="Save to wishlist">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </button>
+        <img src="${product.image}" alt="${product.title}" loading="lazy" class="product-img" onclick="openQuickView('${product.id}')" style="cursor: pointer;" onerror="this.onerror=null; this.src='assets/anti_pigmentation.jpg';">
+        <button class="quick-view-btn" onclick="openQuickView('${product.id}')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Quick View
+        </button>
+      </div>
+      <div class="product-content">
+        <div class="product-category">${product.categoryLabel} &bull; ${product.weight}</div>
+        <div class="product-curation-pill">🌿 We Prepare As You Book</div>
+        <h3 class="product-title" onclick="openQuickView('${product.id}')">${product.title}</h3>
+        
+        <div class="product-rating">
+          <div class="stars">
+            ${'★'.repeat(Math.floor(product.rating))}
+            <span class="star-empty">${product.rating % 1 !== 0 ? '½' : ''}</span>
+          </div>
+          <span class="rating-text">${product.rating} (${product.reviewCount})</span>
+        </div>
+
+        <div class="product-price-row">
+          <div class="price-wrap">
+            <span class="price-current">₹${product.price.toFixed(2)}</span>
+            <span class="price-original">₹${product.originalPrice.toFixed(2)}</span>
+          </div>
+          <button class="btn-add-cart" onclick="addToCart('${product.id}')" aria-label="Add to cart">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  setupScrollReveal();
+}
+
+function clearCatalogFilter() {
+  const input = document.getElementById('catalogSearchInput');
+  if (input) input.value = '';
+  const clearBtn = document.getElementById('catalogSearchClear');
+  if (clearBtn) clearBtn.style.display = 'none';
+  renderProducts();
+}
+
+// Global Keyboard Shortcut: '/' or 'Cmd/Ctrl + K' opens search
+document.addEventListener('keydown', (e) => {
+  if (
+    (e.key === '/' || ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k')) &&
+    !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)
+  ) {
+    e.preventDefault();
+    openSearchModal();
+  }
+});
+
+// ==========================================================================
+// Botanical Concierge Chatbox Assistant
+// ==========================================================================
+function toggleConciergeChat() {
+  const box = document.getElementById('conciergeChatbox');
+  if (!box) return;
+  const isVisible = box.style.display === 'flex';
+  box.style.display = isVisible ? 'none' : 'flex';
+  if (!isVisible) {
+    const input = document.getElementById('conciergeInput');
+    if (input) input.focus();
+  }
+}
+
+const CONCIERGE_KNOWLEDGE = [
+  {
+    triggers: ['pigment', 'melasma', 'dark spot', 'blemish', 'tan', 'uneven', 'brighten', 'kojic', 'glow'],
+    reply: "For uneven skin tone, stubborn melasma, or humidity-induced tanning, we formulate our <strong>Anti Pigmentation Cream</strong> fresh upon booking. It features Kojic Dipalmitate, Alpha Arbutin, and cold-pressed licorice root without barrier-stripping harsh chemicals.",
+    productId: 'anti-pigmentation-cream'
+  },
+  {
+    triggers: ['fungal', 'sweat', 'rash', 'itch', 'chaf', 'humid', 'monsoon', 'thigh', 'neem'],
+    reply: "Tropical heat and perspiration often disturb dermal microflora. Our <strong>Anti Fungal Cream</strong> utilizes cold-extracted Organic Neem, Karanja Oil, and Tea Tree to rapidly neutralize sweat rashes and restore dermal defense without suffocating pores.",
+    productId: 'anti-fungal-cream'
+  },
+  {
+    triggers: ['allergy', 'sensitive', 'red', 'inflam', 'hive', 'histamine', 'react', 'oat', 'itchy'],
+    reply: "If your barrier is flared, stinging, or reacting to cosmetics, our <strong>Anti Allergy SOS Cream</strong> provides immediate soothing. Compounded with ultra-pure colloidal oatmeal, Centella Asiatica, and plant squalane to rebuild fragile tissue.",
+    productId: 'anti-allergy-cream'
+  },
+  {
+    triggers: ['psoriasis', 'flake', 'plaque', 'dry', 'scaly', 'crack', 'rough', 'scaling', 'ashy'],
+    reply: "For thick, stubborn, flaky plaques and persistent dryness, we prepare our <strong>Psoriasis Support Cream</strong> using ancient Wrightia Tinctoria distillation and cold-pressed borage seed oil to soften scales and deeply replenish dermal lipids.",
+    productId: 'psoriasis-support-cream'
+  },
+  {
+    triggers: ['migraine', 'headache', 'tension', 'stress', 'temple', 'forehead', 'sinus', 'head'],
+    reply: "For throbbing headaches, temple tension, or sinus tightness, our <strong>Migraine Relief Roll-on Oil</strong> combines volatile active wintergreen, French lavender, and crystalline peppermint. Apply gently along temples and nape of neck for cooling relief in minutes.",
+    productId: 'migraine-relief-oil'
+  },
+  {
+    triggers: ['book', 'how', 'fresh', 'shelf', 'ship', 'delivery', 'compound', 'ancient', 'prepare'],
+    reply: "<strong>We Prepare As You Book:</strong> Unlike mass-market cosmetics that sit in warehouses for up to 2 years with chemical preservatives, we compound each therapeutic formula small-batch when your booking is placed. Orders ship directly at peak biological vitality!",
+    productId: null
+  },
+  {
+    triggers: ['waitlist', 'upcoming', 'new', 'more', '15'],
+    reply: "We are expanding to exactly 15 small-batch therapeutic formulations! You can reserve your priority batch allocation on our <a href='waitlist.html' style='color: var(--color-accent); font-weight: 700; text-decoration: underline;'>VIP Waitlist Page</a>.",
+    productId: null
+  }
+];
+
+function conciergeQuickAsk(topic) {
+  const map = {
+    'pigmentation': 'Tell me about treating dark spots and melasma',
+    'fungal': 'I have sweat rash and humidity fungal irritation',
+    'allergy': 'My skin is flared, reactive and allergic',
+    'psoriasis': 'What do you recommend for psoriasis and scaly plaques?',
+    'migraine': 'How does the migraine roll-on oil work?',
+    'booking': 'Explain how the We Prepare As You Book system works'
+  };
+  const text = map[topic] || topic;
+  processConciergeMessage(text);
+}
+
+function handleConciergeMessage(e) {
+  e.preventDefault();
+  const input = document.getElementById('conciergeInput');
+  if (!input) return;
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  processConciergeMessage(text);
+}
+
+function processConciergeMessage(userText) {
+  const body = document.getElementById('conciergeChatBody');
+  if (!body) return;
+
+  // Append user message
+  const userMsgEl = document.createElement('div');
+  userMsgEl.className = 'chat-message user-msg';
+  userMsgEl.innerHTML = `<div class="msg-bubble">${escapeHtml(userText)}</div>`;
+  body.appendChild(userMsgEl);
+
+  // Match response
+  const lower = userText.toLowerCase();
+  let match = CONCIERGE_KNOWLEDGE.find(k => k.triggers.some(t => lower.includes(t)));
+
+  // Fallback response
+  if (!match) {
+    match = {
+      reply: "Thank you for sharing. For personalized Ayurvedic diagnosis and compounding guidance, explore our 5 active therapeutic remedies or take our 30-second Skin Diagnostic.",
+      productId: 'anti-pigmentation-cream'
+    };
+  }
+
+  // Simulate typing delay
+  setTimeout(() => {
+    const botMsgEl = document.createElement('div');
+    botMsgEl.className = 'chat-message concierge-msg';
+
+    let productCardHtml = '';
+    if (match.productId) {
+      const prod = PRODUCTS.find(p => p.id === match.productId);
+      if (prod) {
+        productCardHtml = `
+          <div class="chat-product-card">
+            <img src="${prod.image}" alt="${prod.title}" onerror="this.onerror=null; this.src='assets/anti_pigmentation.jpg';">
+            <div class="chat-product-info">
+              <h5>${prod.title}</h5>
+              <div class="chat-product-price">₹${prod.price.toFixed(2)}</div>
+            </div>
+            <button type="button" class="chat-product-add-btn" onclick="addToCart('${prod.id}')">+ Add</button>
+          </div>
+        `;
+      }
+    }
+
+    botMsgEl.innerHTML = `
+      <div class="msg-bubble">
+        ${match.reply}
+        ${productCardHtml}
+      </div>
+    `;
+    body.appendChild(botMsgEl);
+    body.scrollTop = body.scrollHeight;
+  }, 350);
+
+  body.scrollTop = body.scrollHeight;
+}
+
+function escapeHtml(string) {
+  const div = document.createElement('div');
+  div.textContent = string;
+  return div.innerHTML;
+}
+
+
