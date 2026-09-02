@@ -14,10 +14,10 @@ const PRODUCTS = [
     originalPrice: 749,
     rating: 4.9,
     reviewCount: 128,
-    badge: "We Prepare As You Book",
+    badge: "Bestseller",
     curation: "Ancient Method • Small-Batch Botanical Distillation",
     weight: "50 gms",
-    image: "https://images.unsplash.com/photo-1608248597359-299f187ec982?auto=format&fit=crop&w=800&q=80",
+    image: "assets/anti_pigmentation.jpg",
     description: "A clinically potent therapeutic formulation crafted using ancient botanical alchemy for tropical and humidity-exposed skin. Prepared fresh upon booking with zero storage stabilizers to reduce hyperpigmentation and melasma patches without barrier irritation.",
     keyBenefits: [
       "We prepare fresh as you book — zero warehouse shelf life",
@@ -37,7 +37,7 @@ const PRODUCTS = [
     originalPrice: 620,
     rating: 4.8,
     reviewCount: 94,
-    badge: "We Prepare As You Book",
+    badge: "Climate Shield",
     curation: "Ancient Method • Herbal Microflora Defense",
     weight: "50 gms",
     image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80",
@@ -60,7 +60,7 @@ const PRODUCTS = [
     originalPrice: 499,
     rating: 4.9,
     reviewCount: 156,
-    badge: "We Prepare As You Book",
+    badge: "Barrier SOS",
     curation: "Ancient Method • Colloidal Barrier SOS",
     weight: "50 gms",
     image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80",
@@ -83,7 +83,7 @@ const PRODUCTS = [
     originalPrice: 750,
     rating: 4.9,
     reviewCount: 88,
-    badge: "We Prepare As You Book",
+    badge: "Intensive Relief",
     curation: "Ancient Method • Wrightia Tinctoria Alchemy",
     weight: "60 gms",
     image: "https://images.unsplash.com/photo-1556228852-80b6e5eeff06?auto=format&fit=crop&w=800&q=80",
@@ -106,7 +106,7 @@ const PRODUCTS = [
     originalPrice: 199,
     rating: 4.9,
     reviewCount: 312,
-    badge: "We Prepare As You Book",
+    badge: "Pocket Healer",
     curation: "Ancient Method • Pure Herbal Distillate",
     weight: "10 ml",
     image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80",
@@ -192,7 +192,7 @@ function renderProducts(filter = 'all') {
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
           </svg>
         </button>
-        <img src="${product.image}" alt="${product.title}" loading="lazy" class="product-img" onclick="openQuickView('${product.id}')" style="cursor: pointer;">
+        <img src="${product.image}" alt="${product.title}" loading="lazy" class="product-img" onclick="openQuickView('${product.id}')" style="cursor: pointer;" onerror="this.onerror=null; this.src='assets/anti_pigmentation.jpg';">
         <button class="quick-view-btn" onclick="openQuickView('${product.id}')">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           Quick View
@@ -267,7 +267,7 @@ function openQuickView(productId) {
     <div class="modal-grid">
       <div class="modal-gallery">
         <span class="product-badge modal-badge">${product.badge}</span>
-        <img src="${product.image}" alt="${product.title}" class="modal-img">
+        <img src="${product.image}" alt="${product.title}" class="modal-img" onerror="this.onerror=null; this.src='assets/anti_pigmentation.jpg';">
       </div>
       <div class="modal-details">
         <span class="modal-category">${product.categoryLabel} &bull; ${product.weight}</span>
@@ -804,7 +804,7 @@ function calculateQuizRecommendation() {
       <div class="routine-products-list">
         ${recProducts.map(p => `
           <div class="routine-product-card">
-            <img src="${p.image}" alt="${p.title}" class="routine-prod-img">
+            <img src="${p.image}" alt="${p.title}" class="routine-prod-img" onerror="this.onerror=null; this.src='assets/anti_pigmentation.jpg';">
             <div class="routine-prod-info">
               <h5>${p.title}</h5>
               <span>₹${p.price.toFixed(2)}</span>
