@@ -1593,43 +1593,67 @@ function setupScrollSequenceBackground() {
     return null;
   }
 
+  let currentFrameFloat = 0;
+  let lastTimestamp = performance.now();
+  let scrollVelocity = 0;
+  let lastScrollY = window.scrollY || 0;
+  let lastScrollTime = performance.now();
+
+  // Ambient speed: 20 frames per second = steady, hypnotic, continuous botanical flow
+  const AMBIENT_FPS = 20;
+
   function renderCurrentFrame() {
-    const idx = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(currentFrame)));
+    let idx = Math.floor(currentFrameFloat) % TOTAL_FRAMES;
+    if (idx < 0) idx += TOTAL_FRAMES;
     const img = findNearestLoadedFrame(idx);
     if (img) {
       drawCoverImage(img);
     }
   }
 
-  // Silky Smooth Lerp Loop (Apple-style Momentum Easing)
-  function updateLoop() {
-    const diff = targetFrame - currentFrame;
-    if (Math.abs(diff) > 0.02) {
-      currentFrame += diff * 0.12; // Smooth deceleration
-      renderCurrentFrame();
-      animationFrameId = requestAnimationFrame(updateLoop);
-      isTicking = true;
-    } else {
-      currentFrame = targetFrame;
-      renderCurrentFrame();
-      isTicking = false;
+  // Continuous 60fps Ambient & Scroll Momentum Loop (Always Moving)
+  function animationLoop(timestamp) {
+    const dt = Math.min((timestamp - lastTimestamp) / 1000, 0.1);
+    lastTimestamp = timestamp;
+
+    // Decay scroll boost smoothly with damping friction
+    scrollVelocity *= 0.94;
+    if (Math.abs(scrollVelocity) < 0.05) scrollVelocity = 0;
+
+    // Total speed = continuous ambient forward motion + scroll velocity boost
+    const effectiveSpeed = AMBIENT_FPS + scrollVelocity;
+
+    // Advance frame continuously
+    currentFrameFloat += effectiveSpeed * dt;
+
+    // Seamless wrap-around for infinite continuous playback
+    if (currentFrameFloat >= TOTAL_FRAMES) {
+      currentFrameFloat %= TOTAL_FRAMES;
+    } else if (currentFrameFloat < 0) {
+      currentFrameFloat = (currentFrameFloat % TOTAL_FRAMES) + TOTAL_FRAMES;
     }
+
+    renderCurrentFrame();
+    requestAnimationFrame(animationLoop);
   }
 
+  // Responsive scroll velocity listener
   function onScroll() {
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    if (maxScroll <= 0) return;
-    const scrollY = window.scrollY || window.pageYOffset || 0;
-    const progress = Math.min(1, Math.max(0, scrollY / maxScroll));
-    targetFrame = progress * (TOTAL_FRAMES - 1);
+    const currentScrollY = window.scrollY || window.pageYOffset || 0;
+    const now = performance.now();
+    const dt = Math.max(now - lastScrollTime, 8);
+    const dy = currentScrollY - lastScrollY;
 
-    if (!isTicking) {
-      isTicking = true;
-      animationFrameId = requestAnimationFrame(updateLoop);
-    }
+    // Add scroll velocity to boost animation forward or reverse gently
+    const velocity = (dy / dt) * 16;
+    scrollVelocity = Math.max(-50, Math.min(60, scrollVelocity + velocity * 0.45));
+
+    lastScrollY = currentScrollY;
+    lastScrollTime = now;
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
+  requestAnimationFrame(animationLoop);
 
   // 3-Stage Progressive Priority Loading:
   // Stage 1: Load frame 0 immediately and paint it
