@@ -214,24 +214,14 @@
           <li class="nav-item"><a href="#curation" class="nav-link">We Prepare As You Book</a></li>
           <li class="nav-item"><a href="#ethos" class="nav-link">Ancient Method</a></li>
           <li class="nav-item"><a href="#quiz" class="nav-link" style="color: var(--color-accent); font-weight: 600;">✨ Skin Diagnostic</a></li>
-          <li class="nav-item"><a href="waitlist.html" class="nav-link" style="color: var(--color-accent); font-weight: 700;">🌟 VIP Waitlist</a></li>
           <li class="nav-item"><a href="#reviews" class="nav-link">Reviews</a></li>
           <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
       </nav>
 
-      <!-- Header Search & Actions -->
+      <!-- Header Actions -->
       <div class="header-actions">
-        <!-- Visible Header Search Bar (Desktop) -->
-        <div class="header-search-bar" onclick="openSearchModal()" role="button" tabindex="0" title="Search remedies (Press /)">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
-          <span class="search-bar-text">Search remedies...</span>
-          <kbd class="search-key-badge">/</kbd>
-        </div>
-
-        <button class="header-action-btn mobile-search-trigger" title="Search therapeutic formulations" onclick="openSearchModal()">
+        <button class="header-action-btn" title="Search remedies" onclick="openSearchModal()" aria-label="Search remedies">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
           </svg>
@@ -246,6 +236,24 @@
       </div>
     </div>
   </header>
+
+  <!-- Dedicated Spacious Search Bar Strip Below Header -->
+  <div class="sub-header-search-strip">
+    <div class="container">
+      <div class="sub-search-box" onclick="openSearchModal()" role="button" tabindex="0" title="Click to search (Press /)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <span class="sub-search-text">Search therapeutic formulations by symptom, concern, or active (e.g. Melasma, Sweat Rash, Colloidal Oat, Migraine)...</span>
+        <div class="sub-search-quick-tags">
+          <span class="sub-quick-tag">Pigmentation</span>
+          <span class="sub-quick-tag">Fungal / Sweat</span>
+          <span class="sub-quick-tag">Allergy SOS</span>
+          <kbd class="sub-search-key">/</kbd>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Mobile Nav Drawer (Single-Page Simplicity) -->
   <aside class="mobile-nav-menu" id="mobileNavMenu">
@@ -262,7 +270,6 @@
       <li><a href="#curation">We Prepare As You Book</a></li>
       <li><a href="#ethos">Ancient Method of Curation</a></li>
       <li><a href="#quiz">✨ Skin Diagnostic Finder</a></li>
-      <li><a href="waitlist.html" style="color: var(--color-accent); font-weight: 700;">🌟 VIP Waitlist (10 Coming)</a></li>
       <li><a href="#reviews">Patient Reviews</a></li>
       <li><a href="#contact">Contact & Consultation</a></li>
     </ul>
