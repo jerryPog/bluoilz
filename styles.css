@@ -440,13 +440,6 @@ h1, h2, h3, h4, .font-serif {
   color: var(--color-primary);
 }
 
-.nav-link.nav-link-highlight {
-  color: var(--color-accent);
-}
-
-.nav-link.nav-link-highlight:hover {
-  color: var(--color-accent-hover);
-}
 
 .dropdown-arrow {
   width: 11px;
