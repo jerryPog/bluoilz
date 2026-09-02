@@ -140,6 +140,14 @@ let currentRecommendedBundle = [];
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+  // If page is loaded without a hash, ensure viewport starts at the top
+  if (!window.location.hash) {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  }
+
   renderProducts();
   setupFilterTabs();
   setupModalEvents();
