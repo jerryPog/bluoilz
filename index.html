@@ -196,29 +196,29 @@
     </div>
   </div>
 
-  <!-- Header / Navigation (Single-Page Seamless) -->
+  <!-- Header / Navigation (Purpose-built Responsive Header) -->
   <header class="site-header">
     <div class="container header-inner">
-      <button class="mobile-menu-toggle header-action-btn" id="mobileNavToggle" aria-label="Open menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <button class="mobile-menu-toggle header-action-btn" id="mobileNavToggle" aria-label="Open navigation menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
         </svg>
       </button>
 
       <!-- Brand Logo -->
-      <a href="#" class="brand-logo">
+      <a href="#" class="brand-logo" aria-label="Bluoilz Home">
         <span class="brand-name">Bluoilz</span>
         <span class="brand-tag">Therapeutic Ancient Alchemy</span>
       </a>
 
-      <!-- Desktop Nav - Single-Page Simplicity -->
-      <nav class="desktop-nav">
+      <!-- Desktop Nav - Single-Line Balanced -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
         <ul class="nav-links">
           <li class="nav-item"><a href="#" class="nav-link active">Home</a></li>
           <li class="nav-item"><a href="#products" class="nav-link">Therapeutic Care</a></li>
           <li class="nav-item"><a href="#curation" class="nav-link">We Prepare As You Book</a></li>
           <li class="nav-item"><a href="#ethos" class="nav-link">Ancient Method</a></li>
-          <li class="nav-item"><a href="#quiz" class="nav-link" style="color: var(--color-accent); font-weight: 600;">✨ Skin Diagnostic</a></li>
+          <li class="nav-item"><a href="#quiz" class="nav-link nav-link-highlight">Skin Diagnostic</a></li>
           <li class="nav-item"><a href="#reviews" class="nav-link">Reviews</a></li>
           <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
@@ -226,14 +226,14 @@
 
       <!-- Header Actions -->
       <div class="header-actions">
-        <button class="header-action-btn" title="Search remedies" onclick="openSearchModal()" aria-label="Search remedies">
+        <button class="header-action-btn" title="Search remedies (Press /)" onclick="openSearchModal()" aria-label="Search remedies">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
           </svg>
         </button>
 
-        <button class="header-action-btn open-cart-btn" title="View Cart">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <button class="header-action-btn open-cart-btn" title="View Cart" aria-label="View Cart">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
           </svg>
           <span class="cart-badge" style="display:none;">0</span>
@@ -242,41 +242,23 @@
     </div>
   </header>
 
-  <!-- Dedicated Spacious Search Bar Strip Below Header -->
-  <div class="sub-header-search-strip">
-    <div class="container">
-      <div class="sub-search-box" onclick="openSearchModal()" role="button" tabindex="0" title="Click to search (Press /)">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-        <span class="sub-search-text">Search therapeutic formulations by symptom, concern, or active (e.g. Melasma, Sweat Rash, Colloidal Oat, Migraine)...</span>
-        <div class="sub-search-quick-tags">
-          <span class="sub-quick-tag">Pigmentation</span>
-          <span class="sub-quick-tag">Fungal / Sweat</span>
-          <span class="sub-quick-tag">Allergy SOS</span>
-          <kbd class="sub-search-key">/</kbd>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Mobile Nav Drawer (Single-Page Simplicity) -->
-  <aside class="mobile-nav-menu" id="mobileNavMenu">
+  <aside class="mobile-nav-menu" id="mobileNavMenu" aria-label="Mobile Navigation">
     <div class="mobile-nav-header">
       <div class="brand-logo">
         <span class="brand-name">Bluoilz</span>
         <span class="brand-tag">Therapeutic Alchemy</span>
       </div>
-      <button class="header-action-btn" id="closeMobileNav">&times;</button>
+      <button class="header-action-btn close-nav-btn" id="closeMobileNav" aria-label="Close menu">&times;</button>
     </div>
     <ul class="mobile-nav-links">
       <li><a href="#">Home</a></li>
-      <li><a href="#products">Therapeutic Care Formulations</a></li>
+      <li><a href="#products">Therapeutic Care</a></li>
       <li><a href="#curation">We Prepare As You Book</a></li>
-      <li><a href="#ethos">Ancient Method of Curation</a></li>
-      <li><a href="#quiz">✨ Skin Diagnostic Finder</a></li>
+      <li><a href="#ethos">Ancient Method</a></li>
+      <li><a href="#quiz">Skin Diagnostic Finder</a></li>
       <li><a href="#reviews">Patient Reviews</a></li>
-      <li><a href="#contact">Contact & Consultation</a></li>
+      <li><a href="#contact">Contact & Inquiries</a></li>
     </ul>
   </aside>
   <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
@@ -286,47 +268,46 @@
     <section class="hero-section">
       <div class="container hero-grid">
         <div class="hero-content">
-          <span class="hero-tag">Ancient Botanical Alchemy &bull; Therapeutic Care</span>
+          <span class="hero-eyebrow">Botanical Alchemy &bull; Fresh Formulation</span>
           <h1 class="hero-title">Therapeutic Formulations.<br>Prepared Fresh As You Book.</h1>
           <p class="hero-subtitle">
-            Crafted using ancient botanical alchemy specifically for tropical, sensitive, and reactive skin. Zero warehouse shelf life. Zero synthetic stabilizers. Every therapeutic formula is prepared fresh in micro-batches specifically upon your booking.
+            Crafted for tropical, sensitive, and reactivity-prone skin. Every formulation is compounded in fresh micro-batches upon your booking—with zero warehouse shelf life and zero synthetic stabilizers.
           </p>
           <div class="hero-ctas">
-            <a href="#products" class="btn btn-primary">Explore Therapeutic Care &rarr;</a>
-            <a href="#quiz" class="btn btn-secondary">Take 30s Skin Diagnostic</a>
-          </div>
-          <div class="hero-stats">
-            <div class="stat-item">
-              <h4>Fresh</h4>
-              <p>Prepared As You Book</p>
-            </div>
-            <div class="stat-item">
-              <h4>100%</h4>
-              <p>Botanical Actives</p>
-            </div>
-            <div class="stat-item">
-              <h4>0%</h4>
-              <p>Chemical Fillers</p>
-            </div>
-            <div class="stat-item">
-              <h4>4.9 ★</h4>
-              <p>Customer Rating</p>
-            </div>
+            <a href="#products" class="btn btn-primary">Explore Therapeutic Care</a>
+            <a href="#quiz" class="btn btn-secondary">Take Skin Diagnostic</a>
           </div>
         </div>
 
         <div class="hero-banner-image">
           <div class="hero-img-wrapper">
-            <img src="assets/hero.jpg" alt="Bluoilz Therapeutic Botanical Formulation">
-            <div class="hero-discount-bubble">
-              <span class="bubble-tag">FRESH</span>
-              <span class="bubble-num">100%</span>
-              <span class="bubble-tag">BATCH</span>
+            <img src="assets/hero.jpg" alt="Bluoilz Therapeutic Botanical Formulation" class="hero-main-img">
+            <div class="hero-fresh-tag">
+              <span class="tag-pulse"></span>
+              <span>Prepared Fresh Upon Booking</span>
             </div>
-            <div class="hero-badge-overlay">
-              <span class="badge-title">We Prepare As You Book</span>
-              <span class="badge-desc">Handcrafted via ancient botanical distillation for maximum active potency.</span>
-            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Compact Trust Strip Directly Under Hero -->
+      <div class="container">
+        <div class="hero-trust-strip">
+          <div class="trust-item">
+            <span class="trust-num">Fresh</span>
+            <span class="trust-lbl">Compounded to order</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-num">100%</span>
+            <span class="trust-lbl">Active botanicals</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-num">0%</span>
+            <span class="trust-lbl">Chemical fillers</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-num">4.9 ★</span>
+            <span class="trust-lbl">Verified patient rating</span>
           </div>
         </div>
       </div>
@@ -336,31 +317,31 @@
     <section class="section-curation" id="curation">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">The Ancient Method in a Gist</span>
+          <span class="section-eyebrow">The Freshness Principle</span>
           <h2 class="section-title">We Prepare As You Book</h2>
-          <p class="section-desc">Why settle for creams sitting on warehouse shelves for months? Here is how our ancient therapeutic curation works for your skin.</p>
+          <p class="section-desc">Why settle for creams sitting on warehouse shelves for months? Here is how our ancient therapeutic curation works for your skin barrier.</p>
         </div>
 
         <div class="curation-steps-grid">
           <div class="curation-card">
             <div class="curation-step-num">01</div>
             <div class="curation-icon">📝</div>
-            <h3>You Book Your Formulation</h3>
-            <p>Select the targeted therapeutic remedy tailored to your specific condition—whether pigmentation, sweat fungal rash, severe allergies, or psoriasis.</p>
+            <h3>Book Your Remedy</h3>
+            <p>Select the targeted therapeutic formulation matched to your skin barrier condition—pigmentation, humidity rash, sensitive reactivity, or plaque xerosis.</p>
           </div>
 
           <div class="curation-card highlight-card">
             <div class="curation-step-num">02</div>
             <div class="curation-icon">🌿</div>
-            <h3>Ancient Botanical Curation</h3>
-            <p>Our alchemist immediately compounds your formulation in a fresh micro-batch using time-honored Ayurvedic distillates and cold-pressed herbal lipids.</p>
+            <h3>Ancient Botanical Distillation</h3>
+            <p>Our alchemist immediately compounds your formulation fresh in a small batch using cold-pressed herbal lipids and active Ayurvedic plant distillates.</p>
           </div>
 
           <div class="curation-card">
             <div class="curation-step-num">03</div>
             <div class="curation-icon">✨</div>
-            <h3>Delivered at Peak Vitality</h3>
-            <p>Sealed instantly with zero chemical preservatives or artificial fillers, ensuring 100% bioactive nutrient delivery directly to your skin barrier.</p>
+            <h3>Delivered at Peak Potency</h3>
+            <p>Sealed instantly with zero chemical preservatives or synthetic shelf stabilizers, ensuring 100% bioactive nutrient delivery straight to your skin.</p>
           </div>
         </div>
       </div>
@@ -371,9 +352,9 @@
       <div class="container">
         <div class="quiz-wrapper">
           <div class="quiz-header">
-            <span class="section-eyebrow">Personalized Formulation Match</span>
+            <span class="section-eyebrow">Personalized Barrier Match</span>
             <h2 class="section-title">Find Your Therapeutic Prescription</h2>
-            <p class="section-desc">Answer 3 brief questions to diagnose your barrier needs and reveal your tailored ancient botanical formulation.</p>
+            <p class="section-desc">Answer 3 brief questions to diagnose your dermal needs and reveal your tailored botanical prescription.</p>
           </div>
 
           <div class="quiz-container" id="quizContainer">
@@ -387,30 +368,30 @@
     <section class="section-products" id="products">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">Targeted Therapeutic Segment</span>
+          <span class="section-eyebrow">Targeted Care</span>
           <h2 class="section-title">Therapeutic Skin Formulations</h2>
           <p class="section-desc">Targeted botanical remedies curated by ancient alchemy for real skin conditions—prepared fresh specifically as you book.</p>
         </div>
 
-        <!-- Catalog Instant Search & Concern Filter Bar -->
+        <!-- Catalog Instant Search -->
         <div class="catalog-search-bar-wrap">
           <div class="catalog-search-inner">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
             </svg>
-            <input type="text" id="catalogSearchInput" placeholder="Filter therapeutic remedies by symptom, concern, or ingredient (e.g. Fungal, Melasma, Oat)..." oninput="handleCatalogFilter(this.value)">
+            <input type="text" id="catalogSearchInput" placeholder="Search by concern or ingredient (e.g. Fungal, Melasma, Oat)..." oninput="handleCatalogFilter(this.value)">
             <button class="catalog-search-clear" id="catalogSearchClear" onclick="clearCatalogFilter()" style="display:none;" aria-label="Clear filter">&times;</button>
           </div>
         </div>
 
-        <!-- Filter Tabs -->
+        <!-- Filter Chips (Horizontally Scrollable on Mobile) -->
         <div class="concern-filter-tabs">
-          <button class="filter-tab active" data-filter="all">All Therapeutic Care</button>
-          <button class="filter-tab" data-filter="pigmentation">Anti-Pigmentation</button>
-          <button class="filter-tab" data-filter="fungal">Anti-Fungal (Sweat & Humidity)</button>
-          <button class="filter-tab" data-filter="sensitive">Anti-Allergy (Sensitive SOS)</button>
-          <button class="filter-tab" data-filter="psoriasis">Psoriasis & Dry Plaque</button>
-          <button class="filter-tab" data-filter="stress-pain">Migraine & Tension Relief</button>
+          <button class="filter-tab active" data-filter="all">All</button>
+          <button class="filter-tab" data-filter="pigmentation">Pigmentation</button>
+          <button class="filter-tab" data-filter="fungal">Fungal & Sweat</button>
+          <button class="filter-tab" data-filter="sensitive">Sensitive SOS</button>
+          <button class="filter-tab" data-filter="psoriasis">Psoriasis & Dry</button>
+          <button class="filter-tab" data-filter="stress-pain">Migraine Relief</button>
         </div>
 
         <!-- Product Cards Grid -->
@@ -479,44 +460,53 @@
     <section class="section-reviews" id="reviews">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">Real Experiences</span>
+          <span class="section-eyebrow">Real Patient Experiences</span>
           <h2 class="section-title">Radiant Reviews</h2>
-          <p class="section-desc">Discover what our community experiences with daily Bluoilz botanical routines.</p>
+          <p class="section-desc">Real feedback from community members using freshly compounded Bluoilz botanical formulations.</p>
         </div>
 
         <div class="reviews-grid">
           <div class="review-card">
-            <div class="review-stars">★★★★★</div>
-            <p class="review-quote">"Living in Mumbai's high humidity always made my skin break out with heavy creams. The Bluoilz Anti-Pigmentation Cream absorbed instantly and completely cleared my dark sun patches within 4 weeks!"</p>
+            <div class="review-header-meta">
+              <span class="review-product-pill">Anti Pigmentation Cream</span>
+              <div class="review-stars" aria-label="5 stars">★★★★★</div>
+            </div>
+            <p class="review-quote">"Living in Mumbai's high humidity always made my skin break out with heavy creams. The Anti-Pigmentation Cream absorbed instantly and completely cleared my dark sun patches within 4 weeks."</p>
             <div class="review-author-wrap">
               <div class="review-avatar">SR</div>
               <div>
                 <h5 class="review-name">Shweta Rajput</h5>
-                <span class="review-verified">✔ Verified Bluoilz Customer</span>
+                <span class="review-verified">Verified Patient &bull; Mumbai</span>
               </div>
             </div>
           </div>
 
           <div class="review-card">
-            <div class="review-stars">★★★★★</div>
-            <p class="review-quote">"The Anti-Fungal and Anti-Allergy creams are miraculous for monsoon chafing and heat rash. Instant cooling relief without that sticky chemical residue."</p>
+            <div class="review-header-meta">
+              <span class="review-product-pill">Anti Fungal & Anti Allergy</span>
+              <div class="review-stars" aria-label="5 stars">★★★★★</div>
+            </div>
+            <p class="review-quote">"The Anti-Fungal and Anti-Allergy formulations are miraculous for monsoon chafing and heat rash. Instant cooling relief without any sticky chemical residue or clogged pores."</p>
             <div class="review-author-wrap">
               <div class="review-avatar">AK</div>
               <div>
                 <h5 class="review-name">Ananya Kulkarni</h5>
-                <span class="review-verified">✔ Verified Bluoilz Customer</span>
+                <span class="review-verified">Verified Patient &bull; Pune</span>
               </div>
             </div>
           </div>
 
           <div class="review-card">
-            <div class="review-stars">★★★★★</div>
-            <p class="review-quote">"The Migraine & Headache Roll-on oil lives in my work bag permanently. One swipe over temples and the tension headache just evaporates. True therapeutic excellence."</p>
+            <div class="review-header-meta">
+              <span class="review-product-pill">Migraine Relief Roll-on</span>
+              <div class="review-stars" aria-label="5 stars">★★★★★</div>
+            </div>
+            <p class="review-quote">"The Migraine & Tension Roll-on oil lives in my work bag permanently. One swipe over temples and the tension headache just evaporates. True therapeutic botanical excellence."</p>
             <div class="review-author-wrap">
               <div class="review-avatar">RM</div>
               <div>
                 <h5 class="review-name">Rohit Mathur</h5>
-                <span class="review-verified">✔ Verified Bluoilz Customer</span>
+                <span class="review-verified">Verified Patient &bull; Bangalore</span>
               </div>
             </div>
           </div>
@@ -769,29 +759,33 @@
     </div>
   </div>
 
-  <!-- Floating Floating Action Bar (WhatsApp + Botanical Concierge Chatbox) -->
-  <div class="floating-assist-dock">
-    <!-- Concierge Launcher -->
-    <button class="floating-concierge-btn" id="conciergeTriggerBtn" onclick="toggleConciergeChat()" aria-label="Open Skin Alchemist Chat Advisor" title="Consult Botanical Alchemist">
-      <div class="concierge-icon-pulse">
-        <span>🌿</span>
-        <span class="online-indicator"></span>
-      </div>
-      <span class="concierge-btn-text">Skin Advisor</span>
-    </button>
+  <!-- Consolidated Floating Action Control (Unified Botanical Assistant) -->
+  <div class="floating-assistant-wrap" id="floatingAssistantWrap">
+    <div class="assistant-menu-popover" id="assistantMenuPopover" style="display: none;">
+      <a href="https://wa.me/918600155554?text=Hello%20Bluoilz%20Skin%20Alchemist%2C%20I%20would%20like%20a%20personal%20skin%20consultation." 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="assistant-sub-btn whatsapp-link"
+         aria-label="WhatsApp Consultation">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.072-2.148-.526-1.859-.766-3.053-2.664-3.146-2.787-.093-.124-.757-1.008-.757-1.924 0-.916.48-1.368.652-1.554.172-.187.375-.233.5-.233.125 0 .25 0 .359.006.115.006.27-.044.423.323.156.375.531 1.297.578 1.391.047.094.078.203.016.328-.063.125-.094.203-.188.312-.094.11-.197.245-.281.33-.094.093-.193.195-.083.385.11.19.488.808 1.047 1.307.72.64 1.327.839 1.516.932.188.094.297.078.407-.047.11-.125.469-.547.594-.735.125-.187.25-.156.422-.093.172.062 1.094.516 1.282.609.188.094.312.141.359.219.047.078.047.453-.097.858z"/>
+        </svg>
+        <span>WhatsApp Alchemist</span>
+      </a>
+      <button type="button" class="assistant-sub-btn chat-link" onclick="toggleConciergeChat(); toggleAssistantMenu();" aria-label="Open Skin Concierge Chat">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        <span>Diagnostic Advisor</span>
+      </button>
+    </div>
 
-    <!-- Floating WhatsApp Widget -->
-    <a href="https://wa.me/918600155554?text=Hello%20Bluoilz%20Skin%20Alchemist%2C%20I%20would%20like%20a%20personal%20skin%20consultation." 
-       target="_blank" 
-       rel="noopener noreferrer" 
-       class="floating-whatsapp-btn" 
-       aria-label="Chat with a Skincare Alchemist on WhatsApp">
-      <span class="whatsapp-tooltip">Skin Consultation ✨</span>
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.072-2.148-.526-1.859-.766-3.053-2.664-3.146-2.787-.093-.124-.757-1.008-.757-1.924 0-.916.48-1.368.652-1.554.172-.187.375-.233.5-.233.125 0 .25 0 .359.006.115.006.27-.044.423.323.156.375.531 1.297.578 1.391.047.094.078.203.016.328-.063.125-.094.203-.188.312-.094.11-.197.245-.281.33-.094.093-.193.195-.083.385.11.19.488.808 1.047 1.307.72.64 1.327.839 1.516.932.188.094.297.078.407-.047.11-.125.469-.547.594-.735.125-.187.25-.156.422-.093.172.062 1.094.516 1.282.609.188.094.312.141.359.219.047.078.047.453-.097.858z"/>
-        <path d="M12 2C6.477 2 2 6.477 2 12c0 1.891.528 3.66 1.447 5.176L2 22l4.966-1.408C8.428 21.499 10.155 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.273c-1.636 0-3.171-.488-4.462-1.333l-.32-.209-2.951.838.852-2.87-.225-.339A8.243 8.243 0 0 1 3.727 12c0-4.562 3.711-8.273 8.273-8.273 4.562 0 8.273 3.711 8.273 8.273 0 4.562-3.711 8.273-8.273 8.273z"/>
-      </svg>
-    </a>
+    <!-- Main Botanical Assistant Trigger -->
+    <button class="floating-assistant-btn" id="floatingAssistantTrigger" onclick="toggleAssistantMenu()" aria-label="Open Skin Care Assistant" title="Skin Care Assistant">
+      <span class="assistant-botanical-icon">🌿</span>
+      <span class="assistant-label">Skin Advisor</span>
+      <span class="assistant-status-dot" aria-label="Online"></span>
+    </button>
   </div>
 
   <!-- Interactive Botanical Concierge Chatbox Modal/Drawer -->

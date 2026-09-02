@@ -6,7 +6,7 @@
 const PRODUCTS = [
   {
     id: "anti-pigmentation-cream",
-    title: "Anti Pigmentation Cream – For Uneven & Dull Skin",
+    title: "Anti Pigmentation Cream",
     category: "therapeutic",
     categoryLabel: "Therapeutic Care",
     concern: "pigmentation",
@@ -16,7 +16,7 @@ const PRODUCTS = [
     reviewCount: 128,
     badge: "Bestseller",
     curation: "Ancient Method • Small-Batch Botanical Distillation",
-    weight: "50 gms",
+    weight: "50 g",
     image: "assets/anti_pigmentation.jpg",
     description: "A clinically potent therapeutic formulation crafted using ancient botanical alchemy for tropical and humidity-exposed skin. Prepared fresh upon booking with zero storage stabilizers to reduce hyperpigmentation and melasma patches without barrier irritation.",
     keyBenefits: [
@@ -29,7 +29,7 @@ const PRODUCTS = [
   },
   {
     id: "anti-fungal-cream",
-    title: "Anti Fungal Cream – For Tropical & Humid Conditions",
+    title: "Anti Fungal Climate Cream",
     category: "therapeutic",
     categoryLabel: "Therapeutic Care",
     concern: "fungal",
@@ -39,7 +39,7 @@ const PRODUCTS = [
     reviewCount: 94,
     badge: "Climate Shield",
     curation: "Ancient Method • Herbal Microflora Defense",
-    weight: "50 gms",
+    weight: "50 g",
     image: "assets/anti_fungal.png",
     description: "Engineered specifically to counter humidity-induced fungal irritation, sweat rashes, and chafing. Freshly prepared as you book using ancient Ayurvedic extracts like Karanja and Neem to cool inflamed, itchy skin.",
     keyBenefits: [
@@ -52,7 +52,7 @@ const PRODUCTS = [
   },
   {
     id: "anti-allergy-cream",
-    title: "Anti Allergy Cream – For Sensitive & Reactive Skin",
+    title: "Anti Allergy SOS Cream",
     category: "therapeutic",
     categoryLabel: "Therapeutic Care",
     concern: "sensitive",
@@ -62,7 +62,7 @@ const PRODUCTS = [
     reviewCount: 156,
     badge: "Barrier SOS",
     curation: "Ancient Method • Colloidal Barrier SOS",
-    weight: "50 gms",
+    weight: "50 g",
     image: "assets/anti_allergy.jpg",
     description: "An SOS therapeutic shield designed for hyper-reactive, allergic skin. Freshly compounded as you book using ancient colloidal oat distillation to soothe histamine flares, contact redness, and compromised barrier tissue.",
     keyBenefits: [
@@ -75,7 +75,7 @@ const PRODUCTS = [
   },
   {
     id: "psoriasis-support-cream",
-    title: "Psoriasis Support Cream – For Dry & Reactive Skin",
+    title: "Psoriasis Support Cream",
     category: "therapeutic",
     categoryLabel: "Therapeutic Care",
     concern: "psoriasis",
@@ -85,7 +85,7 @@ const PRODUCTS = [
     reviewCount: 88,
     badge: "Intensive Relief",
     curation: "Ancient Method • Wrightia Tinctoria Alchemy",
-    weight: "60 gms",
+    weight: "60 g",
     image: "assets/psoriasis_cream.jpg",
     description: "Deeply restorative lipid-replenishing emollient formulated using ancient Wrightia Tinctoria distillation. Prepared fresh as you book to soften thick, scaly plaques and relieve severe xerosis without synthetic occlusives.",
     keyBenefits: [
@@ -98,7 +98,7 @@ const PRODUCTS = [
   },
   {
     id: "migraine-relief-oil",
-    title: "Migraine & Headache Relief Roll-on Oil (10 ml)",
+    title: "Migraine & Tension Roll-on",
     category: "therapeutic",
     categoryLabel: "Therapeutic Care",
     concern: "stress-pain",
@@ -186,30 +186,33 @@ function renderProducts(filter = 'all') {
 
   container.innerHTML = filtered.map(product => `
     <div class="product-card reveal-init" data-id="${product.id}">
-      <div class="product-media">
-        <span class="product-badge">${product.badge}</span>
-        <button class="product-wishlist-btn" onclick="toggleWishlist('${product.id}', this)" aria-label="Save to wishlist" title="Save to wishlist">
+      <div class="product-media" onclick="openQuickView('${product.id}')" role="button" tabindex="0" aria-label="Quick view ${product.title}">
+        ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+        <button class="product-wishlist-btn" onclick="event.stopPropagation(); toggleWishlist('${product.id}', this)" aria-label="Save to wishlist" title="Save to wishlist">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
           </svg>
         </button>
-        <img src="${product.image}" alt="${product.title}" loading="lazy" class="product-img" onclick="openQuickView('${product.id}')" style="cursor: pointer;" onerror="this.onerror=null; this.src='assets/anti_pigmentation.jpg';">
-        <button class="quick-view-btn" onclick="openQuickView('${product.id}')">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-          Quick View
-        </button>
+        <img src="${product.image}" alt="${product.title}" loading="lazy" class="product-img" onerror="this.onerror=null; this.src='assets/anti_pigmentation.jpg';">
+        <span class="quick-view-hint">Quick View</span>
       </div>
       <div class="product-content">
-        <div class="product-category">${product.categoryLabel} &bull; ${product.weight}</div>
-        <div class="product-curation-pill">🌿 We Prepare As You Book</div>
+        <div class="product-meta-row">
+          <span class="product-category-text">${product.categoryLabel}</span>
+          <span class="product-weight-text">${product.weight}</span>
+        </div>
+        <div class="product-fresh-status">
+          <span class="status-pulse-dot"></span>
+          <span>Prepared Fresh As You Book</span>
+        </div>
         <h3 class="product-title" onclick="openQuickView('${product.id}')">${product.title}</h3>
         
         <div class="product-rating">
-          <div class="stars">
+          <div class="stars" aria-label="${product.rating} stars">
             ${'★'.repeat(Math.floor(product.rating))}
             <span class="star-empty">${product.rating % 1 !== 0 ? '½' : ''}</span>
           </div>
-          <span class="rating-text">${product.rating} (${product.reviewCount})</span>
+          <span class="rating-text">${product.rating} <span class="rating-count">(${product.reviewCount})</span></span>
         </div>
 
         <div class="product-price-row">
@@ -217,11 +220,11 @@ function renderProducts(filter = 'all') {
             <span class="price-current">₹${product.price.toFixed(2)}</span>
             <span class="price-original">₹${product.originalPrice.toFixed(2)}</span>
           </div>
-          <button class="btn-add-cart" onclick="addToCart('${product.id}')" aria-label="Add to cart">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <button class="btn-add-cart" onclick="addToCart('${product.id}')" aria-label="Add ${product.title} to bag">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
             </svg>
-            Add
+            <span>Add to Bag</span>
           </button>
         </div>
       </div>
@@ -658,12 +661,12 @@ const QUIZ_QUESTIONS = [
   {
     step: 1,
     title: "How does your skin behave under tropical heat or humidity?",
-    desc: "Select the option that best reflects your barrier balance during daily exposure.",
+    desc: "Select the profile that best reflects your barrier balance during daily exposure.",
     options: [
-      { id: "oily-sweat", icon: "💧", label: "Oily & Sweat-Prone", detail: "Excess sebum shine, sweat rash, congested pores, and frequent humidity breakouts." },
-      { id: "reactive-allergy", icon: "🌿", label: "Sensitive & Reactive", detail: "Flushes red easily, stings from chemicals, experiences allergic chafing or heat hives." },
-      { id: "uneven-sun", icon: "☀️", label: "Pigmented & Sun-Damaged", detail: "Stubborn dark patches, melasma, uneven dermal tone, and dull post-sun appearance." },
-      { id: "flaky-dry", icon: "❄️", label: "Dry, Scaly or Plaque", detail: "Flaking, persistent tight patches, barrier cracking, or mild psoriasis discomfort." }
+      { id: "oily-sweat", icon: "💧", label: "Oily & Sweat-Prone", detail: "Excess sebum shine, sweat rash, congested pores, and humidity breakouts." },
+      { id: "reactive-allergy", icon: "🌿", label: "Sensitive & Reactive", detail: "Flushes red easily, chemical sensitivity, allergic chafing, or heat hives." },
+      { id: "uneven-sun", icon: "☀️", label: "Pigmented & Sun-Damaged", detail: "Stubborn dark patches, melasma, uneven dermal tone, and dullness." },
+      { id: "flaky-dry", icon: "🍃", label: "Dry, Scaly or Plaque", detail: "Persistent flaking, tight parched patches, or mild psoriasis discomfort." }
     ]
   },
   {
@@ -671,10 +674,10 @@ const QUIZ_QUESTIONS = [
     title: "What is your primary clinical skin goal?",
     desc: "Pinpoint the primary restorative action you seek.",
     options: [
-      { id: "fade-spots", icon: "🌸", label: "Fade Pigmentation & Melasma", detail: "Even skin tone, dissolve sun damage, and restore unadulterated botanical clarity." },
-      { id: "calm-flare", icon: "🛡️", label: "Soothe Itch, Sweat Rash & Allergy", detail: "Cool burning sensations, ease monsoon fungal chafe, and soothe histamine flares." },
-      { id: "flaky-dry", icon: "🌿", label: "Psoriasis & Deep Flaking", detail: "Softens thick rough plaques, relieves scaling, and replenishes missing barrier lipids." },
-      { id: "headache-calm", icon: "💆", label: "Soothe Stress Headaches & Migraine", detail: "Rapid cooling temple relief from heavy mental tension and throbbing pressure." }
+      { id: "fade-spots", icon: "🌸", label: "Fade Pigmentation & Melasma", detail: "Even tone, fade UV damage, and restore unadulterated botanical clarity." },
+      { id: "calm-flare", icon: "🛡️", label: "Soothe Itch, Sweat Rash & Allergy", detail: "Cool burning sensations, monsoon chafe, and histamine flare-ups." },
+      { id: "flaky-dry", icon: "🌿", label: "Psoriasis & Deep Flaking", detail: "Softens thick rough plaques, relieves scaling, and replenishes lipids." },
+      { id: "headache-calm", icon: "✨", label: "Ease Tension & Migraine", detail: "Rapid cooling temple relief from heavy mental tension and sinus pressure." }
     ]
   },
   {
@@ -1315,30 +1318,33 @@ function handleCatalogFilter(query) {
 
   container.innerHTML = filtered.map(product => `
     <div class="product-card reveal-init" data-id="${product.id}">
-      <div class="product-media">
-        <span class="product-badge">${product.badge}</span>
-        <button class="product-wishlist-btn" onclick="toggleWishlist('${product.id}', this)" aria-label="Save to wishlist" title="Save to wishlist">
+      <div class="product-media" onclick="openQuickView('${product.id}')" role="button" tabindex="0" aria-label="Quick view ${product.title}">
+        ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+        <button class="product-wishlist-btn" onclick="event.stopPropagation(); toggleWishlist('${product.id}', this)" aria-label="Save to wishlist" title="Save to wishlist">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
           </svg>
         </button>
-        <img src="${product.image}" alt="${product.title}" loading="lazy" class="product-img" onclick="openQuickView('${product.id}')" style="cursor: pointer;" onerror="this.onerror=null; this.src='assets/anti_pigmentation.jpg';">
-        <button class="quick-view-btn" onclick="openQuickView('${product.id}')">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-          Quick View
-        </button>
+        <img src="${product.image}" alt="${product.title}" loading="lazy" class="product-img" onerror="this.onerror=null; this.src='assets/anti_pigmentation.jpg';">
+        <span class="quick-view-hint">Quick View</span>
       </div>
       <div class="product-content">
-        <div class="product-category">${product.categoryLabel} &bull; ${product.weight}</div>
-        <div class="product-curation-pill">🌿 We Prepare As You Book</div>
+        <div class="product-meta-row">
+          <span class="product-category-text">${product.categoryLabel}</span>
+          <span class="product-weight-text">${product.weight}</span>
+        </div>
+        <div class="product-fresh-status">
+          <span class="status-pulse-dot"></span>
+          <span>Prepared Fresh As You Book</span>
+        </div>
         <h3 class="product-title" onclick="openQuickView('${product.id}')">${product.title}</h3>
         
         <div class="product-rating">
-          <div class="stars">
+          <div class="stars" aria-label="${product.rating} stars">
             ${'★'.repeat(Math.floor(product.rating))}
             <span class="star-empty">${product.rating % 1 !== 0 ? '½' : ''}</span>
           </div>
-          <span class="rating-text">${product.rating} (${product.reviewCount})</span>
+          <span class="rating-text">${product.rating} <span class="rating-count">(${product.reviewCount})</span></span>
         </div>
 
         <div class="product-price-row">
@@ -1346,11 +1352,11 @@ function handleCatalogFilter(query) {
             <span class="price-current">₹${product.price.toFixed(2)}</span>
             <span class="price-original">₹${product.originalPrice.toFixed(2)}</span>
           </div>
-          <button class="btn-add-cart" onclick="addToCart('${product.id}')" aria-label="Add to cart">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <button class="btn-add-cart" onclick="addToCart('${product.id}')" aria-label="Add ${product.title} to bag">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
             </svg>
-            Add
+            <span>Add to Bag</span>
           </button>
         </div>
       </div>
@@ -1376,6 +1382,24 @@ document.addEventListener('keydown', (e) => {
   ) {
     e.preventDefault();
     openSearchModal();
+  }
+});
+
+function toggleAssistantMenu() {
+  const popover = document.getElementById('assistantMenuPopover');
+  if (!popover) return;
+  const isShown = popover.style.display === 'flex';
+  popover.style.display = isShown ? 'none' : 'flex';
+}
+
+// Click outside to close floating assistant menu
+document.addEventListener('click', (e) => {
+  const wrap = document.getElementById('floatingAssistantWrap');
+  const popover = document.getElementById('assistantMenuPopover');
+  if (wrap && popover && popover.style.display === 'flex') {
+    if (!wrap.contains(e.target)) {
+      popover.style.display = 'none';
+    }
   }
 });
 
