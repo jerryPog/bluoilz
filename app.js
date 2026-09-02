@@ -152,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupCheckoutModal();
   setupHeaderScrollEffect();
   setupScrollReveal();
+  setupScrollSequenceBackground();
 });
 
 // Render Products
@@ -1515,5 +1516,180 @@ function escapeHtml(string) {
   div.textContent = string;
   return div.innerHTML;
 }
+
+// ==========================================================================
+// High-Performance Smooth Scroll Background Sequence (180 Botanical Frames)
+// Optimized for 60fps Silkiness, Mobile Responsiveness & Low-End Devices
+// ==========================================================================
+function setupScrollSequenceBackground() {
+  const canvas = document.getElementById('scrollSequenceCanvas');
+  if (!canvas) return;
+
+  // alpha: false tells the browser the canvas is fully opaque, bypassing compositor blending
+  const ctx = canvas.getContext('2d', { alpha: false, desynchronized: true }) || canvas.getContext('2d');
+  if (!ctx) return;
+
+  const TOTAL_FRAMES = 180;
+  const frames = new Array(TOTAL_FRAMES);
+  let targetFrame = 0;
+  let currentFrame = 0;
+  let isTicking = false;
+  let animationFrameId = null;
+
+  // Frame URL constructor (WebP format with 96% compression reduction)
+  const getFrameUrl = (idx) => {
+    const padded = String(idx + 1).padStart(3, '0');
+    return `assets/sequence/frame_${padded}.webp`;
+  };
+
+  // Device pixel ratio clamped to max 1.5 to protect mobile memory and avoid GPU fill-rate exhaustion
+  const getDpr = () => Math.min(window.devicePixelRatio || 1, 1.5);
+
+  function resizeCanvas() {
+    const dpr = getDpr();
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    renderCurrentFrame();
+  }
+
+  window.addEventListener('resize', resizeCanvas, { passive: true });
+  resizeCanvas();
+
+  // Cover aspect-ratio centering algorithm
+  function drawCoverImage(img) {
+    if (!img || !img.complete || img.naturalWidth === 0) return;
+
+    const cw = canvas.width;
+    const ch = canvas.height;
+    const iw = img.naturalWidth;
+    const ih = img.naturalHeight;
+
+    const scale = Math.max(cw / iw, ch / ih);
+    const nw = iw * scale;
+    const nh = ih * scale;
+    const cx = (cw - nw) / 2;
+    const cy = (ch - nh) / 2;
+
+    ctx.drawImage(img, cx, cy, nw, nh);
+  }
+
+  // Graceful Fallback: Find nearest loaded frame if current frame is still buffering
+  function findNearestLoadedFrame(index) {
+    if (frames[index] && frames[index].complete && frames[index].naturalWidth > 0) {
+      return frames[index];
+    }
+    for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
+      const prev = index - offset;
+      if (prev >= 0 && frames[prev] && frames[prev].complete && frames[prev].naturalWidth > 0) {
+        return frames[prev];
+      }
+      const next = index + offset;
+      if (next < TOTAL_FRAMES && frames[next] && frames[next].complete && frames[next].naturalWidth > 0) {
+        return frames[next];
+      }
+    }
+    return null;
+  }
+
+  function renderCurrentFrame() {
+    const idx = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(currentFrame)));
+    const img = findNearestLoadedFrame(idx);
+    if (img) {
+      drawCoverImage(img);
+    }
+  }
+
+  // Silky Smooth Lerp Loop (Apple-style Momentum Easing)
+  function updateLoop() {
+    const diff = targetFrame - currentFrame;
+    if (Math.abs(diff) > 0.02) {
+      currentFrame += diff * 0.12; // Smooth deceleration
+      renderCurrentFrame();
+      animationFrameId = requestAnimationFrame(updateLoop);
+      isTicking = true;
+    } else {
+      currentFrame = targetFrame;
+      renderCurrentFrame();
+      isTicking = false;
+    }
+  }
+
+  function onScroll() {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    if (maxScroll <= 0) return;
+    const scrollY = window.scrollY || window.pageYOffset || 0;
+    const progress = Math.min(1, Math.max(0, scrollY / maxScroll));
+    targetFrame = progress * (TOTAL_FRAMES - 1);
+
+    if (!isTicking) {
+      isTicking = true;
+      animationFrameId = requestAnimationFrame(updateLoop);
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // 3-Stage Progressive Priority Loading:
+  // Stage 1: Load frame 0 immediately and paint it
+  const firstImg = new Image();
+  firstImg.src = getFrameUrl(0);
+  frames[0] = firstImg;
+  firstImg.onload = () => {
+    renderCurrentFrame();
+    // Stage 2: Load keyframes across entire range (every 6th frame) for instant responsive scrubbing
+    loadPriorityKeyframes();
+  };
+
+  function loadPriorityKeyframes() {
+    const step = 6;
+    for (let i = 0; i < TOTAL_FRAMES; i += step) {
+      if (frames[i]) continue;
+      const img = new Image();
+      img.src = getFrameUrl(i);
+      frames[i] = img;
+      img.onload = () => {
+        if (Math.abs(currentFrame - i) < step) {
+          renderCurrentFrame();
+        }
+      };
+    }
+
+    // Stage 3: Background streaming buffer for intermediate frames
+    setTimeout(loadRemainingFrames, 250);
+  }
+
+  function loadRemainingFrames() {
+    let index = 1;
+    function loadNextBatch() {
+      const batchSize = 8;
+      let loadedInBatch = 0;
+      while (index < TOTAL_FRAMES && loadedInBatch < batchSize) {
+        if (!frames[index]) {
+          const img = new Image();
+          img.src = getFrameUrl(index);
+          frames[index] = img;
+          img.onload = () => {
+            if (Math.abs(currentFrame - index) <= 1) {
+              renderCurrentFrame();
+            }
+          };
+          loadedInBatch++;
+        }
+        index++;
+      }
+      if (index < TOTAL_FRAMES) {
+        if (window.requestIdleCallback) {
+          window.requestIdleCallback(loadNextBatch, { timeout: 800 });
+        } else {
+          setTimeout(loadNextBatch, 40);
+        }
+      }
+    }
+    loadNextBatch();
+  }
+}
+
 
 
