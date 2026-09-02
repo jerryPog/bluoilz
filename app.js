@@ -1424,8 +1424,8 @@ const CONCIERGE_KNOWLEDGE = [
     productId: null
   },
   {
-    triggers: ['waitlist', 'upcoming', 'new', 'more', '15'],
-    reply: "We are expanding to exactly 15 small-batch therapeutic formulations! You can reserve your priority batch allocation on our <a href='waitlist.html' style='color: var(--color-accent); font-weight: 700; text-decoration: underline;'>VIP Waitlist Page</a>.",
+    triggers: ['upcoming', 'new', 'more', '15', 'future'],
+    reply: "We focus exclusively on the therapeutic category with ancient methods of curation. We are expanding to a curated collection of 15 targeted remedies, freshly compounded as you book.",
     productId: null
   }
 ];
