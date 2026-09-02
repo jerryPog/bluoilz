@@ -40,7 +40,7 @@ const PRODUCTS = [
     badge: "Climate Shield",
     curation: "Ancient Method • Herbal Microflora Defense",
     weight: "50 gms",
-    image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80",
+    image: "assets/anti_fungal.png",
     description: "Engineered specifically to counter humidity-induced fungal irritation, sweat rashes, and chafing. Freshly prepared as you book using ancient Ayurvedic extracts like Karanja and Neem to cool inflamed, itchy skin.",
     keyBenefits: [
       "Freshly prepared upon your booking for peak herbal potency",
@@ -63,7 +63,7 @@ const PRODUCTS = [
     badge: "Barrier SOS",
     curation: "Ancient Method • Colloidal Barrier SOS",
     weight: "50 gms",
-    image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80",
+    image: "assets/anti_allergy.jpg",
     description: "An SOS therapeutic shield designed for hyper-reactive, allergic skin. Freshly compounded as you book using ancient colloidal oat distillation to soothe histamine flares, contact redness, and compromised barrier tissue.",
     keyBenefits: [
       "Handcrafted upon booking — uncompromised therapeutic freshness",
@@ -86,7 +86,7 @@ const PRODUCTS = [
     badge: "Intensive Relief",
     curation: "Ancient Method • Wrightia Tinctoria Alchemy",
     weight: "60 gms",
-    image: "https://images.unsplash.com/photo-1556228852-80b6e5eeff06?auto=format&fit=crop&w=800&q=80",
+    image: "assets/psoriasis_cream.jpg",
     description: "Deeply restorative lipid-replenishing emollient formulated using ancient Wrightia Tinctoria distillation. Prepared fresh as you book to soften thick, scaly plaques and relieve severe xerosis without synthetic occlusives.",
     keyBenefits: [
       "Prepared upon booking — biologically active plant phytosterols",
@@ -109,7 +109,7 @@ const PRODUCTS = [
     badge: "Pocket Healer",
     curation: "Ancient Method • Pure Herbal Distillate",
     weight: "10 ml",
-    image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80",
+    image: "assets/migraine_oil.jpg",
     description: "An aromatherapeutic fast-acting roll-on infused with pure therapeutic-grade wintergreen, peppermint, and lavender distillates. Hand-bottled as you book to dissolve forehead tension, sinus pressure, and headaches in minutes.",
     keyBenefits: [
       "Freshly bottled upon booking — active volatile aromatherapeutics",
