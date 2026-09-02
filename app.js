@@ -1,5 +1,6 @@
 /**
  * Bluoilz Skincare Website Data & Interactive Engine
+ * Exclusively Therapeutic Segment & Ancient Curation (We Prepare As You Book)
  */
 
 const PRODUCTS = [
@@ -13,14 +14,15 @@ const PRODUCTS = [
     originalPrice: 749,
     rating: 4.9,
     reviewCount: 128,
-    badge: "Bestseller",
+    badge: "We Prepare As You Book",
+    curation: "Ancient Method • Small-Batch Botanical Distillation",
     weight: "50 gms",
     image: "https://images.unsplash.com/photo-1608248597359-299f187ec982?auto=format&fit=crop&w=800&q=80",
-    description: "A clinically potent yet gentle botanical formula tailored for tropical and humidity-exposed skin. Reduces hyperpigmentation, stubborn sun spots, and uneven tone without irritating sensitive skin barriers.",
+    description: "A clinically potent therapeutic formulation crafted using ancient botanical alchemy for tropical and humidity-exposed skin. Prepared fresh upon booking with zero storage stabilizers to reduce hyperpigmentation and melasma patches without barrier irritation.",
     keyBenefits: [
-      "Fades stubborn blemishes & melasma patches",
-      "Restores natural skin radiance & moisture balance",
-      "Non-greasy, fast-absorbing breathable emulsion",
+      "We prepare fresh as you book — zero warehouse shelf life",
+      "Fades stubborn blemishes, UV spots & melasma patches",
+      "Ancient botanical alchemy using cold-pressed herbal lipids",
       "Free from hydroquinone, parabens & synthetic dyes"
     ],
     ingredients: "Kojic Dipalmitate, Alpha Arbutin, Licorice Root Extract, Niacinamide, Cold-Pressed Jojoba Oil, Aloe Vera Leaf Juice, Vitamin E."
@@ -35,14 +37,15 @@ const PRODUCTS = [
     originalPrice: 620,
     rating: 4.8,
     reviewCount: 94,
-    badge: "Climate Defense",
+    badge: "We Prepare As You Book",
+    curation: "Ancient Method • Herbal Microflora Defense",
     weight: "50 gms",
     image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80",
-    description: "Engineered specifically to counter humidity-induced fungal irritation, sweat rashes, and chafing. Provides lasting antifungal botanical protection while cooling inflamed, itchy skin.",
+    description: "Engineered specifically to counter humidity-induced fungal irritation, sweat rashes, and chafing. Freshly prepared as you book using ancient Ayurvedic extracts like Karanja and Neem to cool inflamed, itchy skin.",
     keyBenefits: [
+      "Freshly prepared upon your booking for peak herbal potency",
       "Rapidly alleviates sweat rash, redness & chafing",
       "Reinforces dermal microflora in high-humidity zones",
-      "Soothes intense itchiness and burning sensation",
       "100% breathable formulation suitable for active wear"
     ],
     ingredients: "Neem Seed Oil, Organic Tea Tree Leaf Extract, Karanja Oil, Turmeric Rhizome Extract, Zinc PCA, Beeswax, Calendula Infusion."
@@ -57,61 +60,18 @@ const PRODUCTS = [
     originalPrice: 499,
     rating: 4.9,
     reviewCount: 156,
-    badge: "Barrier Repair",
+    badge: "We Prepare As You Book",
+    curation: "Ancient Method • Colloidal Barrier SOS",
     weight: "50 gms",
     image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80",
-    description: "An SOS therapeutic shield designed for hyper-reactive skin. Instantly calms allergic flares, contact dermatitis symptoms, redness, and environmental histamine triggers.",
+    description: "An SOS therapeutic shield designed for hyper-reactive, allergic skin. Freshly compounded as you book using ancient colloidal oat distillation to soothe histamine flares, contact redness, and compromised barrier tissue.",
     keyBenefits: [
-      "Instant relief from allergic hives & redness",
-      "Repairs compromised skin lipid barrier",
-      "Hypoallergenic, dermatologist verified formula",
+      "Handcrafted upon booking — uncompromised therapeutic freshness",
+      "Instant relief from allergic hives, itching & irritation",
+      "Reconstructs compromised skin lipid matrix",
       "Steroid-free comfort for daily preventative use"
     ],
     ingredients: "Colloidal Oatmeal, Centella Asiatica (Gotu Kola), Chamomile Flower Extract, Shea Butter, Evening Primrose Oil, Squalane."
-  },
-  {
-    id: "clear-skin-anti-acne-cream",
-    title: "Clear Skin Anti-Acne Cream (50 gms)",
-    category: "face-care",
-    categoryLabel: "Face Care",
-    concern: "acne",
-    price: 399,
-    originalPrice: 520,
-    rating: 4.7,
-    reviewCount: 210,
-    badge: "Popular",
-    weight: "50 gms",
-    image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=800&q=80",
-    description: "Clears inflammatory acne, cystic bumps, and hormonal breakouts without stripping natural moisture. Balances sebum production under extreme tropical humidity.",
-    keyBenefits: [
-      "Unclogs pores & dissolves acne-causing bacteria",
-      "Minimizes post-acne dark marks and scarring",
-      "Controls excess T-zone shine for up to 10 hours",
-      "Calms acute red breakouts overnight"
-    ],
-    ingredients: "Salicylic Acid (Botanical Wintergreen), Tea Tree Oil, Basil Leaf Extract, Niacinamide 4%, Rosemary Water, Willow Bark Extract."
-  },
-  {
-    id: "green-tea-face-wash",
-    title: "Green Tea Face Wash – For Oily & Combination Skin",
-    category: "face-care",
-    categoryLabel: "Face Care",
-    concern: "oil-control",
-    price: 399,
-    originalPrice: 480,
-    rating: 4.8,
-    reviewCount: 175,
-    badge: "Daily Essential",
-    weight: "120 ml",
-    image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&q=80",
-    description: "A purifying, non-stripping gel cleanser packed with organic green tea polyphenols and cooling botanical extracts. Leaves skin refreshed, detoxified, and completely balanced.",
-    keyBenefits: [
-      "Removes excess sebum, dust, and waterproof grime",
-      "Provides rich antioxidant protection against pollution",
-      "Sulphate-free gentle foaming action",
-      "Maintains optimal pH 5.5 skin mantle"
-    ],
-    ingredients: "Camellia Sinensis (Green Tea) Infusion, Aloe Barbadensis, Glycerin, Decyl Glucoside, Cucumber Extract, Spearmint Oil."
   },
   {
     id: "psoriasis-support-cream",
@@ -123,15 +83,16 @@ const PRODUCTS = [
     originalPrice: 750,
     rating: 4.9,
     reviewCount: 88,
-    badge: "Intensive Relief",
+    badge: "We Prepare As You Book",
+    curation: "Ancient Method • Wrightia Tinctoria Alchemy",
     weight: "60 gms",
     image: "https://images.unsplash.com/photo-1556228852-80b6e5eeff06?auto=format&fit=crop&w=800&q=80",
-    description: "Deeply restorative lipid-replenishing emollient that softens thick, scaly plaques and relieves deep dryness associated with psoriasis, eczema, and severe xerosis.",
+    description: "Deeply restorative lipid-replenishing emollient formulated using ancient Wrightia Tinctoria distillation. Prepared fresh as you book to soften thick, scaly plaques and relieve severe xerosis without synthetic occlusives.",
     keyBenefits: [
+      "Prepared upon booking — biologically active plant phytosterols",
       "Softens tough epidermal flakes & rough patches",
       "Sustained 24-hour barrier hydration shield",
-      "Reduces scaling, cracking, and stinging sensations",
-      "Rich in natural phytosterols and omega fatty acids"
+      "Reduces scaling, cracking, and stinging sensations"
     ],
     ingredients: "Mahonia Aquifolium Extract, Wrightia Tinctoria Leaf Oil, Shea Butter, Virgin Coconut Oil, Borage Seed Oil, Beeswax."
   },
@@ -145,39 +106,18 @@ const PRODUCTS = [
     originalPrice: 199,
     rating: 4.9,
     reviewCount: 312,
-    badge: "Pocket Healer",
+    badge: "We Prepare As You Book",
+    curation: "Ancient Method • Pure Herbal Distillate",
     weight: "10 ml",
     image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80",
-    description: "An aromatherapeutic fast-acting roll-on infused with pure therapeutic-grade wintergreen, peppermint, and lavender oils. Relieves sinus pressure, tension headaches, and midday fatigue in minutes.",
+    description: "An aromatherapeutic fast-acting roll-on infused with pure therapeutic-grade wintergreen, peppermint, and lavender distillates. Hand-bottled as you book to dissolve forehead tension, sinus pressure, and headaches in minutes.",
     keyBenefits: [
+      "Freshly bottled upon booking — active volatile aromatherapeutics",
       "Instant cooling pressure release upon temple application",
       "Eases stress-induced neck tension & migraine throbbing",
-      "Portable spill-proof roll-on applicator",
-      "Pure botanical distillate without artificial solvents"
+      "Portable spill-proof roll-on applicator"
     ],
     ingredients: "Mentha Piperita (Peppermint) Oil, Gaultheria Procumbens (Wintergreen) Oil, Lavandula Angustifolia Oil, Eucalyptus Globulus, Sweet Almond Carrier Oil."
-  },
-  {
-    id: "radiance-face-serum",
-    title: "Botanical Youth Radiance Face Serum",
-    category: "face-care",
-    categoryLabel: "Face Care",
-    concern: "anti-aging",
-    price: 699,
-    originalPrice: 899,
-    rating: 4.8,
-    reviewCount: 142,
-    badge: "Elixir",
-    weight: "30 ml",
-    image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&q=80",
-    description: "Ultra-lightweight micro-droplet elixir featuring concentrated bakuchiol and plant squalane. Plumps fine lines, boosts collagen, and restores velvety softness.",
-    keyBenefits: [
-      "Gentle natural alternative to retinol for sensitive skin",
-      "Firms texture and enhances skin bounce",
-      "Absorbs in seconds under humid climate conditions",
-      "Shields dermal matrix from free-radical damage"
-    ],
-    ingredients: "Bakuchiol 2%, Olive Squalane, Rosehip Seed Oil, Hyaluronic Acid, Frankincense Oil, Sea Buckthorn Berry Extract."
   }
 ];
 
@@ -260,6 +200,7 @@ function renderProducts(filter = 'all') {
       </div>
       <div class="product-content">
         <div class="product-category">${product.categoryLabel} &bull; ${product.weight}</div>
+        <div class="product-curation-pill">🌿 We Prepare As You Book</div>
         <h3 class="product-title" onclick="openQuickView('${product.id}')">${product.title}</h3>
         
         <div class="product-rating">
@@ -729,19 +670,19 @@ const QUIZ_QUESTIONS = [
     title: "What is your primary clinical skin goal?",
     desc: "Pinpoint the primary restorative action you seek.",
     options: [
-      { id: "clear-acne", icon: "✨", label: "Clear Active Breakouts", detail: "Antibacterial healing, sebum regulation, and soothing active cysts." },
-      { id: "fade-spots", icon: "🌸", label: "Fade Pigmentation & Brighten", detail: "Even skin tone, restore botanical luminosity, and soften hyperpigmentation." },
-      { id: "calm-flare", icon: "🛡️", label: "Soothe Itch, Allergy & Rash", detail: "Reinforce acid mantle, ease fungal discomfort, and cool histamine flare-ups." },
-      { id: "headache-calm", icon: "💆", label: "Soothe Work & Midday Stress", detail: "Relieve tension headaches, heavy forehead pressure, and fatigue." }
+      { id: "fade-spots", icon: "🌸", label: "Fade Pigmentation & Melasma", detail: "Even skin tone, dissolve sun damage, and restore unadulterated botanical clarity." },
+      { id: "calm-flare", icon: "🛡️", label: "Soothe Itch, Sweat Rash & Allergy", detail: "Cool burning sensations, ease monsoon fungal chafe, and soothe histamine flares." },
+      { id: "flaky-dry", icon: "🌿", label: "Psoriasis & Deep Flaking", detail: "Softens thick rough plaques, relieves scaling, and replenishes missing barrier lipids." },
+      { id: "headache-calm", icon: "💆", label: "Soothe Stress Headaches & Migraine", detail: "Rapid cooling temple relief from heavy mental tension and throbbing pressure." }
     ]
   },
   {
     step: 3,
-    title: "What is your preferred daily routine commitment?",
-    desc: "How comprehensive would you like your therapeutic routine to be?",
+    title: "What is your preferred daily therapeutic commitment?",
+    desc: "How comprehensive would you like your ancient botanical formulation to be?",
     options: [
-      { id: "targeted-sos", icon: "⚡", label: "Targeted SOS Solution", detail: "A singular, potent active formula for immediate relief." },
-      { id: "complete-barrier", icon: "🌿", label: "Complete 2-Step Synergy", detail: "Cleanse/prepare and clinically treat for lasting dermal harmony." }
+      { id: "targeted-sos", icon: "⚡", label: "Targeted SOS Solution", detail: "A singular, potent active therapeutic formula freshly prepared for your exact symptom." },
+      { id: "complete-barrier", icon: "🌿", label: "Dual Therapeutic Synergy", detail: "Two complementary therapeutic formulations working together for lasting equilibrium." }
     ]
   }
 ];
@@ -819,28 +760,25 @@ function calculateQuizRecommendation() {
   const container = document.getElementById('quizContainer');
   if (!container) return;
 
-  // Determine prescribed products based on quizAnswers
   let recommendedIds = [];
-  let title = "Tropical Dermal Balance Regimen";
-  let description = "Designed specifically to counter humid weather disruption, soothe barrier microflora, and deliver bioavailable botanical repair.";
+  let title = "Therapeutic Dermal Balance Regimen";
+  let description = "Prepared fresh as you book using ancient botanical alchemy to deliver maximum bioactive healing without storage stabilizers.";
 
-  if (quizAnswers[2] === 'clear-acne' || quizAnswers[1] === 'oily-sweat') {
-    title = "Purifying & Anti-Acne Clarity Prescription";
-    description = "Non-stripping organic green tea polyphenols combined with wintergreen salicylic actives clear clogged sebum without drying your barrier.";
-    recommendedIds = quizAnswers[3] === 'targeted-sos' 
-      ? ['clear-skin-anti-acne-cream'] 
-      : ['green-tea-face-wash', 'clear-skin-anti-acne-cream'];
+  if (quizAnswers[2] === 'calm-flare' || quizAnswers[1] === 'oily-sweat') {
+    title = "Anti-Fungal & Humidity Rash Prescription";
+    description = "Ancient Neem and Karanja distillates that neutralize sweat-induced fungal irritation and bacterial inflammation without stripping moisture.";
+    recommendedIds = quizAnswers[3] === 'targeted-sos'
+      ? ['anti-fungal-cream']
+      : ['anti-fungal-cream', 'anti-allergy-cream'];
   } else if (quizAnswers[2] === 'fade-spots' || quizAnswers[1] === 'uneven-sun') {
     title = "Radiant Melanin-Balance Prescription";
     description = "Fades stubborn UV damage and hyperpigmentation with Kojic Dipalmitate and Alpha Arbutin in a lightweight breathable base.";
-    recommendedIds = quizAnswers[3] === 'targeted-sos'
-      ? ['anti-pigmentation-cream']
-      : ['anti-pigmentation-cream', 'radiance-face-serum'];
+    recommendedIds = ['anti-pigmentation-cream'];
   } else if (quizAnswers[2] === 'headache-calm') {
     title = "Neuro-Aromatic Tension Relief";
     description = "Rapid temple relief using pure wintergreen, cooling menthol, and lavender distillates to dissolve headache pressure in minutes.";
     recommendedIds = ['migraine-relief-oil'];
-  } else if (quizAnswers[1] === 'flaky-dry') {
+  } else if (quizAnswers[1] === 'flaky-dry' || quizAnswers[2] === 'flaky-dry') {
     title = "Intensive Lipid Repair & Plaque Calming";
     description = "Restorative Wrightia Tinctoria and phytosterol cold-pressed emollients to soften dry flakes and rebuild lipid matrices.";
     recommendedIds = ['psoriasis-support-cream'];

@@ -748,6 +748,98 @@ h1, h2, h3, h4, .font-serif {
 }
 
 /* ==========================================================================
+   We Prepare As You Book - Ancient Curation Section
+   ========================================================================== */
+.section-curation {
+  padding: 85px 0 95px;
+  background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
+  position: relative;
+}
+
+.curation-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 10px;
+}
+
+.curation-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  position: relative;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.curation-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-accent-soft);
+}
+
+.curation-card.highlight-card {
+  background: linear-gradient(145deg, #ffffff 0%, #fef3f0 100%);
+  border: 1.5px solid var(--color-accent);
+  box-shadow: 0 12px 36px rgba(222, 94, 115, 0.12);
+}
+
+.curation-step-num {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  opacity: 0.45;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.curation-icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 14px rgba(44, 30, 35, 0.05);
+}
+
+.curation-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.curation-card p {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  line-height: 1.68;
+}
+
+/* Product Curation Tag on Product Cards */
+.product-curation-pill {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #a4384b;
+  background: #fdeee9;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+  border: 1px solid #f8c9c0;
+}
+
+/* ==========================================================================
    Shop by Skin Concern / Products Grid
    ========================================================================== */
 .section-products {
@@ -2856,6 +2948,11 @@ h1, h2, h3, h4, .font-serif {
 
   .hero-img-wrapper img {
     height: 380px;
+  }
+
+  .curation-steps-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .concern-filter-tabs {
