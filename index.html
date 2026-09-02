@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Therapeutic Natural Skincare for Tropical & Sensitive Skin | Bluoilz</title>
+  <meta name="description" content="Bluoilz is a curated therapeutic natural skincare brand designed for sensitive and humid-climate skin. Ingredient integrity. Long-term balance.">
+  
+  <!-- Open Graph Meta -->
+  <meta property="og:title" content="Therapeutic Natural Skincare for Tropical & Sensitive Skin | Bluoilz">
+  <meta property="og:description" content="Curated therapeutic natural skincare brand designed for sensitive and humid-climate skin. Ingredient integrity. Long-term balance.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <div class="announcement-msg">
+        <span>✨ Free Shipping across India on orders above ₹999 | Worldwide dispatch within 24 Hours</span>
+      </div>
+      <div class="announcement-contact">
+        <span>📞 +91 8600155554</span>
+        <span>✉️ reachus@bluoilz.com</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <button class="mobile-menu-toggle header-action-btn" id="mobileNavToggle" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+
+      <!-- Brand Logo -->
+      <a href="#" class="brand-logo">
+        <span class="brand-name">Bluoilz</span>
+        <span class="brand-tag">The Skin Alchemist</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="desktop-nav">
+        <ul class="nav-links">
+          <li class="nav-item"><a href="#" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="#products" class="nav-link">Shop Now</a></li>
+          <li class="nav-item">
+            <a href="#products" class="nav-link">
+              Therapeutic Care
+              <svg class="dropdown-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <ul class="nav-dropdown">
+              <li><a href="#products" onclick="renderProducts('pigmentation')">Anti Pigmentation</a></li>
+              <li><a href="#products" onclick="renderProducts('fungal')">Anti Fungal</a></li>
+              <li><a href="#products" onclick="renderProducts('sensitive')">Anti Allergy</a></li>
+              <li><a href="#products" onclick="renderProducts('psoriasis')">Psoriasis Care</a></li>
+              <li><a href="#products" onclick="renderProducts('stress-pain')">Migraine Relief</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#products" class="nav-link">
+              Face Care
+              <svg class="dropdown-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <ul class="nav-dropdown">
+              <li><a href="#products" onclick="renderProducts('face-care')">Face Creams</a></li>
+              <li><a href="#products" onclick="renderProducts('anti-aging')">Youth Serums</a></li>
+              <li><a href="#products" onclick="renderProducts('oil-control')">Green Tea Cleansers</a></li>
+              <li><a href="#products" onclick="renderProducts('acne')">Acne Clearing</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="#quiz" class="nav-link" style="color: var(--color-accent); font-weight: 600;">✨ Skin Diagnostic</a></li>
+          <li class="nav-item"><a href="#ethos" class="nav-link">Why Bluoilz</a></li>
+          <li class="nav-item"><a href="#reviews" class="nav-link">Reviews</a></li>
+          <li class="nav-item"><a href="#journal" class="nav-link">Skin Intelligence</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <button class="header-action-btn" title="Search formulations" id="openSearchBtn" onclick="openSearchModal()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+
+        <button class="header-action-btn open-cart-btn" title="View Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span class="cart-badge" style="display:none;">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <aside class="mobile-nav-menu" id="mobileNavMenu">
+    <div class="mobile-nav-header">
+      <div class="brand-logo">
+        <span class="brand-name">Bluoilz</span>
+      </div>
+      <button class="header-action-btn" id="closeMobileNav">&times;</button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="#" onclick="document.getElementById('closeMobileNav').click()">Home</a></li>
+      <li><a href="#products" onclick="document.getElementById('closeMobileNav').click()">Shop All</a></li>
+      <li><a href="#products" onclick="document.getElementById('closeMobileNav').click(); renderProducts('therapeutic');">Therapeutic Care</a></li>
+      <li><a href="#products" onclick="document.getElementById('closeMobileNav').click(); renderProducts('face-care');">Face Care</a></li>
+      <li><a href="#quiz" onclick="document.getElementById('closeMobileNav').click()">✨ Skin Diagnostic</a></li>
+      <li><a href="#ethos" onclick="document.getElementById('closeMobileNav').click()">Why Bluoilz</a></li>
+      <li><a href="#reviews" onclick="document.getElementById('closeMobileNav').click()">Radiant Reviews</a></li>
+      <li><a href="#journal" onclick="document.getElementById('closeMobileNav').click()">Skin Intelligence Blog</a></li>
+      <li><a href="#contact" onclick="document.getElementById('closeMobileNav').click()">Contact Us</a></li>
+    </ul>
+  </aside>
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="hero-tag">Curated Therapeutic Care</span>
+          <h1 class="hero-title">Struggling with Sensitive or Reactive Skin?</h1>
+          <p class="hero-subtitle">
+            Tropical climates, humidity, and environmental stress disrupt the skin barrier. Bluoilz formulations are thoughtfully curated to support balance, calm irritation, and restore long-term skin health.
+          </p>
+          <div class="hero-ctas">
+            <a href="#quiz" class="btn btn-primary">Take 60s Skin Diagnostic</a>
+            <a href="#products" class="btn btn-secondary">Shop All Solutions</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <h4>100%</h4>
+              <p>Botanical Actives</p>
+            </div>
+            <div class="stat-item">
+              <h4>0%</h4>
+              <p>Harsh Chemicals</p>
+            </div>
+            <div class="stat-item">
+              <h4>4.9 ★</h4>
+              <p>Customer Rating</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-banner-image">
+          <div class="hero-img-wrapper">
+            <img src="assets/hero.jpg" alt="Bluoilz Natural Botanical Skincare Formulation">
+            <div class="hero-discount-bubble">
+              <span class="bubble-tag">UP TO</span>
+              <span class="bubble-num">20%</span>
+              <span class="bubble-tag">OFF</span>
+            </div>
+            <div class="hero-badge-overlay">
+              <span class="badge-title">Designed for Tropical Humid Climes</span>
+              <span class="badge-desc">Breathable, non-comedogenic barrier restoration.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Skin Diagnostic / Routine Finder -->
+    <section class="section-quiz" id="quiz">
+      <div class="container">
+        <div class="quiz-wrapper">
+          <div class="quiz-header">
+            <span class="section-eyebrow">Personalized Formulation Match</span>
+            <h2 class="section-title">Find Your Botanical Prescription</h2>
+            <p class="section-desc">Answer 3 brief questions to diagnose your barrier needs and uncover your tailored tropical regimen.</p>
+          </div>
+
+          <div class="quiz-container" id="quizContainer">
+            <!-- Dynamic quiz content injected by app.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shop by Skin Concern / Products Section -->
+    <section class="section-products" id="products">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Targeted Skincare Solutions</span>
+          <h2 class="section-title">Shop by Skin Concern</h2>
+          <p class="section-desc">Targeted therapeutic solutions for real skin concerns—choose what your skin needs.</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="concern-filter-tabs">
+          <button class="filter-tab active" data-filter="all">All Solutions</button>
+          <button class="filter-tab" data-filter="pigmentation">Pigmentation & Dullness</button>
+          <button class="filter-tab" data-filter="fungal">Tropical Sweat & Fungal</button>
+          <button class="filter-tab" data-filter="sensitive">Sensitive & Reactive</button>
+          <button class="filter-tab" data-filter="acne">Acne & Breakouts</button>
+          <button class="filter-tab" data-filter="psoriasis">Psoriasis & Dry Plaque</button>
+          <button class="filter-tab" data-filter="stress-pain">Headache & Tension</button>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div class="products-grid" id="productsGrid">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Your Skin Trusts Bluoilz Section -->
+    <section class="section-ethos" id="ethos">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Pure Science & Nature</span>
+          <h2 class="section-title">Why Your Skin Trusts Bluoilz</h2>
+          <p class="section-desc">We reject empty filler ingredients and fast-trend beauty to engineer long-term dermal equilibrium.</p>
+        </div>
+
+        <div class="ethos-grid">
+          <div class="ethos-card">
+            <div class="ethos-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h3>Ingredient Integrity</h3>
+            <p>Thoughtfully curated formulations using only purposeful, bio-available ingredients—nothing unnecessary, nothing excessive.</p>
+          </div>
+
+          <div class="ethos-card">
+            <div class="ethos-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+              </svg>
+            </div>
+            <h3>Designed for Tropical Skin</h3>
+            <p>Formulated to perform seamlessly under humidity, heat, and reactive climate conditions without congesting pores.</p>
+          </div>
+
+          <div class="ethos-card">
+            <div class="ethos-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3>No Harsh Chemicals</h3>
+            <p>Gentle, breathable emulsions that support and nourish the skin barrier instead of stripping its protective acid mantle.</p>
+          </div>
+
+          <div class="ethos-card">
+            <div class="ethos-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <h3>Founder-Led Formulation</h3>
+            <p>Every product is personally curated based on clinical skin concerns and ancient alchemy—never dictated by transient market trends.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Radiant Reviews Section -->
+    <section class="section-reviews" id="reviews">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Real Experiences</span>
+          <h2 class="section-title">Radiant Reviews</h2>
+          <p class="section-desc">Discover what our community experiences with daily Bluoilz botanical routines.</p>
+        </div>
+
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"Living in Mumbai's high humidity always made my skin break out with heavy creams. The Bluoilz Anti-Pigmentation Cream absorbed instantly and completely cleared my dark sun patches within 4 weeks!"</p>
+            <div class="review-author-wrap">
+              <div class="review-avatar">SR</div>
+              <div>
+                <h5 class="review-name">Shweta Rajput</h5>
+                <span class="review-verified">✔ Verified Bluoilz Customer</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"The Anti-Fungal and Anti-Allergy creams are miraculous for monsoon chafing and heat rash. Instant cooling relief without that sticky chemical residue."</p>
+            <div class="review-author-wrap">
+              <div class="review-avatar">AK</div>
+              <div>
+                <h5 class="review-name">Ananya Kulkarni</h5>
+                <span class="review-verified">✔ Verified Bluoilz Customer</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"The Migraine & Headache Roll-on oil lives in my work bag permanently. One swipe over temples and the tension headache just evaporates. True therapeutic excellence."</p>
+            <div class="review-author-wrap">
+              <div class="review-avatar">RM</div>
+              <div>
+                <h5 class="review-name">Rohit Mathur</h5>
+                <span class="review-verified">✔ Verified Bluoilz Customer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skin Intelligence / Brand Journal Section -->
+    <section class="section-journal" id="journal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Skin Intelligence Journal</span>
+          <h2 class="section-title">Formulation Science & Insights</h2>
+          <p class="section-desc">Education-led guidance on lipid barriers, porous skin absorption, and ancient alchemy.</p>
+        </div>
+
+        <div class="journal-grid">
+          <article class="journal-card">
+            <div class="journal-img-wrap">
+              <img src="assets/ingredients.jpg" alt="Porous Skin Absorption Article">
+            </div>
+            <div class="journal-content">
+              <span class="journal-tag">Skin Intelligence</span>
+              <h3>The Truth About Porous Skin & Absorption</h3>
+              <p class="journal-excerpt">Why heavier molecular formulas sit on tropical skin, causing comedogenic blockages and inflammation.</p>
+              <a href="#products" class="journal-link">Read Full Study &rarr;</a>
+            </div>
+          </article>
+
+          <article class="journal-card">
+            <div class="journal-img-wrap">
+              <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Embracing Timeless Beauty Article">
+            </div>
+            <div class="journal-content">
+              <span class="journal-tag">Ancient Formulations</span>
+              <h3>Embracing the Timeless Beauty of Ancient Blends</h3>
+              <p class="journal-excerpt">Bridging traditional Ayurvedic botanical distillation with modern micro-emulsification science.</p>
+              <a href="#products" class="journal-link">Explore the Philosophy &rarr;</a>
+            </div>
+          </article>
+
+          <article class="journal-card">
+            <div class="journal-img-wrap">
+              <img src="assets/glowing_portrait.jpg" alt="Skincare Tips Article">
+            </div>
+            <div class="journal-content">
+              <span class="journal-tag">Regime Awareness</span>
+              <h3>Join the Bluoilz Skincare Awareness Regime</h3>
+              <p class="journal-excerpt">A minimalist 3-step mindful routine tailored to rebuild fragile skin barriers under high humidity.</p>
+              <a href="#products" class="journal-link">View Daily Guide &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust & Certifications Section -->
+    <section class="section-trust">
+      <div class="container">
+        <div class="trust-intro">
+          <h3>Certified Standards of Excellence</h3>
+          <p>Every Bluoilz formulation is produced in certified laboratories and adheres strictly to pharmaceutical-grade cleanliness and global safety parameters.</p>
+        </div>
+
+        <div class="badges-row">
+          <div class="badge-pill">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>GMP Certified</span>
+          </div>
+          <div class="badge-pill">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>ISO Certified</span>
+          </div>
+          <div class="badge-pill">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>FDA Compliant</span>
+          </div>
+          <div class="badge-pill">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-10 10c0 5.52 4.48 10 10 10s10-4.48 10-10"/></svg>
+            <span>Organic Certified</span>
+          </div>
+        </div>
+
+        <p class="global-reach-note">Bluoilz therapeutic products are trusted and available in India, US, UK, UAE, Saudi Arabia and beyond.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" id="contact">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-col footer-brand">
+          <div class="brand-name">Bluoilz</div>
+          <p>Curated therapeutic natural skincare designed specifically for sensitive, reactive, and humid-climate skin. Pure ingredients. Sustainable balance.</p>
+          <div class="footer-contact-item">
+            <span>📍</span>
+            <span>Bluoilz The Skin Alchemist LLP<br>Survey No. 01/08, Door No. 21, Venkatesh Pura Layout, Sampigehalli Rd., Jakkur Post, Bangalore, KA 560064, IN.</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Therapeutic Care</h4>
+          <ul class="footer-links">
+            <li><a href="#products" onclick="renderProducts('pigmentation')">Anti Pigmentation Care</a></li>
+            <li><a href="#products" onclick="renderProducts('fungal')">Anti Fungal Shield</a></li>
+            <li><a href="#products" onclick="renderProducts('sensitive')">Anti Allergy Soothing</a></li>
+            <li><a href="#products" onclick="renderProducts('psoriasis')">Psoriasis Support</a></li>
+            <li><a href="#products" onclick="renderProducts('stress-pain')">Migraine Roll-On</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Brand Pages</h4>
+          <ul class="footer-links">
+            <li><a href="#products">Buy Online</a></li>
+            <li><a href="#journal">Skin Intelligence Blog</a></li>
+            <li><a href="#ethos">Our Formulation Ethos</a></li>
+            <li><a href="#">Press Release</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-newsletter">
+          <h4>Subscribe to Updates</h4>
+          <p>Receive therapeutic skin guides, ingredient revelations, and exclusive previews.</p>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Enter your email" required class="newsletter-input">
+            <button type="submit" class="newsletter-btn">Join</button>
+          </form>
+          <div style="margin-top: 20px;">
+            <p><strong>Direct Inquiries:</strong></p>
+            <p>✉️ <a href="mailto:reachus@bluoilz.com" style="color:#ffffff;">reachus@bluoilz.com</a></p>
+            <p>📞 +91 8600155554</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>Copyright &copy; 2024 Bluoilz &bull; All Rights Reserved.</div>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Refund Policy</a>
+          <a href="#">Shipping Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Slide-out Cart Drawer -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <h3>Your Bag</h3>
+      <button class="btn-close-drawer" id="closeCartBtn" aria-label="Close cart">&times;</button>
+    </div>
+
+    <div class="shipping-bar-wrap">
+      <div id="shippingNotice">Free shipping on orders above <strong>₹999.00</strong></div>
+      <div class="progress-track">
+        <div class="progress-fill" id="shippingProgress"></div>
+      </div>
+    </div>
+
+    <div class="cart-drawer-items" id="cartDrawerItems">
+      <!-- Injected by app.js -->
+    </div>
+
+    <div class="cart-drawer-footer">
+      <!-- Promo code field -->
+      <div class="cart-promo-section">
+        <div class="promo-input-group">
+          <input type="text" id="cartPromoInput" placeholder="Promo code (e.g. BLUOILZ10)" autocomplete="off">
+          <button type="button" class="btn-promo-apply" onclick="applyPromoCode()">Apply</button>
+        </div>
+        <div id="promoMessage" class="promo-message"></div>
+      </div>
+
+      <!-- Quick Add-on Upsell if under ₹999 -->
+      <div class="cart-upsell-box" id="cartUpsellBox" style="display: none;">
+        <!-- Injected by app.js -->
+      </div>
+
+      <div class="cart-subtotal-breakdown">
+        <div class="cart-subtotal-row" id="cartDiscountRow" style="display: none; color: var(--color-accent);">
+          <span>Discount Applied:</span>
+          <span id="cartDrawerDiscount">-₹0.00</span>
+        </div>
+        <div class="cart-subtotal-row total-highlight">
+          <span>Final Total:</span>
+          <span id="cartDrawerSubtotal">₹0.00</span>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-checkout" onclick="openCheckoutModal()">
+        Proceed to Checkout &rarr;
+      </button>
+    </div>
+  </div>
+  <div class="cart-backdrop" id="cartBackdrop"></div>
+
+  <!-- Quick View Modal -->
+  <div class="modal" id="quickViewModal">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-dialog">
+      <button class="modal-close-btn" id="closeModalBtn" aria-label="Close modal">&times;</button>
+      <div id="quickViewContent">
+        <!-- Injected by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Live Search Modal -->
+  <div class="modal" id="searchModal">
+    <div class="modal-backdrop" id="searchBackdrop"></div>
+    <div class="modal-dialog search-dialog">
+      <div class="search-modal-header">
+        <div class="search-input-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" id="liveSearchInput" placeholder="Search by skin concern, symptom, or botanical active (e.g. Fungal, Niacinamide, Acne, Oatmeal)..." autofocus>
+          <button class="search-clear-btn" id="clearSearchBtn" aria-label="Clear search" style="display:none;">&times;</button>
+        </div>
+        <button class="modal-close-btn" id="closeSearchBtn" aria-label="Close search">&times;</button>
+      </div>
+
+      <div class="search-quick-tags">
+        <span>Suggested:</span>
+        <button type="button" class="quick-tag" onclick="quickTagSearch('pigmentation')">Pigmentation</button>
+        <button type="button" class="quick-tag" onclick="quickTagSearch('fungal')">Fungal / Sweat</button>
+        <button type="button" class="quick-tag" onclick="quickTagSearch('sensitive')">Colloidal Oat</button>
+        <button type="button" class="quick-tag" onclick="quickTagSearch('acne')">Acne & Breakouts</button>
+        <button type="button" class="quick-tag" onclick="quickTagSearch('migraine')">Migraine Oil</button>
+      </div>
+
+      <div class="search-results-container" id="searchResultsContainer">
+        <!-- Injected dynamically by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Checkout Modal -->
+  <div class="modal" id="checkoutModal">
+    <div class="modal-backdrop" id="checkoutBackdrop"></div>
+    <div class="modal-dialog checkout-dialog">
+      <button class="modal-close-btn" id="closeCheckoutBtn" aria-label="Close checkout">&times;</button>
+      <div class="checkout-wrapper" id="checkoutContent">
+        <!-- Injected dynamically by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating WhatsApp & Skin Advice Widget -->
+  <a href="https://wa.me/918600155554?text=Hello%20Bluoilz%20Skin%20Alchemist%2C%20I%20would%20like%20a%20personal%20skin%20consultation." 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     class="floating-whatsapp-btn" 
+     aria-label="Chat with a Skincare Alchemist on WhatsApp">
+    <span class="whatsapp-tooltip">Skin Consultation ✨</span>
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.072-2.148-.526-1.859-.766-3.053-2.664-3.146-2.787-.093-.124-.757-1.008-.757-1.924 0-.916.48-1.368.652-1.554.172-.187.375-.233.5-.233.125 0 .25 0 .359.006.115.006.27-.044.423.323.156.375.531 1.297.578 1.391.047.094.078.203.016.328-.063.125-.094.203-.188.312-.094.11-.197.245-.281.33-.094.093-.193.195-.083.385.11.19.488.808 1.047 1.307.72.64 1.327.839 1.516.932.188.094.297.078.407-.047.11-.125.469-.547.594-.735.125-.187.25-.156.422-.093.172.062 1.094.516 1.282.609.188.094.312.141.359.219.047.078.047.453-.097.858z"/>
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 1.891.528 3.66 1.447 5.176L2 22l4.966-1.408C8.428 21.499 10.155 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.273c-1.636 0-3.171-.488-4.462-1.333l-.32-.209-2.951.838.852-2.87-.225-.339A8.243 8.243 0 0 1 3.727 12c0-4.562 3.711-8.273 8.273-8.273 4.562 0 8.273 3.711 8.273 8.273 0 4.562-3.711 8.273-8.273 8.273z"/>
+    </svg>
+  </a>
+
+  <script src="app.js"></script>
+</body>
+</html>
