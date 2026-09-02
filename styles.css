@@ -2445,11 +2445,29 @@ h1, h2, h3, h4, .font-serif {
   background: transparent;
 }
 
-.search-clear-btn {
-  font-size: 1.4rem;
+.search-modal-header .modal-close-btn {
+  position: static;
+  top: auto;
+  right: auto;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  margin-left: auto;
+  font-size: 1.5rem;
   color: var(--color-text-muted);
-  padding: 0 8px;
+  border-radius: 50%;
+  background: rgba(74, 53, 58, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.search-modal-header .modal-close-btn:hover {
+  background: var(--color-sand);
+  color: var(--color-primary);
+  transform: scale(1.06);
 }
 
 .search-quick-tags {
