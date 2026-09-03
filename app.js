@@ -426,6 +426,19 @@ function closeQuickView() {
 }
 
 // Cart Drawer Management
+function showToast(message) {
+  const toast = document.createElement("div");
+  toast.style.cssText = "position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:var(--color-primary); color:white; padding:12px 24px; border-radius:var(--radius-pill); font-size:0.85rem; font-weight:600; z-index:2000; animation: fadeInUp 0.3s ease; box-shadow:var(--shadow-lg); pointer-events:none;";
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    toast.style.transform = "translateX(-50%) translateY(10px)";
+    toast.style.transition = "all 0.3s ease";
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
 function addToCart(productId, quantity = 1) {
   const product = PRODUCTS.find(p => p.id === productId);
   if (!product) return;
