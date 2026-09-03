@@ -2877,9 +2877,62 @@ h1, h2, h3, h4, .font-serif {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 32px;
+  gap: 12px;
+  margin-bottom: 28px;
   border-bottom: 1px solid var(--color-border);
   padding-bottom: 16px;
+}
+
+.mobile-nav-header .brand-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.mobile-nav-header .brand-name {
+  font-family: var(--font-serif);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.mobile-nav-header .brand-tag {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+.close-nav-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  background: var(--color-sand);
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: var(--transition-fast);
+  padding: 0;
+}
+
+.close-nav-btn:hover {
+  background: var(--color-border);
+  color: var(--color-primary);
+  transform: rotate(90deg);
 }
 
 .mobile-nav-links {
@@ -3055,17 +3108,24 @@ h1, h2, h3, h4, .font-serif {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    min-width: 0;
+    gap: 1px;
   }
 
   .brand-name {
-    font-size: 1.5rem;
+    font-size: 1.45rem;
     line-height: 1;
   }
 
   .brand-tag {
-    font-size: 0.65rem;
-    letter-spacing: 0.04em;
+    display: block;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
     margin-top: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 160px;
   }
 
   .header-actions {
