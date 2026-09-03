@@ -4,6 +4,9 @@
    ========================================================================== */
 
 :root {
+  /* Enforce Light Color Scheme across all browsers & OS themes */
+  color-scheme: light;
+
   /* Core Color System - Botanical Luxury Apothecary */
   --color-canvas: #faf6f2;           /* Warm ivory / porcelain alabaster canvas */
   --color-sand: #f5efe9;             /* Soft secondary surface */
@@ -11,6 +14,7 @@
   --color-primary: #1f191b;          /* Deep rich charcoal ink */
   --color-primary-light: #362c30;    /* Soft charcoal plum */
   --color-text-main: #231c1e;        /* Deep charcoal primary text */
+  --color-text: #231c1e;             /* Primary text alias */
   --color-text-muted: #6e6065;       /* Muted warm slate / taupe */
   --color-text-light: #9c8e93;       /* Subtle caption & placeholder slate */
   --color-border: #ede4de;           /* Warm ivory divider */
@@ -23,6 +27,7 @@
   --color-accent: #b85d6b;           /* Editorial accent: Soft muted dusty rose */
   --color-accent-hover: #a34e5b;     /* Deepened dusty rose */
   --color-accent-soft: #fbf0ee;      /* Subtle muted rose surface */
+  --color-accent-gradient: linear-gradient(135deg, #b85d6b 0%, #c97280 100%); /* Editorial dusty rose gradient */
   --color-fresh-bg: #eaf3ed;         /* Freshness / preparation indicator surface */
   --color-fresh-text: #275936;       /* Freshness botanical green text */
   --color-fresh-dot: #2e7d32;        /* Live compounding status dot */
@@ -65,11 +70,16 @@
 }
 
 html {
+  color-scheme: light;
+  background-color: #faf5f2;
+  color: var(--color-text-main);
   scroll-behavior: smooth;
   font-size: 16px;
+  -webkit-text-size-adjust: 100%;
 }
 
-body { color-scheme: light;
+body {
+  color-scheme: light;
   font-family: var(--font-sans);
   background-color: #faf5f2;
   color: var(--color-text-main);
@@ -77,6 +87,35 @@ body { color-scheme: light;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+/* Form & Interactive Controls Baseline - Light Scheme & Explicit Theming */
+input,
+textarea,
+select,
+button {
+  color-scheme: light;
+  font-family: inherit;
+  color: var(--color-text-main);
+}
+
+input,
+textarea,
+select {
+  background-color: #ffffff;
+  color: var(--color-text-main);
+  border: 1px solid var(--color-border);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-text-light);
+  opacity: 1;
+}
+
+select option {
+  background-color: #ffffff;
+  color: var(--color-text-main);
 }
 
 /* ==========================================================================
@@ -2046,6 +2085,7 @@ h1, h2, h3, h4, .font-serif {
   font-family: inherit;
   text-transform: uppercase;
   background: #ffffff;
+  color: var(--color-primary);
   outline: none;
 }
 
@@ -2656,6 +2696,8 @@ h1, h2, h3, h4, .font-serif {
   border-radius: var(--radius-sm);
   font-family: inherit;
   font-size: 0.9rem;
+  background-color: #ffffff;
+  color: var(--color-primary);
   outline: none;
 }
 
@@ -4244,6 +4286,7 @@ h1, h2, h3, h4, .font-serif {
   font-size: 0.85rem;
   outline: none;
   background: #fdfbf9;
+  color: var(--color-text-main);
 }
 
 .concierge-footer input:focus {

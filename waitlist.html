@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
   <title>Bluoilz | Opening Soon &bull; Private Waitlist Access</title>
   <meta name="description" content="Bluoilz therapeutic skincare boutique is currently compounding behind closed doors. Join the private waitlist to receive your invitation pass for the next fresh booking cycle.">
   <link rel="canonical" href="https://www.bluoilz.com/waitlist.html">
@@ -22,6 +23,7 @@
   <link rel="stylesheet" href="styles.css">
   <style>
     body.waitlist-body {
+      color-scheme: light;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -183,13 +185,14 @@
     }
 
     .gated-input {
+      color-scheme: light;
       width: 100%;
       padding: 14px 18px;
       border: 1.5px solid rgba(74, 53, 58, 0.15);
       border-radius: var(--radius-pill);
       font-size: 0.9rem;
       font-family: var(--font-sans);
-      color: var(--color-text);
+      color: var(--color-primary);
       outline: none;
       background: #faf8f5;
       transition: var(--transition);
@@ -209,6 +212,11 @@
       background-position: right 18px top 50%;
       background-size: 10px auto;
       padding-right: 40px;
+    }
+
+    .gated-select option {
+      background-color: #ffffff;
+      color: var(--color-primary);
     }
 
     .gated-submit-btn {

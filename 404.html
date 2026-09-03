@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
   <title>404 - Formulation Not Found | Bluoilz Therapeutic Skincare</title>
   <meta name="description" content="The page or therapeutic formulation you are looking for is out of alignment or has moved. Return to Bluoilz boutique.">
   <meta name="robots" content="noindex, follow">
@@ -15,6 +16,9 @@
 
   <link rel="stylesheet" href="styles.css">
   <style>
+    :root, html, body {
+      color-scheme: light;
+    }
     .page-404-wrap {
       min-height: 85vh;
       display: flex;
@@ -88,13 +92,14 @@
     }
 
     .search-404-box input {
+      color-scheme: light;
       width: 100%;
       padding: 14px 20px 14px 44px;
       border-radius: var(--radius-pill);
       border: 1.5px solid rgba(74, 53, 58, 0.15);
       background: #ffffff;
       font-size: 0.92rem;
-      color: var(--color-text);
+      color: var(--color-primary);
       transition: var(--transition);
       outline: none;
     }
