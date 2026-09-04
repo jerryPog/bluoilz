@@ -185,9 +185,12 @@ function renderProducts(filter = 'all') {
 
   if (filtered.length === 0) {
     container.innerHTML = `
-      <div class="empty-state">
-        <p>No formulations found under this specific concern.</p>
-        <button class="btn btn-secondary" onclick="resetFilter()">View All Formulations</button>
+      <div class="empty-state" style="grid-column: 1 / -1; text-align: center; padding: 48px 20px; background: #ffffff; border: 1px solid var(--color-border); border-radius: var(--radius-md); margin: 20px 0;">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="color: var(--color-accent); margin-bottom: 12px;">
+          <circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/>
+        </svg>
+        <p style="font-size: 1.1rem; color: var(--color-text-main); margin-bottom: 16px;">No formulations found under this specific concern.</p>
+        <button class="btn btn-primary" onclick="resetFilter()">View All Formulations</button>
       </div>
     `;
     return;
@@ -352,6 +355,12 @@ function openQuickView(productId) {
           <span>🧪 Microbiome Friendly</span>
           <span>🚚 Dispatches within 24h</span>
         </div>
+
+        <div style="margin-top: 18px; padding-top: 14px; border-top: 1px dashed rgba(74, 53, 58, 0.15); display: flex; flex-direction: column; gap: 6px;">
+          <a href="#quiz" onclick="closeQuickView()" class="modal-link-hint">✨ Not sure? Find your barrier match in our 60-Sec Skin Diagnostic &rarr;</a>
+          <a href="#curation" onclick="closeQuickView()" class="modal-link-hint">🌿 Learn how this remedy is prepared fresh upon your booking &rarr;</a>
+          <a href="waitlist.html" class="modal-link-hint">⏳ Check private batch waitlist schedule &rarr;</a>
+        </div>
       </div>
     </div>
   `;
@@ -431,9 +440,13 @@ function addToCart(productId, quantity = 1) {
   const product = PRODUCTS.find(p => p.id === productId);
   if (!product) return;
 
+  quantity = parseInt(quantity, 10);
+  if (isNaN(quantity) || quantity <= 0) quantity = 1;
+  if (quantity > 50) quantity = 50;
+
   const existingItem = cart.find(item => item.id === productId);
   if (existingItem) {
-    existingItem.quantity += quantity;
+    existingItem.quantity = Math.min(50, Math.max(1, existingItem.quantity + quantity));
   } else {
     cart.push({
       id: product.id,
@@ -449,16 +462,22 @@ function addToCart(productId, quantity = 1) {
   updateCartBadge();
   renderCartDrawer();
   openCart();
-  showToast(`Added ${quantity}x "${product.title}" to cart`);
+  showToast(`Added ${quantity}x "${product.title.split('–')[0].trim()}" to bag`);
 }
 
 function updateCartItemQty(productId, delta) {
   const item = cart.find(i => i.id === productId);
   if (!item) return;
 
+  delta = parseInt(delta, 10);
+  if (isNaN(delta)) delta = 0;
+
   item.quantity += delta;
-  if (item.quantity <= 0) {
+  if (isNaN(item.quantity) || item.quantity <= 0) {
     cart = cart.filter(i => i.id !== productId);
+  } else if (item.quantity > 50) {
+    item.quantity = 50;
+    showToast('Maximum 50 units per formulation allowed.');
   }
 
   saveCart();
@@ -507,9 +526,13 @@ function renderCartDrawer() {
           <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
           <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
         </svg>
-        <h4>Your Cart is Empty</h4>
-        <p>Explore our therapeutic skincare formulas to soothe and balance your skin.</p>
-        <button class="btn btn-primary" onclick="closeCart()">Explore Formulations</button>
+        <h4>Your Bag is Empty</h4>
+        <p>Explore our therapeutic skincare formulas freshly compounded upon your booking.</p>
+        <div style="display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: 260px; margin: 16px auto 0;">
+          <a href="#products" class="btn btn-primary" onclick="closeCart()" style="font-size: 0.85rem; padding: 11px 18px; justify-content: center;">Explore Therapeutic Care &rarr;</a>
+          <a href="#quiz" class="btn btn-secondary" onclick="closeCart()" style="font-size: 0.85rem; padding: 10px 18px; justify-content: center;">Take Skin Diagnostic Quiz</a>
+          <a href="waitlist.html" class="btn-ghost-pill" onclick="closeCart()" style="font-size: 0.8rem; padding: 8px 14px; justify-content: center;">🌿 Join Next Batch Waitlist</a>
+        </div>
       </div>
     `;
     if (subtotalElem) subtotalElem.textContent = '₹0.00';
@@ -816,10 +839,10 @@ function calculateQuizRecommendation() {
 
       <div class="routine-products-list">
         ${recProducts.map(p => `
-          <div class="routine-product-card">
+          <div class="routine-product-card" onclick="openQuickView('${p.id}')" style="cursor: pointer;" title="Click to view details & benefits">
             <img src="${p.image}" alt="${p.title}" class="routine-prod-img" onerror="this.onerror=null; this.src='assets/anti_pigmentation.jpg';">
             <div class="routine-prod-info">
-              <h5>${p.title}</h5>
+              <h5>${p.title} 🔍</h5>
               <span>₹${p.price.toFixed(2)}</span>
             </div>
           </div>
@@ -833,6 +856,12 @@ function calculateQuizRecommendation() {
         <button class="btn btn-secondary" onclick="restartQuiz()">
           Retake Diagnostic
         </button>
+      </div>
+
+      <div style="margin-top: 20px; padding-top: 16px; border-top: 1px dashed rgba(74, 53, 58, 0.15); display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;">
+        <a href="#products" class="card-internal-link" style="margin-top:0;">Browse Full Catalog &rarr;</a>
+        <a href="#curation" class="card-internal-link" style="margin-top:0;">How We Prepare As You Book &rarr;</a>
+        <a href="waitlist.html" class="card-internal-link" style="margin-top:0;">Check Batch Waitlist &rarr;</a>
       </div>
     </div>
   `;
@@ -1028,27 +1057,27 @@ function openCheckoutModal() {
       <div class="checkout-form-grid">
         <div class="form-group">
           <label for="cName">Full Name *</label>
-          <input type="text" id="cName" required placeholder="e.g. Aditi Sharma">
+          <input type="text" id="cName" required minlength="2" maxlength="100" placeholder="e.g. Aditi Sharma">
         </div>
         <div class="form-group">
           <label for="cPhone">Phone (for Tracking SMS) *</label>
-          <input type="tel" id="cPhone" required placeholder="+91 9876543210">
+          <input type="tel" id="cPhone" required pattern="[0-9+\s\-]{10,15}" maxlength="16" placeholder="+91 9876543210">
         </div>
         <div class="form-group full-span">
           <label for="cEmail">Email Address *</label>
-          <input type="email" id="cEmail" required placeholder="aditi@example.com">
+          <input type="email" id="cEmail" required maxlength="150" placeholder="aditi@example.com">
         </div>
         <div class="form-group full-span">
           <label for="cAddress">Shipping Address *</label>
-          <input type="text" id="cAddress" required placeholder="Flat / Street / Apartment details">
+          <input type="text" id="cAddress" required minlength="5" maxlength="250" placeholder="Flat / Street / Apartment details">
         </div>
         <div class="form-group">
           <label for="cCity">City *</label>
-          <input type="text" id="cCity" required placeholder="e.g. Mumbai">
+          <input type="text" id="cCity" required minlength="2" maxlength="100" placeholder="e.g. Mumbai">
         </div>
         <div class="form-group">
           <label for="cPincode">PIN / Postal Code *</label>
-          <input type="text" id="cPincode" required placeholder="400001">
+          <input type="text" id="cPincode" required pattern="[0-9]{6}" maxlength="6" placeholder="400001">
         </div>
       </div>
 
@@ -1108,7 +1137,67 @@ function selectPaymentMethod(elem) {
 
 function submitCheckoutOrder(event, total) {
   event.preventDefault();
-  const name = document.getElementById('cName').value;
+
+  const nameInput = document.getElementById('cName');
+  const phoneInput = document.getElementById('cPhone');
+  const emailInput = document.getElementById('cEmail');
+  const addressInput = document.getElementById('cAddress');
+  const cityInput = document.getElementById('cCity');
+  const pincodeInput = document.getElementById('cPincode');
+
+  const name = nameInput ? nameInput.value.trim() : '';
+  const phone = phoneInput ? phoneInput.value.trim() : '';
+  const email = emailInput ? emailInput.value.trim() : '';
+  const address = addressInput ? addressInput.value.trim() : '';
+  const city = cityInput ? cityInput.value.trim() : '';
+  const pincode = pincodeInput ? pincodeInput.value.trim() : '';
+
+  // Validate inputs defensively
+  if (name.length < 2) {
+    showToast('Please provide your full name (at least 2 characters).');
+    if (nameInput) nameInput.focus();
+    return;
+  }
+
+  const phoneDigits = phone.replace(/\D/g, '');
+  if (phoneDigits.length < 10 || phoneDigits.length > 15) {
+    showToast('Please provide a valid 10-digit mobile number for dispatch updates.');
+    if (phoneInput) phoneInput.focus();
+    return;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    showToast('Please provide a valid email address for your order confirmation.');
+    if (emailInput) emailInput.focus();
+    return;
+  }
+
+  if (address.length < 5) {
+    showToast('Please provide a complete shipping address (at least 5 characters).');
+    if (addressInput) addressInput.focus();
+    return;
+  }
+
+  if (!city || city.length < 2) {
+    showToast('Please enter your delivery city name.');
+    if (cityInput) cityInput.focus();
+    return;
+  }
+
+  const pincodeRegex = /^[0-9]{6}$/;
+  if (!pincodeRegex.test(pincode)) {
+    showToast('Please enter a valid 6-digit postal PIN code.');
+    if (pincodeInput) pincodeInput.focus();
+    return;
+  }
+
+  if (!cart || cart.length === 0) {
+    showToast('Your bag is empty! Add products before placing order.');
+    closeCheckoutModal();
+    return;
+  }
+
   const orderId = 'BLU-' + Math.floor(100000 + Math.random() * 900000);
 
   const content = document.getElementById('checkoutContent');
@@ -1130,14 +1219,14 @@ function submitCheckoutOrder(event, total) {
       </div>
       <h2 style="font-size: 2rem; color: var(--color-primary); margin-bottom: 8px;">Order Confirmed!</h2>
       <p style="font-size: 1.05rem; color: var(--color-text-main); margin-bottom: 16px;">
-        Thank you, <strong>${name}</strong>. Your botanical skincare formulation is being freshly prepared for dispatch.
+        Thank you, <strong>${name}</strong>. Your botanical skincare formulation is being freshly prepared for dispatch to <strong>${city}</strong>.
       </p>
       <div style="background: var(--color-sand); border: 1px solid var(--color-border); padding: 14px; border-radius: var(--radius-sm); margin-bottom: 24px; display: inline-block;">
         <span style="font-size: 0.85rem; color: var(--color-text-muted); display: block;">Order Reference ID:</span>
         <strong style="font-size: 1.2rem; color: var(--color-primary); letter-spacing: 0.05em;">#${orderId}</strong>
       </div>
       <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 24px;">
-        A dispatch tracking link will be sent to your mobile number within 24 hours.
+        A dispatch tracking link will be sent via SMS to <strong>${phone}</strong> and email to <strong>${email}</strong>.
       </p>
       <button class="btn btn-primary" onclick="closeCheckoutModal()">
         Return to Bluoilz Formulations
@@ -1216,10 +1305,17 @@ function setupNewsletter() {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const input = form.querySelector('input[type="email"]');
-      if (input && input.value) {
-        showToast('Thank you for subscribing to Skin Intelligence Journal!');
-        input.value = '';
+      const val = input ? input.value.trim() : '';
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!val || !emailRegex.test(val)) {
+        showToast('Please provide a valid email address to subscribe.');
+        if (input) input.focus();
+        return;
       }
+
+      showToast('Thank you for subscribing to Skin Intelligence Journal!');
+      input.value = '';
     });
   }
 }

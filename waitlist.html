@@ -296,6 +296,46 @@
 </head>
 <body class="waitlist-body">
 
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <div class="announcement-msg">
+        <span>🌿 Ancient Botanical Alchemy • Pure Therapeutic Segment • <a href="index.html#curation" class="announcement-inline-link">We Prepare Fresh As You Book</a></span>
+      </div>
+      <div class="announcement-contact">
+        <span>📞 +91 8600155554</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="Bluoilz Home">
+        <span class="brand-name">Bluoilz</span>
+        <span class="brand-tag">Therapeutic Ancient Alchemy</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="index.html#products" class="nav-link">Therapeutic Care</a></li>
+          <li class="nav-item"><a href="index.html#curation" class="nav-link">Freshly Prepared</a></li>
+          <li class="nav-item"><a href="index.html#ethos" class="nav-link">Ancient Method</a></li>
+          <li class="nav-item"><a href="index.html#quiz" class="nav-link">Skin Diagnostic</a></li>
+          <li class="nav-item"><a href="index.html#reviews" class="nav-link">Reviews</a></li>
+          <li class="nav-item"><a href="waitlist.html" class="nav-link active nav-link-pill">Batch Waitlist</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="index.html#products" class="btn btn-primary" style="padding: 9px 20px; font-size: 0.8rem;">
+          View Catalog &rarr;
+        </a>
+      </div>
+    </div>
+  </header>
+
   <main class="waitlist-container">
     <!-- Brand -->
     <div class="waitlist-brand">
@@ -318,6 +358,13 @@
     <p class="waitlist-sub-desc">
       To preserve the biological integrity of our therapeutic botanicals, we reject warehouse shelf life. The public boutique is closed while our alchemists compound the next small batch. Join our private access list to receive an invitation the instant doors open.
     </p>
+
+    <!-- Quick Navigation Exploration Pill Links -->
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 30px;">
+      <a href="index.html#products" class="btn-ghost-pill" style="padding: 8px 18px; font-size: 0.82rem;">🔍 Explore 5 Formulations &rarr;</a>
+      <a href="index.html#quiz" class="btn-ghost-pill" style="padding: 8px 18px; font-size: 0.82rem;">✨ Take Skin Diagnostic &rarr;</a>
+      <a href="index.html#curation" class="btn-ghost-pill" style="padding: 8px 18px; font-size: 0.82rem;">🌿 How Compounding Works &rarr;</a>
+    </div>
 
     <!-- Live Countdown To Next Booking Batch -->
     <div class="countdown-grid">
@@ -348,11 +395,11 @@
 
       <form id="waitlistGatedForm" onsubmit="submitWaitlistEntry(event)">
         <div class="waitlist-form-row">
-          <input type="text" id="gatedName" class="gated-input" placeholder="Your Full Name" required>
-          <input type="email" id="gatedEmail" class="gated-input" placeholder="Your Email Address" required>
+          <input type="text" id="gatedName" class="gated-input" placeholder="Your Full Name" required minlength="2" maxlength="100">
+          <input type="email" id="gatedEmail" class="gated-input" placeholder="Your Email Address" required maxlength="150">
         </div>
         <div class="waitlist-form-row">
-          <input type="tel" id="gatedPhone" class="gated-input" placeholder="WhatsApp Number (+91...)" required>
+          <input type="tel" id="gatedPhone" class="gated-input" placeholder="WhatsApp Number (+91...)" required pattern="[0-9+\s\-]{10,15}" maxlength="16">
           <select id="gatedConcern" class="gated-input gated-select" required>
             <option value="" disabled selected>Primary Skin Concern</option>
             <option value="pigmentation">Hyperpigmentation & Melasma</option>
@@ -367,6 +414,8 @@
           🌿 Join Private Waitlist &bull; Get Priority Pass &rarr;
         </button>
 
+        <div id="waitlistError" style="display: none; background: #fee2e2; color: #991b1b; padding: 12px; border-radius: 8px; margin-top: 14px; font-size: 0.9rem;"></div>
+
         <div id="waitlistConfirmation" class="confirmation-box">
           <strong>✨ Priority Pass Reserved!</strong>
           You have been placed on the Private Booking List. Your invitation pass will be dispatched directly to your WhatsApp and email when batch distillation commences.
@@ -375,15 +424,31 @@
 
       <div class="passcode-bypass-section">
         <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 8px;">Already hold a private client access pass?</p>
-        <a href="index.html">Enter Active Boutique Preview &rarr;</a>
+        <a href="index.html#products">Enter Active Boutique Preview &rarr;</a>
       </div>
     </div>
   </main>
 
-  <footer class="waitlist-footer">
+  <footer class="site-footer" style="padding: 40px 0 24px; margin-top: 40px; background: #ffffff; border-top: 1px solid rgba(74, 53, 58, 0.08);">
     <div class="container">
-      <p>&copy; 2026 Bluoilz. Ancient Method of Curation &bull; We Prepare As You Book.</p>
-      <p style="margin-top: 4px;">Direct Laboratory Inquiries: <a href="mailto:reachus@bluoilz.com" style="color:var(--color-primary); font-weight:600;">reachus@bluoilz.com</a> &bull; 📞 +91 8600155554</p>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; padding-bottom: 24px; border-bottom: 1px solid rgba(74, 53, 58, 0.08);">
+        <div>
+          <a href="index.html" class="brand-name" style="text-decoration: none; color: var(--color-primary); font-size: 1.6rem;">Bluoilz</a>
+          <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 4px;">Ancient Method of Curation &bull; We Prepare As You Book.</p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 0.85rem;">
+          <a href="index.html" style="color: var(--color-primary); font-weight: 600;">Home</a>
+          <a href="index.html#products" style="color: var(--color-primary); font-weight: 600;">Therapeutic Care</a>
+          <a href="index.html#curation" style="color: var(--color-primary); font-weight: 600;">We Prepare As You Book</a>
+          <a href="index.html#quiz" style="color: var(--color-primary); font-weight: 600;">Skin Diagnostic</a>
+          <a href="index.html#ethos" style="color: var(--color-primary); font-weight: 600;">Ancient Method</a>
+          <a href="index.html#reviews" style="color: var(--color-primary); font-weight: 600;">Patient Reviews</a>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; padding-top: 20px; font-size: 0.8rem; color: var(--color-text-muted);">
+        <p>&copy; 2026 Bluoilz. All Rights Reserved.</p>
+        <p>Direct Laboratory Inquiries: <a href="mailto:reachus@bluoilz.com" style="color:var(--color-primary); font-weight:600;">reachus@bluoilz.com</a> &bull; 📞 +91 8600155554</p>
+      </div>
     </div>
   </footer>
 
@@ -410,15 +475,55 @@
       const email = document.getElementById('gatedEmail').value.trim();
       const phone = document.getElementById('gatedPhone').value.trim();
       const concern = document.getElementById('gatedConcern').value;
+      const errBox = document.getElementById('waitlistError');
+      const box = document.getElementById('waitlistConfirmation');
+
+      if (errBox) errBox.style.display = 'none';
+
+      if (name.length < 2) {
+        if (errBox) {
+          errBox.textContent = 'Please enter your full name (at least 2 characters).';
+          errBox.style.display = 'block';
+        }
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        if (errBox) {
+          errBox.textContent = 'Please provide a valid email address.';
+          errBox.style.display = 'block';
+        }
+        return;
+      }
+
+      const digits = phone.replace(/\D/g, '');
+      if (digits.length < 10 || digits.length > 15) {
+        if (errBox) {
+          errBox.textContent = 'Please provide a valid 10-15 digit phone number.';
+          errBox.style.display = 'block';
+        }
+        return;
+      }
+
+      if (!concern) {
+        if (errBox) {
+          errBox.textContent = 'Please select your primary skin concern.';
+          errBox.style.display = 'block';
+        }
+        return;
+      }
 
       localStorage.setItem('bluoilz_waitlist_access', JSON.stringify({ name, email, phone, concern, timestamp: Date.now() }));
 
-      const box = document.getElementById('waitlistConfirmation');
-      box.style.display = 'block';
-      box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (box) {
+        box.style.display = 'block';
+        box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
 
       document.getElementById('waitlistGatedForm').reset();
     }
   </script>
 </body>
 </html>
+

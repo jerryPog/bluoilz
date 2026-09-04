@@ -61,13 +61,38 @@ Open your browser at **`http://localhost:3000`**.
 
 ```
 bluoilz/
-├── index.html        # Main semantic HTML markup with meta tags & SEO
-├── styles.css        # Luxury styling system, keyframe animations & responsive queries
+├── index.html        # Main boutique storefront with full section deep links
+├── waitlist.html     # Private batch access & gated reservation page
+├── 404.html          # Custom formulation alignment 404 error page
+├── sitemap.xml       # XML Sitemap with image metadata for SEO
+├── robots.txt        # Web crawler directives & sitemap reference
+├── styles.css        # Luxury styling system, animations & responsive queries
 ├── app.js            # Interactive catalog, cart engine, quiz, search & modals
-├── assets/           # High-resolution imagery for hero & journal features
+├── assets/           # High-resolution botanical imagery & assets
 │   ├── hero.jpg
 │   ├── ingredients.jpg
-│   └── glowing_portrait.jpg
+│   ├── glowing_portrait.jpg
+│   ├── anti_pigmentation.jpg
+│   ├── anti_fungal.png
+│   ├── anti_allergy.jpg
+│   ├── psoriasis_cream.jpg
+├── admin/            # Secure PHP administration portal
+│   ├── db.php            # PDO database connection configuration
+│   ├── session_check.php # Protected page session guard include
+│   ├── login.php         # Admin authentication (password_verify, CSRF)
+│   ├── logout.php        # Session destruction script
+│   ├── dashboard.php     # Protected admin operations dashboard
+│   ├── header.php        # Shared Bootstrap 5 navigation layout
+│   ├── footer.php        # Shared Bootstrap 5 footer layout
+│   ├── products.php      # Full product management list with Bootstrap table
+│   ├── product_add.php   # Add product form (validation, /uploads image storage)
+│   ├── product_edit.php  # Edit product form pre-filled with data
+│   ├── product_delete.php# Delete controller with CSRF & integrity protection
+│   ├── orders.php        # Order management (JOIN query, status filters & updates)
+│   ├── index.php         # Admin route guard
+│   └── create_admin.php  # Admin account creation helper (password_hash)
+├── uploads/          # Secure product uploaded images directory
+├── schema.sql        # MySQL relational database schema (phpMyAdmin ready)
 └── README.md
 ```
 
