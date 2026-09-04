@@ -1388,7 +1388,7 @@ function setupHeaderScrollEffect() {
 // Scroll reveal animations for sections and cards
 function setupScrollReveal() {
   const elementsToReveal = document.querySelectorAll(
-    '.product-card, .ethos-card, .review-card, .journal-card, .stat-item, .badge-pill, .quiz-card'
+    '.product-card, .ethos-card, .review-card, .journal-card, .stat-item, .badge-pill, .quiz-card, .reveal-on-scroll'
   );
 
   if ('IntersectionObserver' in window) {
