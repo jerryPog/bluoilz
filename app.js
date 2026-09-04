@@ -160,7 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setupCheckoutModal();
   setupHeaderScrollEffect();
   setupScrollReveal();
-  setupScrollSequenceBackground();
   setupBackToTop();
 });
 
@@ -361,7 +360,7 @@ function openQuickView(productId) {
           <span>🚚 Dispatches within 24h</span>
         </div>
 
-        <div style="margin-top: 18px; padding-top: 14px; border-top: 1px dashed rgba(74, 53, 58, 0.15); display: flex; flex-direction: column; gap: 6px;">
+        <div style="margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--color-border); display: flex; flex-direction: column; gap: 6px;">
           <a href="${product.id}.html" class="btn btn-secondary" style="width: 100%; justify-content: center; text-decoration: none; padding: 10px 16px; margin-bottom: 6px; font-size: 0.88rem;">View Complete Formulation Page &rarr;</a>
           <a href="#quiz" onclick="closeQuickView()" class="modal-link-hint">✨ Not sure? Find your barrier match in our 60-Sec Skin Diagnostic &rarr;</a>
           <a href="#curation" onclick="closeQuickView()" class="modal-link-hint">🌿 Learn how this remedy is prepared fresh upon your booking &rarr;</a>

@@ -7,34 +7,34 @@
   /* Enforce Light Color Scheme across all browsers & OS themes */
   color-scheme: light;
 
-  /* Core Color System - Botanical Luxury Apothecary */
-  --color-canvas: #faf6f2;           /* Warm ivory / porcelain alabaster canvas */
-  --color-sand: #f5efe9;             /* Soft secondary surface */
+  /* Core Color System - Minimal Premium Editorial */
+  --color-canvas: #f9f7f4;           /* Warm, calming neutral background */
+  --color-sand: #f2eee8;             /* Subtle secondary background */
   --color-card-bg: #ffffff;          /* Pure card surface */
-  --color-primary: #1f191b;          /* Deep rich charcoal ink */
-  --color-primary-light: #362c30;    /* Soft charcoal plum */
-  --color-text-main: #231c1e;        /* Deep charcoal primary text */
-  --color-text: #231c1e;             /* Primary text alias */
-  --color-text-muted: #6e6065;       /* Muted warm slate / taupe */
-  --color-text-light: #9c8e93;       /* Subtle caption & placeholder slate */
-  --color-border: #ede4de;           /* Warm ivory divider */
-  --color-border-light: #f4ece7;     /* Whisper divider */
+  --color-primary: #1c1a19;          /* Very dark charcoal for main headings */
+  --color-primary-light: #2b2826;
+  --color-text-main: #2b2826;        /* Dark charcoal for body text */
+  --color-text: #2b2826;             /* Primary text alias */
+  --color-text-muted: #6e6763;       /* Warm grey for secondary text */
+  --color-text-light: #9c948e;       /* Subtle caption & placeholder */
+  --color-border: #e6dfd8;           /* Subtle border color */
+  --color-border-light: #f0ebe4;
   
   /* Strict Action & Accent Roles */
-  --color-action: #1c2b23;           /* Primary action: Deep botanical green */
-  --color-action-hover: #121c17;     /* Hover state for primary action */
-  --color-action-text: #ffffff;      /* Contrast text on action */
-  --color-accent: #c9653b;           /* Warm artisanal terracotta */
-  --color-accent-hover: #b8572f;     /* Deepened terracotta */
-  --color-accent-soft: #fbeee8;      /* Subtle muted terracotta surface */
-  --color-accent-gradient: linear-gradient(135deg, #c9653b 0%, #db7c54 100%); /* Artisanal terracotta gradient */
-  --color-fresh-bg: #eaf3ed;         /* Freshness / preparation indicator surface */
-  --color-fresh-text: #275936;       /* Freshness botanical green text */
-  --color-fresh-dot: #2e7d32;        /* Live compounding status dot */
-  --color-gold: #c98a3b;             /* Restrained warm amber star rating */
-  --color-sale: #706267;             /* Subordinate strikethrough price */
-  --color-announcement-bg: #f5ebe6;  /* Top announcement blush ivory */
-  --color-announcement-text: #59353c;/* Announcement deep rose text */
+  --color-action: #1c1a19;           /* Primary action matches primary color for luxury feel */
+  --color-action-hover: #3d3935;
+  --color-action-text: #ffffff;
+  --color-accent: #8c7362;           /* Muted warm taupe accent */
+  --color-accent-hover: #756051;
+  --color-accent-soft: #f4efeb;
+  --color-accent-gradient: linear-gradient(135deg, #8c7362 0%, #a68c78 100%);
+  --color-fresh-bg: #eaf3ed;
+  --color-fresh-text: #275936;
+  --color-fresh-dot: #2e7d32;
+  --color-gold: #c29b62;             /* Refined gold */
+  --color-sale: #8a837c;
+  --color-announcement-bg: #1c1a19;  /* Dark announcement bar for premium feel */
+  --color-announcement-text: #ffffff;
 
   /* Typography */
   --font-serif: 'Cormorant Garamond', Georgia, serif;
@@ -71,7 +71,7 @@
 
 html {
   color-scheme: light;
-  background-color: #faf5f2;
+  background-color: var(--color-canvas);
   color: var(--color-text-main);
   scroll-behavior: smooth;
   font-size: 16px;
@@ -81,7 +81,7 @@ html {
 body {
   color-scheme: light;
   font-family: var(--font-sans);
-  background-color: #faf5f2;
+  background-color: var(--color-canvas);
   color: var(--color-text-main);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
@@ -118,35 +118,7 @@ select option {
   color: var(--color-text-main);
 }
 
-/* ==========================================================================
-   Smooth Scroll Background Canvas Sequence (180 Botanical Frames)
-   ========================================================================== */
-.scroll-bg-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -2;
-  pointer-events: none;
-  overflow: hidden;
-  background-color: #faf5f2;
-  transform: translateZ(0);
-  will-change: transform;
-}
-
-.scroll-sequence-canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.scroll-bg-scrim {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 30%, rgba(250, 245, 242, 0.45) 0%, rgba(246, 239, 234, 0.65) 100%);
-  pointer-events: none;
-}
+/* Background Canvas sequence removed */
 
 img {
   max-width: 100%;
@@ -300,10 +272,10 @@ h1, h2, h3, h4, .font-serif {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-action) 0%, #2a3d31 100%);
+  background: var(--color-action);
   color: var(--color-action-text);
   border: 1px solid var(--color-action);
-  box-shadow: 0 4px 14px rgba(28, 43, 35, 0.2);
+  box-shadow: 0 4px 14px rgba(28, 26, 25, 0.2);
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
   -webkit-font-smoothing: antialiased;
 }
@@ -312,7 +284,7 @@ h1, h2, h3, h4, .font-serif {
   background-color: var(--color-action-hover);
   border-color: var(--color-action-hover);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(28, 43, 35, 0.28);
+  box-shadow: 0 8px 20px rgba(28, 26, 25, 0.28);
 }
 
 .btn-primary:active {
@@ -349,7 +321,7 @@ h1, h2, h3, h4, .font-serif {
   font-size: 0.8rem;
   letter-spacing: 0.04em;
   font-weight: 500;
-  border-bottom: 1px solid #f9ded8;
+  border-bottom: 1px solid var(--color-primary);
 }
 
 .announcement-inner {
@@ -378,17 +350,15 @@ h1, h2, h3, h4, .font-serif {
 .site-header {
   position: sticky;
   top: 0;
-  background-color: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background-color: var(--color-canvas);
   z-index: 100;
   border-bottom: 1px solid var(--color-border);
   transition: var(--transition);
 }
 
 .site-header.scrolled {
-  box-shadow: 0 4px 20px rgba(44, 30, 35, 0.05);
-  background-color: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 4px 20px rgba(28, 26, 25, 0.05);
+  background-color: var(--color-canvas);
 }
 
 .header-inner {
@@ -618,7 +588,7 @@ h1, h2, h3, h4, .font-serif {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 16px;
-  border: 1px solid rgba(184, 93, 107, 0.18);
+  border: 1px solid var(--color-border);
 }
 
 .hero-title {
@@ -670,7 +640,7 @@ h1, h2, h3, h4, .font-serif {
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--color-border);
-  background-color: #faf6f2;
+  background-color: var(--color-canvas);
 }
 
 .hero-main-img {
@@ -734,13 +704,11 @@ h1, h2, h3, h4, .font-serif {
 }
 
 .curation-card {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: var(--color-card-bg);
   border-radius: var(--radius-lg);
   padding: 36px 28px;
-  box-shadow: 0 10px 30px rgba(74, 53, 58, 0.06);
-  border: 1px solid rgba(74, 53, 58, 0.1);
+  box-shadow: 0 10px 30px rgba(28, 26, 25, 0.06);
+  border: 1px solid var(--color-border);
   position: relative;
   transition: var(--transition);
   display: flex;
@@ -751,13 +719,13 @@ h1, h2, h3, h4, .font-serif {
 .curation-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-lg);
-  border-color: var(--color-accent-soft);
+  border-color: var(--color-border);
 }
 
 .curation-card.highlight-card {
-  background: linear-gradient(145deg, #ffffff 0%, #fef3f0 100%);
-  border: 1.5px solid var(--color-accent);
-  box-shadow: 0 12px 36px rgba(222, 94, 115, 0.12);
+  background: var(--color-sand);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 12px 36px rgba(28, 26, 25, 0.08);
 }
 
 .curation-step-num {
@@ -848,10 +816,10 @@ h1, h2, h3, h4, .font-serif {
 }
 
 .filter-tab.active {
-  background: linear-gradient(135deg, var(--color-action) 0%, #2a3d31 100%);
+  background: var(--color-action);
   border-color: var(--color-action);
   color: #ffffff;
-  box-shadow: 0 4px 14px rgba(28, 43, 35, 0.2);
+  box-shadow: 0 4px 14px rgba(28, 26, 25, 0.2);
 }
 
 /* Products Grid */
@@ -1856,9 +1824,7 @@ h1, h2, h3, h4, .font-serif {
 .cart-backdrop {
   position: fixed;
   inset: 0;
-  background-color: rgba(44, 30, 35, 0.5);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background-color: rgba(28, 26, 25, 0.75);
   z-index: 999;
   opacity: 0;
   visibility: hidden;
@@ -1919,7 +1885,7 @@ h1, h2, h3, h4, .font-serif {
 
 .progress-fill {
   height: 100%;
-  background: var(--color-accent-gradient);
+  background: var(--color-accent);
   width: 0%;
   transition: width 0.4s ease;
 }
@@ -2209,9 +2175,7 @@ h1, h2, h3, h4, .font-serif {
 .modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(44, 30, 35, 0.6);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(28, 26, 25, 0.75);
 }
 
 .modal-dialog {
@@ -2960,9 +2924,7 @@ h1, h2, h3, h4, .font-serif {
 .mobile-nav-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(44, 30, 35, 0.55);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(28, 26, 25, 0.75);
   z-index: 1040;
   opacity: 0;
   visibility: hidden;
