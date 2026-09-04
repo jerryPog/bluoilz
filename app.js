@@ -217,7 +217,9 @@ function renderProducts(filter = 'all') {
           <span class="status-pulse-dot"></span>
           <span>Prepared Fresh As You Book</span>
         </div>
-        <h3 class="product-title" onclick="openQuickView('${product.id}')">${product.title}</h3>
+        <h3 class="product-title">
+          <a href="${product.id}.html" style="color: inherit; text-decoration: none;">${product.title}</a>
+        </h3>
         
         <div class="product-rating">
           <div class="stars" aria-label="${product.rating} stars">
@@ -238,6 +240,9 @@ function renderProducts(filter = 'all') {
             </svg>
             <span>Add to Bag</span>
           </button>
+        </div>
+        <div style="margin-top: 8px; text-align: center;">
+          <a href="${product.id}.html" style="font-size: 0.78rem; color: var(--color-accent); font-weight: 600; text-decoration: none;">View Full Details & Benefits &rarr;</a>
         </div>
       </div>
     </div>
@@ -357,6 +362,7 @@ function openQuickView(productId) {
         </div>
 
         <div style="margin-top: 18px; padding-top: 14px; border-top: 1px dashed rgba(74, 53, 58, 0.15); display: flex; flex-direction: column; gap: 6px;">
+          <a href="${product.id}.html" class="btn btn-secondary" style="width: 100%; justify-content: center; text-decoration: none; padding: 10px 16px; margin-bottom: 6px; font-size: 0.88rem;">View Complete Formulation Page &rarr;</a>
           <a href="#quiz" onclick="closeQuickView()" class="modal-link-hint">✨ Not sure? Find your barrier match in our 60-Sec Skin Diagnostic &rarr;</a>
           <a href="#curation" onclick="closeQuickView()" class="modal-link-hint">🌿 Learn how this remedy is prepared fresh upon your booking &rarr;</a>
           <a href="waitlist.html" class="modal-link-hint">⏳ Check private batch waitlist schedule &rarr;</a>
@@ -589,9 +595,9 @@ function renderCartDrawer() {
       upsellBox.style.display = 'flex';
       upsellBox.innerHTML = `
         <div class="upsell-info">
-          <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=120&q=80" alt="Roll on">
+          <a href="migraine-relief-oil.html"><img src="assets/migraine_oil.jpg" alt="Migraine Roll On"></a>
           <div>
-            <strong>Quick Add: Migraine Roll-On</strong>
+            <strong><a href="migraine-relief-oil.html" style="color:inherit; text-decoration:none;">Quick Add: Migraine Roll-On</a></strong>
             <p>Pocket tension healer &bull; ₹149.00</p>
           </div>
         </div>
@@ -604,9 +610,9 @@ function renderCartDrawer() {
 
   itemsContainer.innerHTML = cart.map(item => `
     <div class="cart-item">
-      <img src="${item.image}" alt="${item.title}" class="cart-item-img">
+      <a href="${item.id}.html"><img src="${item.image}" alt="${item.title}" class="cart-item-img"></a>
       <div class="cart-item-info">
-        <h5 class="cart-item-title">${item.title}</h5>
+        <h5 class="cart-item-title"><a href="${item.id}.html" style="color:inherit; text-decoration:none;">${item.title}</a></h5>
         <div class="cart-item-meta">${item.weight} &bull; ₹${item.price.toFixed(2)}</div>
         <div class="cart-item-controls">
           <div class="qty-selector small">
@@ -839,11 +845,14 @@ function calculateQuizRecommendation() {
 
       <div class="routine-products-list">
         ${recProducts.map(p => `
-          <div class="routine-product-card" onclick="openQuickView('${p.id}')" style="cursor: pointer;" title="Click to view details & benefits">
-            <img src="${p.image}" alt="${p.title}" class="routine-prod-img" onerror="this.onerror=null; this.src='assets/anti_pigmentation.jpg';">
+          <div class="routine-product-card">
+            <a href="${p.id}.html">
+              <img src="${p.image}" alt="${p.title}" class="routine-prod-img" onerror="this.onerror=null; this.src='assets/anti_pigmentation.jpg';">
+            </a>
             <div class="routine-prod-info">
-              <h5>${p.title} 🔍</h5>
+              <h5><a href="${p.id}.html" style="color:inherit; text-decoration:none;">${p.title}</a></h5>
               <span>₹${p.price.toFixed(2)}</span>
+              <a href="${p.id}.html" style="display:block; font-size:0.75rem; color:var(--color-accent); font-weight:600; text-decoration:none; margin-top:3px;">View Product Page &rarr;</a>
             </div>
           </div>
         `).join('')}
@@ -998,13 +1007,13 @@ function executeSearch(query) {
     </div>
     ${results.map(product => `
       <div class="search-result-item">
-        <div class="search-item-media" onclick="closeSearchModal(); openQuickView('${product.id}');" style="cursor: pointer;">
+        <a href="${product.id}.html" class="search-item-media" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px; flex: 1;">
           <img src="${product.image}" alt="${product.title}" class="search-item-thumb">
           <div class="search-item-details">
             <h4>${product.title}</h4>
             <p>${product.description}</p>
           </div>
-        </div>
+        </a>
         <div class="search-item-price">₹${product.price.toFixed(2)}</div>
         <div class="search-item-actions">
           <button class="btn-search-add" onclick="closeSearchModal(); addToCart('${product.id}');">Add</button>
@@ -1460,7 +1469,9 @@ function handleCatalogFilter(query) {
           <span class="status-pulse-dot"></span>
           <span>Prepared Fresh As You Book</span>
         </div>
-        <h3 class="product-title" onclick="openQuickView('${product.id}')">${product.title}</h3>
+        <h3 class="product-title">
+          <a href="${product.id}.html" style="color: inherit; text-decoration: none;">${product.title}</a>
+        </h3>
         
         <div class="product-rating">
           <div class="stars" aria-label="${product.rating} stars">
@@ -1481,6 +1492,9 @@ function handleCatalogFilter(query) {
             </svg>
             <span>Add to Bag</span>
           </button>
+        </div>
+        <div style="margin-top: 8px; text-align: center;">
+          <a href="${product.id}.html" style="font-size: 0.78rem; color: var(--color-accent); font-weight: 600; text-decoration: none;">View Full Details & Benefits &rarr;</a>
         </div>
       </div>
     </div>

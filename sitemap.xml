@@ -1,35 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Storefront Home -->
   <url>
     <loc>https://www.bluoilz.com/</loc>
-    <lastmod>2026-09-02</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.bluoilz.com/assets/organic_botanical_hero.jpg</image:loc>
+      <image:title>Bluoilz Therapeutic Botanical Skincare Flat Lay</image:title>
+    </image:image>
+  </url>
+
+  <!-- Individual Product Detail Pages (PDPs) -->
+  <url>
+    <loc>https://www.bluoilz.com/anti-pigmentation-cream.html</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
     <image:image>
       <image:loc>https://www.bluoilz.com/assets/anti_pigmentation.jpg</image:loc>
       <image:title>Bluoilz Anti Pigmentation Cream</image:title>
     </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.bluoilz.com/anti-fungal-cream.html</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
     <image:image>
       <image:loc>https://www.bluoilz.com/assets/anti_fungal.png</image:loc>
-      <image:title>Bluoilz Anti Fungal Cream</image:title>
+      <image:title>Bluoilz Anti Fungal Climate Cream</image:title>
     </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.bluoilz.com/anti-allergy-cream.html</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
     <image:image>
       <image:loc>https://www.bluoilz.com/assets/anti_allergy.jpg</image:loc>
-      <image:title>Bluoilz Anti Allergy Cream</image:title>
+      <image:title>Bluoilz Anti Allergy SOS Cream</image:title>
     </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.bluoilz.com/psoriasis-support-cream.html</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
     <image:image>
       <image:loc>https://www.bluoilz.com/assets/psoriasis_cream.jpg</image:loc>
       <image:title>Bluoilz Psoriasis Support Cream</image:title>
     </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.bluoilz.com/migraine-relief-oil.html</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
     <image:image>
       <image:loc>https://www.bluoilz.com/assets/migraine_oil.jpg</image:loc>
-      <image:title>Bluoilz Migraine Relief Oil</image:title>
+      <image:title>Bluoilz Migraine &amp; Tension Roll-on</image:title>
     </image:image>
   </url>
+
+  <!-- Waitlist Page -->
   <url>
     <loc>https://www.bluoilz.com/waitlist.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
