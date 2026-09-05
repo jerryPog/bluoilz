@@ -9,11 +9,133 @@ async function fetchProducts() {
   try {
     const response = await fetch('api/get_products.php');
     if (!response.ok) throw new Error('Network response was not ok');
-    PRODUCTS = await response.json();
+    const data = await response.json();
+    if (Array.isArray(data) && data.length > 0) {
+      PRODUCTS = data;
+      return;
+    }
   } catch (error) {
-    console.error('Failed to fetch products:', error);
-    // Fallback or error handling can be added here
+    console.warn('Failed to fetch products from API, using fallback data:', error);
   }
+
+  // Fallback data if API is unreachable (e.g. running locally via file://)
+  PRODUCTS = [
+    {
+      id: "anti-pigmentation-cream",
+      title: "Anti Pigmentation Cream",
+      category: "therapeutic",
+      categoryLabel: "Therapeutic Care",
+      concern: "pigmentation",
+      price: 599,
+      originalPrice: 749,
+      rating: 4.9,
+      reviewCount: 128,
+      badge: "Bestseller",
+      curation: "Ancient Method • Small-Batch Botanical Distillation",
+      weight: "50 g",
+      image: "assets/anti_pigmentation.jpg",
+      description: "A clinically potent therapeutic formulation crafted using ancient botanical alchemy for tropical and humidity-exposed skin. Prepared fresh upon booking with zero storage stabilizers to reduce hyperpigmentation and melasma patches without barrier irritation.",
+      keyBenefits: [
+        "We prepare fresh as you book — zero warehouse shelf life",
+        "Fades stubborn blemishes, UV spots & melasma patches",
+        "Ancient botanical alchemy using cold-pressed herbal lipids",
+        "Free from hydroquinone, parabens & synthetic dyes"
+      ],
+      ingredients: "Kojic Dipalmitate, Alpha Arbutin, Licorice Root Extract, Niacinamide, Cold-Pressed Jojoba Oil, Aloe Vera Leaf Juice, Vitamin E."
+    },
+    {
+      id: "anti-fungal-cream",
+      title: "Anti Fungal Climate Cream",
+      category: "therapeutic",
+      categoryLabel: "Therapeutic Care",
+      concern: "fungal",
+      price: 499,
+      originalPrice: 620,
+      rating: 4.8,
+      reviewCount: 94,
+      badge: "Climate Shield",
+      curation: "Ancient Method • Herbal Microflora Defense",
+      weight: "50 g",
+      image: "assets/anti_fungal.png",
+      description: "Engineered specifically to counter humidity-induced fungal irritation, sweat rashes, and chafing. Freshly prepared as you book using ancient Ayurvedic extracts like Karanja and Neem to cool inflamed, itchy skin.",
+      keyBenefits: [
+        "Freshly prepared upon your booking for peak herbal potency",
+        "Rapidly alleviates sweat rash, redness & chafing",
+        "Reinforces dermal microflora in high-humidity zones",
+        "100% breathable formulation suitable for active wear"
+      ],
+      ingredients: "Neem Seed Oil, Organic Tea Tree Leaf Extract, Karanja Oil, Turmeric Rhizome Extract, Zinc PCA, Beeswax, Calendula Infusion."
+    },
+    {
+      id: "anti-allergy-cream",
+      title: "Anti Allergy SOS Cream",
+      category: "therapeutic",
+      categoryLabel: "Therapeutic Care",
+      concern: "sensitive",
+      price: 399,
+      originalPrice: 499,
+      rating: 4.9,
+      reviewCount: 156,
+      badge: "Barrier SOS",
+      curation: "Ancient Method • Colloidal Barrier SOS",
+      weight: "50 g",
+      image: "assets/anti_allergy.jpg",
+      description: "An SOS therapeutic shield designed for hyper-reactive, allergic skin. Freshly compounded as you book using ancient colloidal oat distillation to soothe histamine flares, contact redness, and compromised barrier tissue.",
+      keyBenefits: [
+        "Handcrafted upon booking — uncompromised therapeutic freshness",
+        "Instant relief from allergic hives, itching & irritation",
+        "Reconstructs compromised skin lipid matrix",
+        "Steroid-free comfort for daily preventative use"
+      ],
+      ingredients: "Colloidal Oatmeal, Centella Asiatica (Gotu Kola), Chamomile Flower Extract, Shea Butter, Evening Primrose Oil, Squalane."
+    },
+    {
+      id: "psoriasis-support-cream",
+      title: "Psoriasis Support Cream",
+      category: "therapeutic",
+      categoryLabel: "Therapeutic Care",
+      concern: "psoriasis",
+      price: 599,
+      originalPrice: 750,
+      rating: 4.9,
+      reviewCount: 88,
+      badge: "Intensive Relief",
+      curation: "Ancient Method • Wrightia Tinctoria Alchemy",
+      weight: "60 g",
+      image: "assets/psoriasis_cream.jpg",
+      description: "Deeply restorative lipid-replenishing emollient formulated using ancient Wrightia Tinctoria distillation. Prepared fresh as you book to soften thick, scaly plaques and relieve severe xerosis without synthetic occlusives.",
+      keyBenefits: [
+        "Prepared upon booking — biologically active plant phytosterols",
+        "Softens tough epidermal flakes & rough patches",
+        "Sustained 24-hour barrier hydration shield",
+        "Reduces scaling, cracking, and stinging sensations"
+      ],
+      ingredients: "Mahonia Aquifolium Extract, Wrightia Tinctoria Leaf Oil, Shea Butter, Virgin Coconut Oil, Borage Seed Oil, Beeswax."
+    },
+    {
+      id: "migraine-relief-oil",
+      title: "Migraine & Tension Roll-on",
+      category: "therapeutic",
+      categoryLabel: "Therapeutic Care",
+      concern: "stress-pain",
+      price: 149,
+      originalPrice: 199,
+      rating: 4.9,
+      reviewCount: 312,
+      badge: "Pocket Healer",
+      curation: "Ancient Method • Pure Herbal Distillate",
+      weight: "10 ml",
+      image: "assets/migraine_oil.jpg",
+      description: "An aromatherapeutic fast-acting roll-on infused with pure therapeutic-grade wintergreen, peppermint, and lavender distillates. Hand-bottled as you book to dissolve forehead tension, sinus pressure, and headaches in minutes.",
+      keyBenefits: [
+        "Freshly bottled upon booking — active volatile aromatherapeutics",
+        "Instant cooling pressure release upon temple application",
+        "Eases stress-induced neck tension & migraine throbbing",
+        "Portable spill-proof roll-on applicator"
+      ],
+      ingredients: "Mentha Piperita (Peppermint) Oil, Gaultheria Procumbens (Wintergreen) Oil, Lavandula Angustifolia Oil, Eucalyptus Globulus, Sweet Almond Carrier Oil."
+    }
+  ];
 }
 
 // State Management

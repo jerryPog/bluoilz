@@ -637,13 +637,20 @@ h1, h2, h3, h4, .font-serif {
 
 .hero-img-wrapper {
   position: relative;
-  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 4 / 5;
+  border-radius: 200px 200px 16px 16px;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--color-border);
-  background-color: var(--color-canvas);
-  transition: transform 0.1s ease-out; /* Smooth transition for tilt effect */
-  will-change: transform;
+  box-shadow: 0 24px 60px rgba(10, 37, 24, 0.15);
+  cursor: pointer;
+  
+  /* 3D Perspective settings from previous session */
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              box-shadow 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, box-shadow;
 }
 
 .hero-main-img {
@@ -868,6 +875,44 @@ h1, h2, h3, h4, .font-serif {
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.hero-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.hero-img-wrapper:hover .hero-main-img {
+  transform: scale(1.03);
+}
+
+.hero-quick-view-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  opacity: 0;
+  visibility: hidden;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: var(--color-primary);
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 10;
+}
+
+.hero-img-wrapper:hover .hero-quick-view-btn {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%);
+}
 .product-card:hover .product-img {
   transform: scale(1.04);
 }
