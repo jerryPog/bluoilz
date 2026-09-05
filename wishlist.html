@@ -4,28 +4,72 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light">
-  <title>Your Wishlist | Bluoilz</title>
+  <title>Your Wishlist | Bluoilz Therapeutic Skincare</title>
+  <meta name="description" content="View your saved therapeutic botanical formulations from Bluoilz. Hand-compounded small-batch botanical alchemy freshly prepared upon booking.">
+  <link rel="canonical" href="https://www.bluoilz.com/wishlist.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <div class="announcement-msg">
+        <span>🌿 Ancient Botanical Alchemy • Pure Therapeutic Segment • <strong>We Prepare Fresh As You Book</strong> | Free Delivery Over ₹999</span>
+      </div>
+      <div class="announcement-contact">
+        <span>📞 +91 8600155554</span>
+        <span>✉️ reachus@bluoilz.com</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header / Navigation -->
   <header class="site-header">
     <div class="container header-inner">
+      <button class="mobile-menu-toggle header-action-btn" id="mobileNavToggle" aria-label="Open navigation menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+
+      <!-- Brand Logo -->
       <a href="index.html" class="brand-logo" aria-label="Bluoilz Home">
         <span class="brand-name">Bluoilz</span>
         <span class="brand-tag">Therapeutic Ancient Alchemy</span>
       </a>
 
+      <!-- Desktop Nav - Full Standard Navigation -->
       <nav class="desktop-nav" aria-label="Main Navigation">
         <ul class="nav-links">
           <li class="nav-item"><a href="index.html" class="nav-link" title="Home"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> <span class="nav-text">Home</span></a></li>
-          <li class="nav-item"><a href="wishlist.html" class="nav-link active" title="Wishlist"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> <span class="nav-text">Wishlist</span></a></li>
+          <li class="nav-item"><a href="index.html#products" class="nav-link" title="Therapeutic Care"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg> <span class="nav-text">Products</span></a></li>
+          <li class="nav-item"><a href="index.html#curation" class="nav-link" title="Freshly Prepared"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 3h15"/><path d="M6 3v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V3"/><path d="M6 14h12"/></svg> <span class="nav-text">Fresh</span></a></li>
+          <li class="nav-item"><a href="index.html#ethos" class="nav-link" title="Ancient Method"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg> <span class="nav-text">Ethos</span></a></li>
+          <li class="nav-item"><a href="index.html#quiz" class="nav-link" title="Skin Diagnostic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> <span class="nav-text">Quiz</span></a></li>
+          <li class="nav-item"><a href="index.html#reviews" class="nav-link" title="Reviews"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> <span class="nav-text">Reviews</span></a></li>
+          <li class="nav-item"><a href="wishlist.html" class="nav-link active" title="Wishlist"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> <span class="nav-text">Wishlist</span></a></li>
+          <li class="nav-item"><a href="index.html#contact" class="nav-link" title="Contact"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> <span class="nav-text">Contact</span></a></li>
         </ul>
       </nav>
 
+      <!-- Header Actions -->
       <div class="header-actions">
+        <a href="wishlist.html" class="header-action-btn mobile-only-action active" title="Wishlist" aria-label="Wishlist">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </a>
+
+        <button class="header-action-btn desktop-only-action" title="Search remedies (Press /)" onclick="openSearchModal()" aria-label="Search remedies">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+
         <button class="header-action-btn open-cart-btn desktop-only-action" title="View Cart" aria-label="View Cart">
           <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
@@ -53,13 +97,13 @@
           </svg>
           <span>Shop</span>
         </a>
-        <a href="index.html" class="top-nav-item" aria-label="Search">
+        <button type="button" class="top-nav-item" onclick="openSearchModal()" aria-label="Search">
           <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
           <span>Search</span>
-        </a>
+        </button>
         <button type="button" class="top-nav-item open-cart-btn" aria-label="Cart">
           <div class="top-nav-icon-wrap">
             <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -75,8 +119,52 @@
     </nav>
   </header>
 
-  <main style="padding: 60px 0; min-height: 60vh;">
+  <!-- Mobile Nav Drawer -->
+  <aside class="mobile-nav-menu" id="mobileNavMenu" aria-label="Mobile Navigation">
+    <div class="mobile-nav-header">
+      <div class="brand-logo">
+        <span class="brand-name">Bluoilz</span>
+        <span class="brand-tag">Therapeutic Ancient Alchemy</span>
+      </div>
+      <button class="close-nav-btn" id="closeMobileNav" aria-label="Close menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html"><span style="display:flex; align-items:center; gap:8px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> <span>Home</span></span></a></li>
+      <li><a href="index.html#products"><span style="display:flex; align-items:center; gap:8px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg> <span>Products</span></span></a></li>
+      <li><a href="index.html#curation"><span style="display:flex; align-items:center; gap:8px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 3h15"/><path d="M6 3v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V3"/><path d="M6 14h12"/></svg> <span>Fresh</span></span></a></li>
+      <li><a href="index.html#ethos"><span style="display:flex; align-items:center; gap:8px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg> <span>Ethos</span></span></a></li>
+      <li><a href="index.html#quiz"><span style="display:flex; align-items:center; gap:8px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1 2-2h11"/></svg> <span>Quiz</span></span></a></li>
+      <li><a href="index.html#reviews"><span style="display:flex; align-items:center; gap:8px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> <span>Reviews</span></span></a></li>
+      <li><a href="wishlist.html" style="color: var(--color-accent); font-weight: 700;"><span style="display:flex; align-items:center; gap:8px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> <span>Wishlist</span></span></a></li>
+      <li><a href="index.html#contact"><span style="display:flex; align-items:center; gap:8px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> <span>Contact</span></span></a></li>
+      <li style="border-top: 1px solid var(--color-border); padding-top: 12px; margin-top: 12px;">
+        <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--color-text-muted); font-weight: 700; letter-spacing: 0.08em; display: block; margin-bottom: 8px;">Therapeutic Catalog</span>
+      </li>
+      <li><a href="anti-pigmentation-cream.html">Anti Pigmentation Cream</a></li>
+      <li><a href="anti-fungal-cream.html">Anti Fungal Climate Cream</a></li>
+      <li><a href="anti-allergy-cream.html">Anti Allergy SOS Cream</a></li>
+      <li><a href="psoriasis-support-cream.html">Psoriasis Support Cream</a></li>
+      <li><a href="migraine-relief-oil.html">Migraine & Tension Roll-on</a></li>
+    </ul>
+  </aside>
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+
+  <!-- Wishlist Main Content -->
+  <main class="wishlist-page-wrapper" style="padding: 40px 0 80px; min-height: 65vh;">
     <div class="container">
+      
+      <!-- Breadcrumb Navigation -->
+      <nav class="pdp-breadcrumb" aria-label="Breadcrumb" style="margin-bottom: 24px;">
+        <a href="index.html">Home</a>
+        <span class="divider">/</span>
+        <span class="current">Wishlist</span>
+      </nav>
+
       <div class="section-header" style="text-align: center; margin-bottom: 40px;">
         <span class="section-eyebrow">Your Personal Collection</span>
         <h1 class="section-title" style="font-size: 2.5rem; margin-top: 10px;">Therapeutic Wishlist</h1>
@@ -89,17 +177,107 @@
     </div>
   </main>
 
-  <!-- Slide-out Cart Drawer (reused) -->
+  <!-- Site Footer -->
+  <footer class="site-footer" id="contact">
+    <div class="container footer-container">
+      <div class="footer-top">
+        <div class="footer-col footer-brand">
+          <div class="brand-name">Bluoilz</div>
+          <p>Curated therapeutic natural skincare designed specifically for sensitive, reactive, and humid-climate skin. Pure ingredients. Sustainable balance.</p>
+          <div class="footer-contact-item">
+            <span>📍</span>
+            <span>Bluoilz The Skin Alchemist LLP<br>Survey No. 01/08, Door No. 21, Venkatesh Pura Layout, Sampigehalli Rd., Jakkur Post, Bangalore, KA 560064, IN.</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Therapeutic Care</h4>
+          <ul class="footer-links">
+            <li><a href="anti-pigmentation-cream.html">Anti Pigmentation Cream</a></li>
+            <li><a href="anti-fungal-cream.html">Anti Fungal Climate Cream</a></li>
+            <li><a href="anti-allergy-cream.html">Anti Allergy SOS Cream</a></li>
+            <li><a href="psoriasis-support-cream.html">Psoriasis Support Cream</a></li>
+            <li><a href="migraine-relief-oil.html">Migraine & Tension Roll-on</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#products">Therapeutic Formulations</a></li>
+            <li><a href="index.html#curation">We Prepare As You Book</a></li>
+            <li><a href="index.html#ethos">Ancient Method of Curation</a></li>
+            <li><a href="index.html#quiz">Skin Diagnostic Finder</a></li>
+            <li><a href="index.html#reviews">Patient Reviews</a></li>
+            <li><a href="https://wa.me/918600155554" target="_blank" rel="noopener">WhatsApp Consultation</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-newsletter">
+          <h4>Subscribe to Updates</h4>
+          <p>Receive therapeutic skin guides, ingredient revelations, and exclusive previews.</p>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Enter your email" required class="newsletter-input">
+            <button type="submit" class="newsletter-btn">Join</button>
+          </form>
+          <div style="margin-top: 20px;">
+            <p><strong>Direct Inquiries:</strong></p>
+            <p>✉️ <a href="mailto:reachus@bluoilz.com" style="color:#ffffff;">reachus@bluoilz.com</a></p>
+            <p>📞 +91 8600155554</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>Copyright &copy; 2024 Bluoilz &bull; All Rights Reserved.</div>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Refund Policy</a>
+          <a href="#">Shipping Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Slide-out Cart Drawer -->
   <div class="cart-drawer" id="cartDrawer">
     <div class="cart-drawer-header">
       <h3>Your Bag</h3>
       <button class="btn-close-drawer" id="closeCartBtn" aria-label="Close cart">&times;</button>
     </div>
 
-    <div class="cart-drawer-items" id="cartDrawerItems"></div>
+    <div class="shipping-bar-wrap">
+      <div id="shippingNotice">Free shipping on orders above <strong>₹999.00</strong></div>
+      <div class="progress-track">
+        <div class="progress-fill" id="shippingProgress"></div>
+      </div>
+    </div>
+
+    <div class="cart-drawer-items" id="cartDrawerItems">
+      <!-- Injected by app.js -->
+    </div>
 
     <div class="cart-drawer-footer">
+      <!-- Promo code field -->
+      <div class="cart-promo-section">
+        <div class="promo-input-group">
+          <input type="text" id="cartPromoInput" placeholder="Promo code (e.g. BLUOILZ10)" autocomplete="off">
+          <button type="button" class="btn-promo-apply" onclick="applyPromoCode()">Apply</button>
+        </div>
+        <div id="promoMessage" class="promo-message"></div>
+      </div>
+
+      <!-- Quick Add-on Upsell if under ₹999 -->
+      <div class="cart-upsell-box" id="cartUpsellBox" style="display: none;">
+        <!-- Injected by app.js -->
+      </div>
+
       <div class="cart-subtotal-breakdown">
+        <div class="cart-subtotal-row" id="cartDiscountRow" style="display: none; color: var(--color-accent);">
+          <span>Discount Applied:</span>
+          <span id="cartDrawerDiscount">-₹0.00</span>
+        </div>
         <div class="cart-subtotal-row total-highlight">
           <span>Final Total:</span>
           <span id="cartDrawerSubtotal">₹0.00</span>
@@ -111,14 +289,64 @@
     </div>
   </div>
   <div class="cart-backdrop" id="cartBackdrop"></div>
-  
+
+  <!-- Quick View Modal -->
+  <div class="modal" id="quickViewModal">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-dialog">
+      <button class="modal-close-btn" id="closeModalBtn" aria-label="Close modal">&times;</button>
+      <div id="quickViewContent">
+        <!-- Injected by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Live Search Modal -->
+  <div class="modal" id="searchModal">
+    <div class="modal-backdrop" id="searchBackdrop"></div>
+    <div class="modal-dialog search-dialog">
+      <div class="search-modal-header">
+        <div class="search-input-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" id="liveSearchInput" placeholder="Search by skin concern, symptom, or botanical active (e.g. Fungal, Niacinamide, Psoriasis, Oatmeal)..." autofocus>
+        </div>
+        <button class="modal-close-btn" id="closeSearchBtn" aria-label="Close search">&times;</button>
+      </div>
+
+      <div class="search-quick-tags">
+        <span>Suggested:</span>
+        <button type="button" class="quick-tag" onclick="quickTagSearch('pigmentation')">Pigmentation</button>
+        <button type="button" class="quick-tag" onclick="quickTagSearch('fungal')">Fungal / Sweat</button>
+        <button type="button" class="quick-tag" onclick="quickTagSearch('sensitive')">Colloidal Oat</button>
+        <button type="button" class="quick-tag" onclick="quickTagSearch('psoriasis')">Psoriasis / Plaque</button>
+        <button type="button" class="quick-tag" onclick="quickTagSearch('migraine')">Migraine Oil</button>
+      </div>
+
+      <div class="search-results-container" id="searchResultsContainer">
+        <!-- Injected dynamically by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Checkout Modal -->
   <div class="modal" id="checkoutModal">
     <div class="modal-backdrop" id="checkoutBackdrop"></div>
     <div class="modal-dialog checkout-dialog">
       <button class="modal-close-btn" id="closeCheckoutBtn" aria-label="Close checkout">&times;</button>
-      <div class="checkout-wrapper" id="checkoutContent"></div>
+      <div class="checkout-wrapper" id="checkoutContent">
+        <!-- Injected dynamically by app.js -->
+      </div>
     </div>
   </div>
+
+  <!-- Floating Back to Top Button -->
+  <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
 
   <div id="toastContainer"></div>
 
@@ -127,28 +355,38 @@
   
   <!-- Wishlist specific logic -->
   <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      // app.js handles fetchProducts() automatically on DOMContentLoaded
-      // Wait a moment for PRODUCTS to be populated by app.js (since it's async)
-      await fetchProducts(); 
+    async function initWishlistPage() {
+      // Ensure PRODUCTS are populated (either from DB, cache, or default)
+      if (!window.PRODUCTS || window.PRODUCTS.length === 0) {
+        if (typeof fetchProducts === 'function') {
+          await fetchProducts();
+        }
+      }
       renderWishlist();
-    });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initWishlistPage);
+    } else {
+      initWishlistPage();
+    }
 
     function renderWishlist() {
       const container = document.getElementById('wishlistGrid');
       if (!container) return;
 
-      const wishlistItems = PRODUCTS.filter(p => userWishlist.has(p.id));
+      const productList = window.PRODUCTS || [];
+      const wishlistItems = productList.filter(p => userWishlist.has(p.id));
 
       if (wishlistItems.length === 0) {
         container.innerHTML = `
-          <div class="empty-state" style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: #ffffff; border: 1px dashed var(--color-border); border-radius: var(--radius-md);">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color: var(--color-text-muted); margin-bottom: 16px;">
+          <div class="empty-state" style="grid-column: 1 / -1; text-align: center; padding: 70px 20px; background: #ffffff; border: 1px dashed var(--color-border); border-radius: var(--radius-md);">
+            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="color: var(--color-text-muted); margin-bottom: 16px;">
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
             </svg>
-            <h3 style="font-family: var(--font-serif); font-size: 1.5rem; color: var(--color-text-main); margin-bottom: 10px;">Your wishlist is empty</h3>
-            <p style="color: var(--color-text-muted); margin-bottom: 24px;">Discover our therapeutic formulations and save your favorites here.</p>
-            <a href="index.html#products" class="btn btn-primary" style="text-decoration: none; display: inline-block;">Explore Remedies</a>
+            <h3 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--color-primary); margin-bottom: 10px;">Your wishlist is empty</h3>
+            <p style="color: var(--color-text-muted); max-width: 440px; margin: 0 auto 24px; font-size: 0.95rem; line-height: 1.6;">Discover our 100% active small-batch therapeutic formulations and save your favorite remedies here.</p>
+            <a href="index.html#products" class="btn btn-primary" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">Explore Formulations &rarr;</a>
           </div>
         `;
         return;
@@ -156,7 +394,7 @@
 
       container.innerHTML = wishlistItems.map(product => `
         <div class="product-card reveal-init is-revealed" data-id="${product.id}">
-          <div class="product-media" onclick="window.location.href='index.html?quickview=${product.id}'" role="button" tabindex="0">
+          <div class="product-media" onclick="openQuickView('${product.id}')" role="button" tabindex="0" aria-label="Quick view ${product.title}">
             ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
             <button class="product-wishlist-btn active" onclick="event.stopPropagation(); toggleWishlist('${product.id}', this)" aria-label="Remove from wishlist" title="Remove from wishlist">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
@@ -164,14 +402,19 @@
               </svg>
             </button>
             <img src="${product.image}" alt="${product.title}" loading="lazy" class="product-img" onerror="this.onerror=null; this.src='assets/anti_pigmentation.jpg';">
+            <span class="quick-view-hint">Quick View</span>
           </div>
           <div class="product-content">
             <div class="product-meta-row">
-              <span class="product-category-text">${product.categoryLabel}</span>
-              <span class="product-weight-text">${product.weight}</span>
+              <span class="product-category-text">${product.categoryLabel || ''}</span>
+              <span class="product-weight-text">${product.weight || ''}</span>
+            </div>
+            <div class="product-fresh-status">
+              <span class="status-pulse-dot"></span>
+              <span>Prepared Fresh As You Book</span>
             </div>
             <h3 class="product-title">
-              <a href="index.html?quickview=${product.id}" style="color: inherit; text-decoration: none;">${product.title}</a>
+              <a href="${product.id}.html" style="color: inherit; text-decoration: none;">${product.title}</a>
             </h3>
             <div class="product-price-row">
               <div class="product-price">
