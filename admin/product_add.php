@@ -14,9 +14,21 @@ if (empty($_SESSION['csrf_token'])) {
 
 $errors = [];
 $name = '';
+$slug = '';
+$category = 'therapeutic';
+$categoryLabel = 'Therapeutic Care';
+$concern = '';
 $price = '';
+$originalPrice = '';
 $stock = '';
+$rating = '5.0';
+$reviewCount = '0';
+$badge = '';
+$curation = '';
+$weight = '';
 $description = '';
+$keyBenefits = '';
+$ingredients = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // 1. Verify CSRF Token
@@ -27,9 +39,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // 2. Sanitize and Validate Inputs Server-Side
     $name = trim(filter_input(INPUT_POST, 'name', FILTER_DEFAULT) ?? '');
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $name), '-'));
+    $category = trim(filter_input(INPUT_POST, 'category', FILTER_DEFAULT) ?? 'therapeutic');
+    $categoryLabel = trim(filter_input(INPUT_POST, 'categoryLabel', FILTER_DEFAULT) ?? 'Therapeutic Care');
+    $concern = trim(filter_input(INPUT_POST, 'concern', FILTER_DEFAULT) ?? '');
     $priceRaw = trim($_POST['price'] ?? '');
+    $originalPriceRaw = trim($_POST['originalPrice'] ?? '');
     $stockRaw = trim($_POST['stock'] ?? '');
+    $ratingRaw = trim($_POST['rating'] ?? '5.0');
+    $reviewCountRaw = trim($_POST['reviewCount'] ?? '0');
+    $badge = trim(filter_input(INPUT_POST, 'badge', FILTER_DEFAULT) ?? '');
+    $curation = trim(filter_input(INPUT_POST, 'curation', FILTER_DEFAULT) ?? '');
+    $weight = trim(filter_input(INPUT_POST, 'weight', FILTER_DEFAULT) ?? '');
     $description = trim(filter_input(INPUT_POST, 'description', FILTER_DEFAULT) ?? '');
+    $keyBenefits = trim(filter_input(INPUT_POST, 'keyBenefits', FILTER_DEFAULT) ?? '');
+    $ingredients = trim(filter_input(INPUT_POST, 'ingredients', FILTER_DEFAULT) ?? '');
 
     // Validate Name
     if ($name === '') {
@@ -127,16 +151,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $pdo = getDBConnection();
             $stmt = $pdo->prepare('
-                INSERT INTO products (name, price, stock, image_path, description, created_at)
-                VALUES (:name, :price, :stock, :image_path, :description, NOW())
+                INSERT INTO products (slug, name, category, categoryLabel, concern, price, originalPrice, stock, rating, reviewCount, badge, curation, weight, image_path, description, keyBenefits, ingredients, created_at)
+                VALUES (:slug, :name, :category, :categoryLabel, :concern, :price, :originalPrice, :stock, :rating, :reviewCount, :badge, :curation, :weight, :image_path, :description, :keyBenefits, :ingredients, NOW())
             ');
 
             $stmt->execute([
-                ':name'        => $name,
-                ':price'       => $price,
-                ':stock'       => $stock,
-                ':image_path'  => $imagePath,
-                ':description' => $description !== '' ? $description : null
+                ':slug'         => $slug,
+                ':name'         => $name,
+                ':category'     => $category,
+                ':categoryLabel'=> $categoryLabel,
+                ':concern'      => $concern,
+                ':price'        => $price,
+                ':originalPrice'=> $originalPriceRaw !== '' ? $originalPriceRaw : null,
+                ':stock'        => $stock,
+                ':rating'       => $ratingRaw !== '' ? $ratingRaw : 5.0,
+                ':reviewCount'  => $reviewCountRaw !== '' ? $reviewCountRaw : 0,
+                ':badge'        => $badge !== '' ? $badge : null,
+                ':curation'     => $curation !== '' ? $curation : null,
+                ':weight'       => $weight !== '' ? $weight : null,
+                ':image_path'   => $imagePath,
+                ':description'  => $description !== '' ? $description : null,
+                ':keyBenefits'  => $keyBenefits !== '' ? $keyBenefits : null,
+                ':ingredients'  => $ingredients !== '' ? $ingredients : null
             ]);
 
             $_SESSION['flash_success'] = "Product '{$name}' was created successfully.";
@@ -206,7 +242,7 @@ require_once __DIR__ . '/header.php';
 
           <!-- Price & Stock in Row -->
           <div class="row g-3 mb-3">
-            <div class="col-md-6">
+            <div class="col-md-3">
               <label for="price" class="form-label fw-semibold">
                 Price (₹) <span class="text-danger">*</span>
               </label>
@@ -224,16 +260,31 @@ require_once __DIR__ . '/header.php';
                   placeholder="599.00"
                   required
                 >
-                <?php if (isset($errors['price'])): ?>
-                  <div class="invalid-feedback"><?= htmlspecialchars($errors['price']) ?></div>
-                <?php endif; ?>
               </div>
-              <div class="form-text">Must be a valid positive amount (e.g. 599.00).</div>
+            </div>
+            
+            <div class="col-md-3">
+              <label for="originalPrice" class="form-label fw-semibold">
+                Original Price (₹)
+              </label>
+              <div class="input-group">
+                <span class="input-group-text bg-light">₹</span>
+                <input 
+                  type="number" 
+                  step="0.01" 
+                  min="0.01" 
+                  class="form-control" 
+                  id="originalPrice" 
+                  name="originalPrice" 
+                  value="<?= htmlspecialchars($originalPriceRaw ?? '') ?>" 
+                  placeholder="749.00"
+                >
+              </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-3">
               <label for="stock" class="form-label fw-semibold">
-                Initial Stock Units <span class="text-danger">*</span>
+                Stock <span class="text-danger">*</span>
               </label>
               <input 
                 type="number" 
@@ -247,10 +298,50 @@ require_once __DIR__ . '/header.php';
                 placeholder="50"
                 required
               >
-              <?php if (isset($errors['stock'])): ?>
-                <div class="invalid-feedback"><?= htmlspecialchars($errors['stock']) ?></div>
-              <?php endif; ?>
-              <div class="form-text">Non-negative integer (0 or greater).</div>
+            </div>
+            
+            <div class="col-md-3">
+              <label for="weight" class="form-label fw-semibold">
+                Weight/Volume
+              </label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="weight" 
+                name="weight" 
+                value="<?= htmlspecialchars($weight) ?>" 
+                placeholder="50 g"
+              >
+            </div>
+          </div>
+          
+          <!-- Category & Concern -->
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <label for="concern" class="form-label fw-semibold">
+                Primary Skin Concern <span class="text-danger">*</span>
+              </label>
+              <select class="form-select" id="concern" name="concern" required>
+                <option value="">Select a concern...</option>
+                <option value="pigmentation" <?= $concern === 'pigmentation' ? 'selected' : '' ?>>Pigmentation & Melasma</option>
+                <option value="fungal" <?= $concern === 'fungal' ? 'selected' : '' ?>>Fungal & Sweat Rash</option>
+                <option value="sensitive" <?= $concern === 'sensitive' ? 'selected' : '' ?>>Sensitive & Reactive</option>
+                <option value="psoriasis" <?= $concern === 'psoriasis' ? 'selected' : '' ?>>Psoriasis & Dryness</option>
+                <option value="stress-pain" <?= $concern === 'stress-pain' ? 'selected' : '' ?>>Migraine & Stress</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="badge" class="form-label fw-semibold">
+                Product Badge (Optional)
+              </label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="badge" 
+                name="badge" 
+                value="<?= htmlspecialchars($badge) ?>" 
+                placeholder="e.g. Bestseller, Barrier SOS"
+              >
             </div>
           </div>
 
@@ -280,19 +371,41 @@ require_once __DIR__ . '/header.php';
           </div>
 
           <!-- Description -->
-          <div class="mb-4">
+          <div class="mb-3">
             <label for="description" class="form-label fw-semibold">Description & Botanical Notes</label>
             <textarea 
               class="form-control <?= isset($errors['description']) ? 'is-invalid' : '' ?>" 
               id="description" 
               name="description" 
-              rows="4" 
+              rows="3" 
               maxlength="5000"
               placeholder="Detail the formulation benefits, herbal ingredients, and skin target concerns..."
             ><?= htmlspecialchars($description) ?></textarea>
             <?php if (isset($errors['description'])): ?>
               <div class="invalid-feedback"><?= htmlspecialchars($errors['description']) ?></div>
             <?php endif; ?>
+          </div>
+          
+          <div class="mb-3">
+            <label for="keyBenefits" class="form-label fw-semibold">Key Benefits (One per line)</label>
+            <textarea 
+              class="form-control" 
+              id="keyBenefits" 
+              name="keyBenefits" 
+              rows="3" 
+              placeholder="Fades stubborn blemishes...&#10;We prepare fresh as you book..."
+            ><?= htmlspecialchars($keyBenefits) ?></textarea>
+          </div>
+          
+          <div class="mb-4">
+            <label for="ingredients" class="form-label fw-semibold">Full Ingredients List</label>
+            <textarea 
+              class="form-control" 
+              id="ingredients" 
+              name="ingredients" 
+              rows="2" 
+              placeholder="Colloidal Oatmeal, Centella Asiatica..."
+            ><?= htmlspecialchars($ingredients) ?></textarea>
           </div>
 
           <!-- Form Actions -->
