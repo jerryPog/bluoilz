@@ -115,7 +115,7 @@
       }
 
       container.innerHTML = wishlistItems.map(product => `
-        <div class="product-card reveal-init visible" data-id="${product.id}">
+        <div class="product-card reveal-init is-revealed" data-id="${product.id}">
           <div class="product-media" onclick="window.location.href='index.html?quickview=${product.id}'" role="button" tabindex="0">
             ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
             <button class="product-wishlist-btn active" onclick="event.stopPropagation(); toggleWishlist('${product.id}', this)" aria-label="Remove from wishlist" title="Remove from wishlist">
