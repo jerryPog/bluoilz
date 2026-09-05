@@ -178,6 +178,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   setupDiagnosticQuiz();
   setupLiveSearch();
   setupCheckoutModal();
+  initPdpWishlistButtons();
   setupHeaderScrollEffect();
   setupScrollReveal();
   setupBackToTop();
@@ -1393,6 +1394,19 @@ function toggleWishlist(productId, btn) {
   if (typeof renderWishlist === 'function') {
     renderWishlist();
   }
+}
+
+// Initialize Wishlist Buttons on PDP
+function initPdpWishlistButtons() {
+  const pdpButtons = document.querySelectorAll('.pdp-wishlist-btn');
+  pdpButtons.forEach(btn => {
+    const productId = btn.getAttribute('data-product-id');
+    if (productId && userWishlist.has(productId)) {
+      btn.classList.add('active');
+      const heartIcon = btn.querySelector('svg');
+      if (heartIcon) heartIcon.setAttribute('fill', 'currentColor');
+    }
+  });
 }
 
 // Back-to-Top Button Handler
