@@ -6,20 +6,39 @@
  * Run via browser or CLI during initial project setup.
  */
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once __DIR__ . '/db.php';
+
+// Generate CSRF token if not exists
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 
 $message = '';
 $messageType = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $csrfToken = $_POST['csrf_token'] ?? '';
     $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
 
-    if (empty($username) || empty($password)) {
+    if (!hash_equals($_SESSION['csrf_token'], $csrfToken)) {
+        $message = 'Security validation failed (invalid CSRF token). Please try again.';
+        $messageType = 'error';
+    } elseif (empty($username) || empty($password)) {
         $message = 'Please provide both username and password.';
+        $messageType = 'error';
+    } elseif (mb_strlen($username) < 3 || mb_strlen($username) > 100) {
+        $message = 'Username must be between 3 and 100 characters.';
         $messageType = 'error';
     } elseif (strlen($password) < 6) {
         $message = 'Password must be at least 6 characters long.';
+        $messageType = 'error';
+    } elseif (strlen($password) > 255) {
+        $message = 'Password exceeds maximum permitted length.';
         $messageType = 'error';
     } else {
         try {
@@ -58,8 +77,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
   <title>Setup Admin Account &bull; Bluoilz</title>
   <style>
+    :root, html, body {
+      color-scheme: light;
+    }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: #faf6f2;
@@ -86,9 +109,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .alert-success { background: #f0fdf4; color: #166534; }
     .form-group { margin-bottom: 16px; }
     label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 6px; }
-    input { width: 100%; padding: 11px; border: 1px solid #ede4de; border-radius: 8px; font-size: 0.95rem; }
+    input { width: 100%; padding: 11px; border: 1px solid #ede4de; border-radius: 8px; font-size: 0.95rem; background-color: #ffffff; color: #231c1e; color-scheme: light; }
     input:focus { outline: none; border-color: #b85d6b; }
-    button { width: 100%; padding: 12px; background: #1f191b; color: #ffffff; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
+    button { width: 100%; padding: 12px; background: #1f191b; color: #ffffff; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; color-scheme: light; }
     button:hover { background: #b85d6b; }
     .links { margin-top: 20px; text-align: center; font-size: 0.85rem; }
     .links a { color: #b85d6b; font-weight: 600; text-decoration: none; }
@@ -106,14 +129,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
 
     <form method="POST">
+      <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+
       <div class="form-group">
         <label for="username">Admin Username</label>
-        <input type="text" id="username" name="username" value="admin" required>
+        <input 
+          type="text" 
+          id="username" 
+          name="username" 
+          value="<?= htmlspecialchars($_POST['username'] ?? 'admin') ?>" 
+          required 
+          minlength="3" 
+          maxlength="100"
+          autocomplete="username"
+        >
       </div>
 
       <div class="form-group">
         <label for="password">Password to Hash & Save</label>
-        <input type="password" id="password" name="password" placeholder="Enter secure password" required>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          placeholder="Enter secure password (min 6 characters)" 
+          required 
+          minlength="6" 
+          maxlength="255"
+          autocomplete="new-password"
+        >
       </div>
 
       <button type="submit">Create / Update Admin</button>

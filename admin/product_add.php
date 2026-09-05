@@ -77,6 +77,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $price = number_format((float)$priceRaw, 2, '.', '');
     }
 
+    // Validate Original Price (optional, but if provided must be numeric, positive, and <= 999999.99)
+    $originalPrice = null;
+    if ($originalPriceRaw !== '') {
+        if (!is_numeric($originalPriceRaw)) {
+            $errors['originalPrice'] = 'Original price must be a valid numeric amount.';
+        } elseif ((float)$originalPriceRaw <= 0) {
+            $errors['originalPrice'] = 'Original price must be a positive amount greater than ₹0.00.';
+        } elseif ((float)$originalPriceRaw > 999999.99) {
+            $errors['originalPrice'] = 'Original price cannot exceed ₹999,999.99.';
+        } else {
+            $originalPrice = number_format((float)$originalPriceRaw, 2, '.', '');
+        }
+    }
+
     // Validate Stock
     if ($stockRaw === '') {
         $errors['stock'] = 'Stock quantity is required.';
@@ -91,6 +105,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $stock = $stockVal;
         }
+    }
+
+    // Validate Concern (Required)
+    if ($concern === '') {
+        $errors['concern'] = 'Primary skin concern is required.';
+    } elseif (mb_strlen($concern) > 100) {
+        $errors['concern'] = 'Skin concern must not exceed 100 characters.';
+    }
+
+    // Validate Rating & Review Count
+    $rating = 5.0;
+    if ($ratingRaw !== '') {
+        $ratingVal = filter_var($ratingRaw, FILTER_VALIDATE_FLOAT);
+        if ($ratingVal === false || $ratingVal < 0 || $ratingVal > 5.0) {
+            $errors['rating'] = 'Rating must be a numeric score between 0.0 and 5.0.';
+        } else {
+            $rating = number_format($ratingVal, 1, '.', '');
+        }
+    }
+
+    $reviewCount = 0;
+    if ($reviewCountRaw !== '') {
+        $reviewVal = filter_var($reviewCountRaw, FILTER_VALIDATE_INT);
+        if ($reviewVal === false || $reviewVal < 0) {
+            $errors['reviewCount'] = 'Review count must be a non-negative whole number (0 or greater).';
+        } else {
+            $reviewCount = $reviewVal;
+        }
+    }
+
+    // Validate Weight
+    if (mb_strlen($weight) > 50) {
+        $errors['weight'] = 'Weight / volume must not exceed 50 characters.';
     }
 
     // Validate Description length
@@ -162,10 +209,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ':categoryLabel'=> $categoryLabel,
                 ':concern'      => $concern,
                 ':price'        => $price,
-                ':originalPrice'=> $originalPriceRaw !== '' ? $originalPriceRaw : null,
+                ':originalPrice'=> $originalPrice,
                 ':stock'        => $stock,
-                ':rating'       => $ratingRaw !== '' ? $ratingRaw : 5.0,
-                ':reviewCount'  => $reviewCountRaw !== '' ? $reviewCountRaw : 0,
+                ':rating'       => $rating,
+                ':reviewCount'  => $reviewCount,
                 ':badge'        => $badge !== '' ? $badge : null,
                 ':curation'     => $curation !== '' ? $curation : null,
                 ':weight'       => $weight !== '' ? $weight : null,
@@ -215,7 +262,7 @@ require_once __DIR__ . '/header.php';
 
     <div class="card shadow-sm mb-4">
       <div class="card-body p-4">
-        <form method="POST" action="product_add.php" enctype="multipart/form-data" novalidate>
+        <form method="POST" action="product_add.php" enctype="multipart/form-data" class="needs-validation" novalidate>
           <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
 
           <!-- Product Name -->
@@ -236,7 +283,9 @@ require_once __DIR__ . '/header.php';
               autofocus
             >
             <?php if (isset($errors['name'])): ?>
-              <div class="invalid-feedback"><?= htmlspecialchars($errors['name']) ?></div>
+              <div class="invalid-feedback d-block"><?= htmlspecialchars($errors['name']) ?></div>
+            <?php else: ?>
+              <div class="invalid-feedback">Please enter a product name (at least 2 characters).</div>
             <?php endif; ?>
           </div>
 
@@ -246,7 +295,7 @@ require_once __DIR__ . '/header.php';
               <label for="price" class="form-label fw-semibold">
                 Price (₹) <span class="text-danger">*</span>
               </label>
-              <div class="input-group">
+              <div class="input-group has-validation">
                 <span class="input-group-text bg-light">₹</span>
                 <input 
                   type="number" 
@@ -260,6 +309,11 @@ require_once __DIR__ . '/header.php';
                   placeholder="599.00"
                   required
                 >
+                <?php if (isset($errors['price'])): ?>
+                  <div class="invalid-feedback d-block"><?= htmlspecialchars($errors['price']) ?></div>
+                <?php else: ?>
+                  <div class="invalid-feedback">Price must be greater than ₹0.00.</div>
+                <?php endif; ?>
               </div>
             </div>
             
@@ -267,18 +321,24 @@ require_once __DIR__ . '/header.php';
               <label for="originalPrice" class="form-label fw-semibold">
                 Original Price (₹)
               </label>
-              <div class="input-group">
+              <div class="input-group has-validation">
                 <span class="input-group-text bg-light">₹</span>
                 <input 
                   type="number" 
                   step="0.01" 
                   min="0.01" 
-                  class="form-control" 
+                  max="999999.99"
+                  class="form-control <?= isset($errors['originalPrice']) ? 'is-invalid' : '' ?>" 
                   id="originalPrice" 
                   name="originalPrice" 
                   value="<?= htmlspecialchars($originalPriceRaw ?? '') ?>" 
                   placeholder="749.00"
                 >
+                <?php if (isset($errors['originalPrice'])): ?>
+                  <div class="invalid-feedback d-block"><?= htmlspecialchars($errors['originalPrice']) ?></div>
+                <?php else: ?>
+                  <div class="invalid-feedback">Original price must be greater than ₹0.00.</div>
+                <?php endif; ?>
               </div>
             </div>
 
@@ -298,6 +358,11 @@ require_once __DIR__ . '/header.php';
                 placeholder="50"
                 required
               >
+              <?php if (isset($errors['stock'])): ?>
+                <div class="invalid-feedback d-block"><?= htmlspecialchars($errors['stock']) ?></div>
+              <?php else: ?>
+                <div class="invalid-feedback">Stock must be a whole number 0 or greater.</div>
+              <?php endif; ?>
             </div>
             
             <div class="col-md-3">
@@ -306,12 +371,16 @@ require_once __DIR__ . '/header.php';
               </label>
               <input 
                 type="text" 
-                class="form-control" 
+                class="form-control <?= isset($errors['weight']) ? 'is-invalid' : '' ?>" 
                 id="weight" 
                 name="weight" 
+                maxlength="50"
                 value="<?= htmlspecialchars($weight) ?>" 
                 placeholder="50 g"
               >
+              <?php if (isset($errors['weight'])): ?>
+                <div class="invalid-feedback d-block"><?= htmlspecialchars($errors['weight']) ?></div>
+              <?php endif; ?>
             </div>
           </div>
           
@@ -321,7 +390,7 @@ require_once __DIR__ . '/header.php';
               <label for="concern" class="form-label fw-semibold">
                 Primary Skin Concern <span class="text-danger">*</span>
               </label>
-              <select class="form-select" id="concern" name="concern" required>
+              <select class="form-select <?= isset($errors['concern']) ? 'is-invalid' : '' ?>" id="concern" name="concern" required>
                 <option value="">Select a concern...</option>
                 <option value="pigmentation" <?= $concern === 'pigmentation' ? 'selected' : '' ?>>Pigmentation & Melasma</option>
                 <option value="fungal" <?= $concern === 'fungal' ? 'selected' : '' ?>>Fungal & Sweat Rash</option>
@@ -329,6 +398,11 @@ require_once __DIR__ . '/header.php';
                 <option value="psoriasis" <?= $concern === 'psoriasis' ? 'selected' : '' ?>>Psoriasis & Dryness</option>
                 <option value="stress-pain" <?= $concern === 'stress-pain' ? 'selected' : '' ?>>Migraine & Stress</option>
               </select>
+              <?php if (isset($errors['concern'])): ?>
+                <div class="invalid-feedback d-block"><?= htmlspecialchars($errors['concern']) ?></div>
+              <?php else: ?>
+                <div class="invalid-feedback">Please select a primary skin concern.</div>
+              <?php endif; ?>
             </div>
             <div class="col-md-6">
               <label for="badge" class="form-label fw-semibold">
@@ -422,6 +496,21 @@ require_once __DIR__ . '/header.php';
 </div>
 
 <script>
+  // Bootstrap client-side form validation
+  (() => {
+    'use strict';
+    const forms = document.querySelectorAll('.needs-validation');
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  })();
+
   function previewSelectedImage(input) {
     const wrap = document.getElementById('imagePreviewWrap');
     const preview = document.getElementById('imagePreview');

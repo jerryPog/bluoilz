@@ -3,9 +3,14 @@
    Inspired by High-End Modern Aesthetic Design (Lumina Reference)
    ========================================================================== */
 
-:root {
+:root,
+html,
+body {
   /* Enforce Light Color Scheme across all browsers & OS themes */
   color-scheme: light;
+}
+
+:root {
 
   /* Core Color System - Minimal Premium Editorial */
   --color-canvas: #f9f7f4;           /* Warm, calming neutral background */
@@ -5115,78 +5120,129 @@ h1, h2, h3, h4, .font-serif {
 
 
 /* ==========================================================================
-   Mobile Bottom Navigation Bar
+   Mobile Top Quick Navigation Bar (Home, Shop, Search, Cart)
    ========================================================================== */
-.mobile-bottom-nav {
+.mobile-top-nav {
   display: none;
 }
 
+.mobile-only-action {
+  display: none !important;
+}
+
 @media (max-width: 768px) {
-  .mobile-bottom-nav {
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #ffffff;
-    border-top: 1px solid var(--color-border);
-    z-index: 1000;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px 0;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+  /* Hide desktop-only actions on mobile and show mobile-specific header shortcuts */
+  .desktop-only-action {
+    display: none !important;
   }
 
-  .bottom-nav-item {
+  .mobile-only-action {
+    display: inline-flex !important;
+  }
+
+  .site-header {
+    border-bottom: none;
+  }
+
+  .header-inner {
+    padding: 8px 0 6px;
+    height: auto;
+    min-height: 52px;
+  }
+
+  .mobile-top-nav {
+    display: block;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(230, 223, 216, 0.7);
+    border-bottom: 1px solid var(--color-border);
+    padding: 4px 0 6px;
+    box-shadow: 0 4px 12px rgba(28, 26, 25, 0.04);
+  }
+
+  .mobile-top-nav-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 0 6px;
+    gap: 4px;
+  }
+
+  .top-nav-item {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     color: var(--color-text-muted);
     text-decoration: none;
-    font-size: 0.65rem;
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
     font-weight: 600;
     background: none;
     border: none;
     cursor: pointer;
-    transition: color 0.2s ease;
-  }
-  
-  .bottom-nav-item svg {
-    margin-bottom: 4px;
-    transition: transform 0.2s ease;
-  }
-
-  .bottom-nav-item:hover, .bottom-nav-item.active {
-    color: var(--color-accent);
-  }
-  
-  .bottom-nav-item:hover svg, .bottom-nav-item.active svg {
-    transform: scale(1.1);
+    padding: 6px 4px 5px;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+    -webkit-tap-highlight-color: transparent;
+    line-height: 1.15;
   }
 
-  .bottom-nav-icon-wrap {
+  .top-nav-item svg {
+    margin-bottom: 3px;
+    transition: transform 0.2s ease, stroke 0.2s ease;
+    stroke: currentColor;
+  }
+
+  .top-nav-item:hover,
+  .top-nav-item.active {
+    color: var(--color-primary);
+    background-color: rgba(140, 115, 98, 0.09);
+  }
+
+  .top-nav-item:hover svg,
+  .top-nav-item.active svg {
+    transform: translateY(-1px);
+    stroke: var(--color-accent);
+  }
+
+  .top-nav-icon-wrap {
     position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .bottom-nav-badge {
+  .top-nav-badge {
     position: absolute;
-    top: -5px;
-    right: -8px;
+    top: -6px;
+    right: -10px;
     background: var(--color-accent);
-    color: white;
+    color: #ffffff;
     font-size: 0.6rem;
-    font-weight: bold;
-    width: 16px;
+    font-weight: 700;
+    min-width: 16px;
     height: 16px;
-    border-radius: 50%;
+    border-radius: 9999px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid #ffffff;
+    padding: 0 3px;
+    border: 1.5px solid #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
   }
 
-  /* Add padding to body so the bottom content is not hidden behind the nav bar */
+  /* Support legacy classes if any cached element remains */
+  .mobile-bottom-nav {
+    display: none !important;
+  }
+
+  /* Reset body padding since navigation is moved to top */
   body {
-    padding-bottom: 60px;
+    padding-bottom: 0 !important;
   }
 }

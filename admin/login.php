@@ -41,6 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Security validation failed (invalid CSRF token). Please try again.';
     } elseif (empty($username) || empty($password)) {
         $error = 'Please provide both your username and password.';
+    } elseif (mb_strlen($username) < 2 || mb_strlen($username) > 100) {
+        $error = 'Username must be between 2 and 100 characters.';
+    } elseif (strlen($password) > 255) {
+        $error = 'Password exceeds maximum permitted length.';
     } else {
         try {
             $pdo = getDBConnection();
@@ -102,6 +106,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
+    :root,
+    html,
+    body {
+      color-scheme: light;
+    }
+
     :root {
       color-scheme: light;
       --color-canvas: #faf6f2;
@@ -113,6 +123,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       --color-border: #ede4de;
       --font-serif: 'Cormorant Garamond', Georgia, serif;
       --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    input,
+    button {
+      color-scheme: light;
     }
 
     * {
@@ -336,6 +351,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             class="form-control" 
             value="<?= htmlspecialchars($_POST['username'] ?? '', ENT_QUOTES, 'UTF-8') ?>" 
             required 
+            minlength="2"
+            maxlength="100"
             autofocus 
             autocomplete="username"
             placeholder="e.g. admin"
@@ -350,6 +367,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             name="password" 
             class="form-control" 
             required 
+            minlength="1"
+            maxlength="255"
             autocomplete="current-password"
             placeholder="••••••••••••"
           >
