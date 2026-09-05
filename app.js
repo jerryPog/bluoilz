@@ -1351,7 +1351,20 @@ function setupNewsletter() {
 }
 
 // Wishlist interaction with heartPop animation
-const userWishlist = new Set();
+let userWishlist = new Set();
+try {
+  const savedWishlist = JSON.parse(localStorage.getItem('bluoilz_wishlist'));
+  if (Array.isArray(savedWishlist)) {
+    userWishlist = new Set(savedWishlist);
+  }
+} catch (e) {
+  userWishlist = new Set();
+}
+
+function saveWishlist() {
+  localStorage.setItem('bluoilz_wishlist', JSON.stringify([...userWishlist]));
+}
+
 function toggleWishlist(productId, btn) {
   const product = PRODUCTS.find(p => p.id === productId);
   if (!product) return;
@@ -1372,6 +1385,13 @@ function toggleWishlist(productId, btn) {
       if (heartIcon) heartIcon.setAttribute('fill', 'currentColor');
     }
     showToast(`Added "${product.title.split('–')[0].trim()}" to your wishlist! ✨`);
+  }
+  
+  saveWishlist();
+  
+  // If we are on the wishlist page, re-render it
+  if (typeof renderWishlist === 'function') {
+    renderWishlist();
   }
 }
 
