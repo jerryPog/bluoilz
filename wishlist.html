@@ -117,8 +117,8 @@
       container.innerHTML = wishlistItems.map(product => `
         <div class="product-card reveal-init visible" data-id="${product.id}">
           <div class="product-media" onclick="window.location.href='index.html?quickview=${product.id}'" role="button" tabindex="0">
-            ${product.badge ? \`<span class="product-badge">\${product.badge}</span>\` : ''}
-            <button class="product-wishlist-btn active" onclick="event.stopPropagation(); toggleWishlist('\${product.id}', this)" aria-label="Remove from wishlist" title="Remove from wishlist">
+            ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+            <button class="product-wishlist-btn active" onclick="event.stopPropagation(); toggleWishlist('${product.id}', this)" aria-label="Remove from wishlist" title="Remove from wishlist">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
               </svg>
@@ -136,10 +136,10 @@
             <div class="product-price-row">
               <div class="product-price">
                 <span class="price-current">₹${product.price}</span>
-                ${product.originalPrice ? \`<span class="price-original">₹\${product.originalPrice}</span>\` : ''}
+                ${product.originalPrice ? `<span class="price-original">₹${product.originalPrice}</span>` : ''}
               </div>
             </div>
-            <button class="btn btn-primary btn-block add-to-cart-btn" onclick="addToCart('\${product.id}')">Add to Cart</button>
+            <button class="btn btn-primary btn-block add-to-cart-btn" onclick="addToCart('${product.id}')">Add to Cart</button>
           </div>
         </div>
       `).join('');
