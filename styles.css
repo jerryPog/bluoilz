@@ -632,6 +632,7 @@ h1, h2, h3, h4, .font-serif {
 /* Hero Right Banner Visual - Consistent botanical art direction */
 .hero-banner-image {
   position: relative;
+  animation: float 6s ease-in-out infinite;
 }
 
 .hero-img-wrapper {
@@ -641,6 +642,8 @@ h1, h2, h3, h4, .font-serif {
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--color-border);
   background-color: var(--color-canvas);
+  transition: transform 0.1s ease-out; /* Smooth transition for tilt effect */
+  will-change: transform;
 }
 
 .hero-main-img {
@@ -652,7 +655,7 @@ h1, h2, h3, h4, .font-serif {
 }
 
 .hero-img-wrapper:hover .hero-main-img {
-  transform: scale(1.02);
+  transform: scale(1.05); /* Increased slightly for better interactivity */
 }
 
 /* ==========================================================================

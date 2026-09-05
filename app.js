@@ -161,6 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupHeaderScrollEffect();
   setupScrollReveal();
   setupBackToTop();
+  setupHeroTiltEffect();
 });
 
 // Render Products
@@ -1892,5 +1893,31 @@ function setupScrollSequenceBackground() {
   }
 }
 
+// 3D Hero Tilt Effect
+function setupHeroTiltEffect() {
+  const wrapper = document.querySelector('.hero-img-wrapper');
+  if (!wrapper) return;
 
+  wrapper.addEventListener('mousemove', (e) => {
+    const rect = wrapper.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const percentX = (x - centerX) / centerX;
+    const percentY = (y - centerY) / centerY;
+
+    const maxTilt = 10;
+    const tiltX = -(percentY * maxTilt);
+    const tiltY = percentX * maxTilt;
+
+    wrapper.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
+  });
+
+  wrapper.addEventListener('mouseleave', () => {
+    wrapper.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+  });
+}
 
