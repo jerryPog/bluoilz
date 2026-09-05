@@ -182,6 +182,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   setupScrollReveal();
   setupBackToTop();
   setupHeroTiltEffect();
+  setupReviewsSlider();
 });
 
 // Render Products
@@ -1542,11 +1543,159 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+// Assistant menu functions
 function toggleAssistantMenu() {
   const popover = document.getElementById('assistantMenuPopover');
   if (!popover) return;
-  const isShown = popover.style.display === 'flex';
-  popover.style.display = isShown ? 'none' : 'flex';
+  const isVisible = popover.style.display === 'flex';
+  popover.style.display = isVisible ? 'none' : 'flex';
+}
+
+function toggleConciergeChat() {
+  const chatbox = document.getElementById('conciergeChatbox');
+  if (!chatbox) return;
+  const isVisible = chatbox.style.display === 'flex';
+  chatbox.style.display = isVisible ? 'none' : 'flex';
+}
+
+function conciergeQuickAsk(topic) {
+  const responses = {
+    pigmentation: "For dark spots and melasma, our Anti-Pigmentation formulation with ancient botanical extracts works actively on dermal layers. It absorbs instantly without clogging pores.",
+    fungal: "To combat sweat rash and fungal concerns in high humidity, the Anti-Fungal cream uses cold-pressed lipids to protect your skin barrier while remaining completely breathable.",
+    allergy: "For sensitive reactivity, the Anti-Allergy SOS cream is your first line of defense. It instantly soothes flare-ups using potent colloidal oat distillation.",
+    psoriasis: "Psoriasis plaques need intense, breathable hydration. Our Wrightia Tinctoria based formulation softens dry skin layers without synthetic occlusion.",
+    migraine: "The Migraine Tension Roll-on is an aromatherapeutic marvel. Apply to your temples for rapid cooling pressure relief.",
+    booking: "When you book your order, our alchemists begin compounding your product fresh. There is zero warehouse shelf time, ensuring 100% active botanicals."
+  };
+  
+  const msgText = responses[topic] || "Our therapeutic botanical segment is prepared fresh to target specific skin concerns.";
+  
+  const chatBody = document.getElementById('conciergeChatBody');
+  const chipsRow = document.getElementById('conciergeChipsRow');
+  
+  if (chatBody) {
+    const responseHTML = `
+      <div class="chat-message concierge-msg" style="margin-top: 15px; animation: slideUp 0.3s ease;">
+        <div class="msg-bubble">${msgText}</div>
+      </div>
+    `;
+    
+    if (chipsRow) {
+      chipsRow.insertAdjacentHTML('beforebegin', responseHTML);
+    } else {
+      chatBody.insertAdjacentHTML('beforeend', responseHTML);
+    }
+    
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+}
+
+// Reviews Slider Setup
+function setupReviewsSlider() {
+  const track = document.getElementById('reviewsTrack');
+  const prevBtn = document.getElementById('reviewPrevBtn');
+  const nextBtn = document.getElementById('reviewNextBtn');
+  const pagination = document.getElementById('reviewsPagination');
+  
+  if (!track || !prevBtn || !nextBtn || !pagination) return;
+  
+  const slides = Array.from(track.children);
+  const slideCount = slides.length;
+  
+  if (slideCount <= 1) {
+    prevBtn.style.display = 'none';
+    nextBtn.style.display = 'none';
+    return;
+  }
+  
+  // Create pagination dots
+  slides.forEach((_, index) => {
+    const dot = document.createElement('button');
+    dot.className = `review-dot ${index === 0 ? 'active' : ''}`;
+    dot.setAttribute('aria-label', `Go to review ${index + 1}`);
+    dot.addEventListener('click', () => {
+      goToSlide(index);
+      resetAutoSlide();
+    });
+    pagination.appendChild(dot);
+  });
+  
+  const dots = Array.from(pagination.children);
+  let currentIndex = 0;
+  
+  function updateSlider() {
+    const slideWidth = slides[0].offsetWidth;
+    track.scrollTo({
+      left: currentIndex * slideWidth,
+      behavior: 'smooth'
+    });
+    
+    dots.forEach((dot, index) => {
+      if (index === currentIndex) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+  
+  function goToSlide(index) {
+    currentIndex = index;
+    if (currentIndex < 0) currentIndex = slideCount - 1;
+    if (currentIndex >= slideCount) currentIndex = 0;
+    updateSlider();
+  }
+  
+  // Event listeners for arrows
+  prevBtn.addEventListener('click', () => {
+    goToSlide(currentIndex - 1);
+    resetAutoSlide();
+  });
+  
+  nextBtn.addEventListener('click', () => {
+    goToSlide(currentIndex + 1);
+    resetAutoSlide();
+  });
+  
+  // Auto-slide functionality
+  let autoSlideInterval;
+  
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+      goToSlide(currentIndex + 1);
+    }, 5000); // Change review every 5 seconds
+  }
+  
+  function resetAutoSlide() {
+    clearInterval(autoSlideInterval);
+    startAutoSlide();
+  }
+  
+  // Pause on hover
+  const wrapper = document.getElementById('reviewsSliderWrapper');
+  wrapper.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+  wrapper.addEventListener('mouseleave', startAutoSlide);
+  
+  // Sync index when swiping on touch devices
+  track.addEventListener('scroll', () => {
+    // Only process passive scrolls (not smooth scrolls initiated by our JS)
+    // Debounce this to avoid layout thrashing
+    clearTimeout(track.scrollTimeout);
+    track.scrollTimeout = setTimeout(() => {
+      const slideWidth = slides[0].offsetWidth;
+      const scrollPosition = track.scrollLeft;
+      const index = Math.round(scrollPosition / slideWidth);
+      if (index !== currentIndex && index >= 0 && index < slideCount) {
+        currentIndex = index;
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentIndex);
+        });
+      }
+    }, 50);
+  });
+  
+  // Start the auto-sliding initially
+  startAutoSlide();
 }
 
 // Click outside to close floating assistant menu

@@ -452,51 +452,75 @@
           <p class="section-desc">Real feedback from community members using freshly compounded Bluoilz botanical formulations.</p>
         </div>
 
-        <div class="reviews-grid">
-          <div class="review-card">
-            <div class="review-header-meta">
-              <span class="review-product-pill">Anti Pigmentation Cream</span>
-              <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        <div class="reviews-slider-wrapper" id="reviewsSliderWrapper">
+          <button class="review-nav-btn prev" id="reviewPrevBtn" aria-label="Previous Review">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          
+          <div class="reviews-track" id="reviewsTrack">
+            <div class="review-slide">
+              <div class="review-card">
+                <div class="review-header-meta">
+                  <span class="review-product-pill">Anti Pigmentation Cream</span>
+                  <div class="review-stars" aria-label="5 stars">★★★★★</div>
+                </div>
+                <p class="review-quote">"Living in Mumbai's high humidity always made my skin break out with heavy creams. The Anti-Pigmentation Cream absorbed instantly and completely cleared my dark sun patches within 4 weeks."</p>
+                <div class="review-author-wrap">
+                  <div class="review-avatar">SR</div>
+                  <div>
+                    <h5 class="review-name">Shweta Rajput</h5>
+                    <span class="review-verified">Verified Patient &bull; Mumbai</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p class="review-quote">"Living in Mumbai's high humidity always made my skin break out with heavy creams. The Anti-Pigmentation Cream absorbed instantly and completely cleared my dark sun patches within 4 weeks."</p>
-            <div class="review-author-wrap">
-              <div class="review-avatar">SR</div>
-              <div>
-                <h5 class="review-name">Shweta Rajput</h5>
-                <span class="review-verified">Verified Patient &bull; Mumbai</span>
+
+            <div class="review-slide">
+              <div class="review-card">
+                <div class="review-header-meta">
+                  <span class="review-product-pill">Anti Fungal & Anti Allergy</span>
+                  <div class="review-stars" aria-label="5 stars">★★★★★</div>
+                </div>
+                <p class="review-quote">"The Anti-Fungal and Anti-Allergy formulations are miraculous for monsoon chafing and heat rash. Instant cooling relief without any sticky chemical residue or clogged pores."</p>
+                <div class="review-author-wrap">
+                  <div class="review-avatar">AK</div>
+                  <div>
+                    <h5 class="review-name">Ananya Kulkarni</h5>
+                    <span class="review-verified">Verified Patient &bull; Pune</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-slide">
+              <div class="review-card">
+                <div class="review-header-meta">
+                  <span class="review-product-pill">Migraine Relief Roll-on</span>
+                  <div class="review-stars" aria-label="5 stars">★★★★★</div>
+                </div>
+                <p class="review-quote">"The Migraine & Tension Roll-on oil lives in my work bag permanently. One swipe over temples and the tension headache just evaporates. True therapeutic botanical excellence."</p>
+                <div class="review-author-wrap">
+                  <div class="review-avatar">RM</div>
+                  <div>
+                    <h5 class="review-name">Rohit Mathur</h5>
+                    <span class="review-verified">Verified Patient &bull; Bangalore</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="review-card">
-            <div class="review-header-meta">
-              <span class="review-product-pill">Anti Fungal & Anti Allergy</span>
-              <div class="review-stars" aria-label="5 stars">★★★★★</div>
-            </div>
-            <p class="review-quote">"The Anti-Fungal and Anti-Allergy formulations are miraculous for monsoon chafing and heat rash. Instant cooling relief without any sticky chemical residue or clogged pores."</p>
-            <div class="review-author-wrap">
-              <div class="review-avatar">AK</div>
-              <div>
-                <h5 class="review-name">Ananya Kulkarni</h5>
-                <span class="review-verified">Verified Patient &bull; Pune</span>
-              </div>
-            </div>
-          </div>
+          <button class="review-nav-btn next" id="reviewNextBtn" aria-label="Next Review">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
 
-          <div class="review-card">
-            <div class="review-header-meta">
-              <span class="review-product-pill">Migraine Relief Roll-on</span>
-              <div class="review-stars" aria-label="5 stars">★★★★★</div>
-            </div>
-            <p class="review-quote">"The Migraine & Tension Roll-on oil lives in my work bag permanently. One swipe over temples and the tension headache just evaporates. True therapeutic botanical excellence."</p>
-            <div class="review-author-wrap">
-              <div class="review-avatar">RM</div>
-              <div>
-                <h5 class="review-name">Rohit Mathur</h5>
-                <span class="review-verified">Verified Patient &bull; Bangalore</span>
-              </div>
-            </div>
-          </div>
+        <div class="reviews-pagination" id="reviewsPagination">
+          <!-- Dots injected by JS -->
         </div>
       </div>
     </section>
@@ -823,6 +847,43 @@
       <path d="M18 15l-6-6-6 6"/>
     </svg>
   </button>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav class="mobile-bottom-nav" id="mobileBottomNav">
+    <a href="#" class="bottom-nav-item active" aria-label="Home">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+      <span>Home</span>
+    </a>
+    <a href="#products" class="bottom-nav-item" aria-label="Shop">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+      </svg>
+      <span>Shop</span>
+    </a>
+    <button type="button" class="bottom-nav-item" onclick="openSearchModal()" aria-label="Search">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <span>Search</span>
+    </button>
+    <button type="button" class="bottom-nav-item open-cart-btn" aria-label="Cart">
+      <div class="bottom-nav-icon-wrap">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        <span class="cart-badge bottom-nav-badge" style="display:none;">0</span>
+      </div>
+      <span>Cart</span>
+    </button>
+  </nav>
 
   <script src="app.js?v=2"></script>
 </body>
